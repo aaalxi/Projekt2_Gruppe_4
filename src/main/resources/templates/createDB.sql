@@ -1,0 +1,6 @@
+
+DROP DATABASE IF EXISTS;
+
+     USE DATABASE;
+
+
