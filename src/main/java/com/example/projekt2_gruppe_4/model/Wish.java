@@ -20,7 +20,9 @@ public class Wish {
 
 
 
-    public Wish (int wishListId,String title, String description, String productUrl, BigDecimal price, int amount,String imgUrl, Integer priority, LocalDateTime createDate, Integer reservedByUserId){
+    public Wish (int wishListId,String title, String description, String productUrl,
+                 BigDecimal price, int amount, String imgUrl,
+                 Integer priority, LocalDateTime createDate, Integer reservedByUserId){
         this.wishListId = wishListId;
         this.title = title;
         this.description = description;
