@@ -1,0 +1,38 @@
+package com.example.projekt2_gruppe_4.repository;
+
+import com.example.projekt2_gruppe_4.model.Wishlist;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class WishlistRepo {
+    private final JdbcTemplate jdbcTemplate;
+    private final RowMapper<Wishlist> WISHLIST_MAPPER = (rs, rowNum) -> (
+            new Wishlist(rs.getInt("wishlist_id"),
+                    rs.getInt("user_id"),
+                    rs.getString("title"),
+            rs.getTimestamp("created_at").toLocalDateTime()));
+
+    public WishlistRepo(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public Wishlist findById(int wishlist_id){
+        String sql = "SELECT * FROM Wishlist WHERE wishlist_id=?";
+        return jdbcTemplate.queryForObject(sql, WISHLIST_MAPPER);
+    }
+
+    public Wishlist findByUserId(int user_id){
+        String sql = "SELECT * FROM Wishlist WHERE user_id=?";
+        return jdbcTemplate.queryForObject(sql, WISHLIST_MAPPER);
+    }
+
+    public void create(Wishlist wishlist){
+        String sql = "INSERT INTO Wishlist(wishlist_id, user_id, title, created_at)VALUES(?,?,?,?)";
+        jdbcTemplate.update(sql, wishlist.getWishlistId(),
+                wishlist.getUserId(),
+                wishlist.getTitle(),
+                wishlist.getCreatedAt());
+    }
+}
