@@ -22,7 +22,6 @@ CREATE TABLE Wishlist
     user_id         INT          NOT NULL, -- FK --
     title           VARCHAR(255) NOT NULL,
     created_at      DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at      DATETIME,              -- CONSIDER IF WE NEED THIS ONE--
     share_token     VARCHAR(64)  UNIQUE NULL,
     -- FK CONSTRAINT --
     CONSTRAINT fk_wishlist_users FOREIGN KEY (user_id) REFERENCES Users (user_id) ON DELETE CASCADE
