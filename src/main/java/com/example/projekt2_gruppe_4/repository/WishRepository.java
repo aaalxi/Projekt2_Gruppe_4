@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Repository
-public class WishRepo {
+public class WishRepository {
     private final JdbcTemplate jdbcTemplate;
     private final RowMapper<Wish> WISH_MAPPER = (rs, rowNum) -> (
             new Wish(rs.getInt("wish_id"),
@@ -32,7 +32,7 @@ public class WishRepo {
     private final DataSource dataSource;
 
 
-    public WishRepo(JdbcTemplate jdbcTemplate, DataSource dataSource) {
+    public WishRepository(JdbcTemplate jdbcTemplate, DataSource dataSource) {
         this.jdbcTemplate = jdbcTemplate;
         this.dataSource = dataSource;
     }

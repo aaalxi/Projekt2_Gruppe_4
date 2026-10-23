@@ -17,7 +17,7 @@ public class UserRepository {
 
 
     void findByUserId(int userId){
-        String sql = "SELECT FROM users WHERE user_id = ?";
+        String sql = "SELECT * FROM users WHERE user_id = ?";
 
         try(Connection connection = dataSource.getConnection()){
             PreparedStatement stmt = connection.prepareStatement(sql);

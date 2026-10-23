@@ -1,6 +1,6 @@
 package com.example.projekt2_gruppe_4.service;
 import com.example.projekt2_gruppe_4.model.Wish;
-import com.example.projekt2_gruppe_4.repository.WishRepo;
+import com.example.projekt2_gruppe_4.repository.WishRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -8,9 +8,13 @@ import java.math.BigDecimal;
 
 @Service
 public class WishService {
-    private final WishRepo wishRepo;
+    private final WishRepository wishRepository;
 
-    public WishService(WishRepo wishRepo){
-        this.wishRepo = wishRepo;
+    public WishService(WishRepository wishRepository){
+        this.wishRepository = wishRepository;
+    }
+
+    public void editWish(Wish wish){
+        wishRepository.update(wish);
     }
 }
