@@ -8,8 +8,8 @@ USE onskeskyen;
 INSERT INTO users (name, email, password_hash)
 VALUES
     ('Ava', 'aval0001@stud.ek.dk', '$2a$12$Pv.ByUh4NSIPLYT2OoByVe/S9XDAmlpW4TgMuqUF3XgYPUIWgWj2q'),
-    ('Mads', 'ava0001@stud.ek.dk', '$2a$12$ZhM5L6vKLXiIUAFBSwnIf.0qRGjCjekxe/HhgZwvmhZ85VCeVCcdK'),
-    ('Rasmus', 'av0001@stud.ek.dk', '$2a$12$pcNK7eBBXbJ0c16gQZ0lwObvNKG1oXSVrd95DpG/kh7cXxsh5Tj5e');
+    ('Mads', 'majo1009@stud.ek.dk', '$2a$12$ZhM5L6vKLXiIUAFBSwnIf.0qRGjCjekxe/HhgZwvmhZ85VCeVCcdK'),
+    ('Rasmus', 'ragu1000 @stud.ek.dk', '$2a$12$pcNK7eBBXbJ0c16gQZ0lwObvNKG1oXSVrd95DpG/kh7cXxsh5Tj5e');
 
 
 INSERT INTO wishlist (user_id, title)
