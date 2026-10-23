@@ -1,5 +1,3 @@
-
-
 -- TEST ENVIRONMENT --
 
 USE onskeskyen;
@@ -10,7 +8,6 @@ VALUES
     ('Ava', 'aval0001@stud.ek.dk', '$2a$12$Pv.ByUh4NSIPLYT2OoByVe/S9XDAmlpW4TgMuqUF3XgYPUIWgWj2q'),
     ('Mads', 'majo1009@stud.ek.dk', '$2a$12$ZhM5L6vKLXiIUAFBSwnIf.0qRGjCjekxe/HhgZwvmhZ85VCeVCcdK'),
     ('Rasmus', 'ragu1000 @stud.ek.dk', '$2a$12$pcNK7eBBXbJ0c16gQZ0lwObvNKG1oXSVrd95DpG/kh7cXxsh5Tj5e');
-
 
 INSERT INTO wishlist (user_id, title)
 VALUES
@@ -28,9 +25,9 @@ INSERT INTO wish(wishlist_id, title, price, wish_amount, priority) VALUES (3, 'G
 INSERT INTO wish(wishlist_id, title, product_url, wish_amount, priority)
 VALUES (3, 'Skrivebord', 'https://www.ikea.com/dk/da/p/utmaning-gamerhaeve-saenkebord-elektrisk-sort-s09571665/',
                  1, 1);
--- Sharedwishlist: --
-INSERT INTO sharedwishlist (wishlist_id, shared_with_user_id) VALUES (2, 3);
 
+-- Sharedwishlist: Mads is sharing his wishlist 'Barnedåb' with Rasmus --
+INSERT INTO sharedwishlist (wishlist_id, shared_with_user_id) VALUES (2, 3);
 
 -- Mads wants cutlery for his son, that Rasmus as a User has reserved--
 INSERT INTO wish(wishlist_id, title, product_url, price, wish_amount, img_url, priority, reserved_by_user_id)

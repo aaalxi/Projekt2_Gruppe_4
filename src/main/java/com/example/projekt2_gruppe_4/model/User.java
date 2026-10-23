@@ -15,6 +15,15 @@ public class User {
         this.userCreateDate=userCreateDate;
     }
 
+
+    public User (int userId, String name, String email, LocalDateTime userCreateDate){
+        this.userId=userId;
+        this.name=name;
+        this.email=email;
+        this.userCreateDate=userCreateDate;
+    }
+
+
     public int getUserId() {
         return userId;
     }
