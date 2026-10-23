@@ -69,9 +69,9 @@ public class WishRepository {
         }
     }
 
-    public List<Wish> getWishesByWishlistId(int wishlistId) {
-        List<Wish> wishes = new ArrayList<>();
+    public Wish getWishByWishlistId(int wishlistId) {
         String sql = "SELECT * From Wish WHERE wishlist_id = ?";
+        Wish wish = new Wish();
 
         try (Connection connect = dataSource.getConnection();
              PreparedStatement ps = connect.prepareStatement(sql)) {
@@ -79,7 +79,6 @@ public class WishRepository {
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    Wish wish = new Wish();
                     wish.setWishId(rs.getInt("wish_id"));
                     wish.setWishListId(rs.getInt("wishlist_id"));
                     wish.setTitle(rs.getString("title"));
@@ -91,14 +90,13 @@ public class WishRepository {
                     wish.setPriority(rs.getInt("priority"));
                     wish.setCreateDate(rs.getTimestamp("created_at").toLocalDateTime());
                     wish.setReservedByUserId(rs.getInt("reserved_by_user_id"));
-                    wishes.add(wish);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
 
         }
-        return wishes;
+        return wish;
     }
 
     public void update(Wish wish){
