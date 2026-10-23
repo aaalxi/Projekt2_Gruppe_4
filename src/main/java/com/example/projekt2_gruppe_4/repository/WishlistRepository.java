@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class WishlistRepo {
+public class WishlistRepository {
     private final JdbcTemplate jdbcTemplate;
     private final RowMapper<Wishlist> WISHLIST_MAPPER = (rs, rowNum) -> (
             new Wishlist(rs.getInt("wishlist_id"),
@@ -14,7 +14,7 @@ public class WishlistRepo {
                     rs.getString("title"),
             rs.getTimestamp("created_at").toLocalDateTime()));
 
-    public WishlistRepo(JdbcTemplate jdbcTemplate) {
+    public WishlistRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
