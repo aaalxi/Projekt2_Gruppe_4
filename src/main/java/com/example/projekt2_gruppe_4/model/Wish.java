@@ -16,7 +16,6 @@ public class Wish {
     private int priority;
     private LocalDateTime createDate;
     private int reservedByUserId;
-    //private LocalDateTime reservedDate; ???
 
 
 
@@ -34,6 +33,11 @@ public class Wish {
         this.createDate = createDate;
         this.reservedByUserId = reservedByUserId;
 
+    }
+
+    public Wish(int wishListId, String title){
+        this.wishListId = wishListId;
+        this.title = title;
     }
 
     public Wish(){
