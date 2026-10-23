@@ -21,8 +21,8 @@ public class WishService {
         wishRepository.saveWish(wish);
     }
 
-    public Wish getWishByWishlistId(int wishlistId) {
-        return wishRepository.getWishByWishlistId(wishlistId);
+    public Wish getById(int wishId) {
+        return wishRepository.findWishById(wishId);
     }
 
     public void editWish(Wish wish){

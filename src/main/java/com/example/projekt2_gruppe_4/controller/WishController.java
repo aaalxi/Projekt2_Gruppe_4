@@ -19,8 +19,9 @@ public class WishController {
         this.wishService = wishService;
     }
 
-    @GetMapping("wish/showCreateWish")
-    public String showCreateWish(Model model){
+    @GetMapping("wish/{wishlistId}/showCreateWish")
+    public String showCreateWish(Model model, @PathVariable int wishlistId){
+        model.addAttribute("wishlist", wishlistId);
         model.addAttribute("wish", new Wish());
         return "createWish";
     }
@@ -31,4 +32,15 @@ public class WishController {
         return "redirect:/profile";
     }
 
+    @GetMapping("/wish/{wishId}/editWish")
+    public String showEditWish(@PathVariable int wishId, Model model){
+        model.addAttribute("wish", wishService.getById(wishId));
+        return "editWish";
+    }
+
+    @PostMapping("/wish/editWish")
+    public String editWish(@ModelAttribute Wish wish){
+        wishService.editWish(wish);
+        return "redirect:/profile";
+    }
 }
