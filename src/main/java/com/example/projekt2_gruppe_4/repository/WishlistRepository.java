@@ -35,4 +35,8 @@ public class WishlistRepository {
                 wishlist.getTitle(),
                 wishlist.getCreatedAt());
     }
+    public void deleteById(int wishlistId){
+        String sql = "DELETE FROM Wishlist WHERE wishlist_id = ?";
+        jdbcTemplate.update(sql, wishlistId);
+    }
 }

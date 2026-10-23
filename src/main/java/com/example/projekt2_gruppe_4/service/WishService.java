@@ -46,4 +46,8 @@ public class WishService {
             throw new IllegalArgumentException("Skal skrive et antal ønsker");
         }
     }
+
+    public void deleteWish(int wishId){
+        wishRepository.deleteById(wishId);
+    }
 }

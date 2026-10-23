@@ -29,4 +29,6 @@ public class WishlistController {
         wishlistService.createWishlist(wishlist);
         return "redirect:/profile";
     }
+
+
 }
