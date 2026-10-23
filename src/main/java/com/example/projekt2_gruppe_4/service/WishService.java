@@ -4,7 +4,7 @@ import com.example.projekt2_gruppe_4.repository.WishRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-
+import java.util.List;
 
 @Service
 public class WishService {
@@ -14,7 +14,32 @@ public class WishService {
         this.wishRepository = wishRepository;
     }
 
-    public void editWish(Wish wish){
-        wishRepository.update(wish);
+    private void validateTitle(Wish wish){
+        if(wish.getTitle() == null || wish.getTitle().isBlank()){
+            throw new IllegalArgumentException("Ønsket skal have en title.");
+        }
+    }
+
+    private void validatePrice(Wish wish){
+        if(wish.getPrice() != null && wish.getPrice().compareTo(BigDecimal.ZERO) < 0){
+            throw new IllegalArgumentException("Prisen kan ikke være minus.");
+        }
+    }
+
+    private void validateAmount(Wish wish){
+        if(wish.getAmount() <= 0){
+            throw new IllegalArgumentException("Skal skrive et antal ønsker");
+        }
+    }
+
+    public void createWish(Wish wish){
+        validateTitle(wish);
+        validatePrice(wish);
+        validateAmount(wish);
+        wishRepository.saveWish(wish);
+    }
+
+    public List<Wish> getWishByWishlistId(int wishlistId) {
+        return wishRepository.getWishesByWishlistId(wishlistId);
     }
 }
