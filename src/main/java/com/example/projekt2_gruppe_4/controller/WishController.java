@@ -29,10 +29,10 @@ public class WishController {
     @PostMapping("/wish/createWish")
     public String createWish(@ModelAttribute Wish wish){
         wishService.createWish(wish);
-        return "redirect:/profile";
+        return "redirect:/wishlist";
     }
 
-    @GetMapping("/wish/{wishId}/editWish")
+    @GetMapping("/wish/{wishId}/ShowEditWish")
     public String showEditWish(@PathVariable int wishId, Model model){
         model.addAttribute("wish", wishService.getById(wishId));
         return "editWish";
@@ -41,6 +41,6 @@ public class WishController {
     @PostMapping("/wish/editWish")
     public String editWish(@ModelAttribute Wish wish){
         wishService.editWish(wish);
-        return "redirect:/profile";
+        return "redirect:/wishlist";
     }
 }
