@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/global.css}">
-    <title>Title</title>
+    <title>New User</title>
 </head>
 <body>
+
+<header>
+
+</header>
+
+<div class="main">
+
+    <div class="forms">
+
+        <div class="headline_forms">Opret bruger</div>
+
+        <form th:action="@{/postCreateUser}" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+
+            <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+            <label>Password:</label>
+            <input type="text" name="password" id="password" required>
+
+            <button type="submit" class="btn">Create User</button>
+        </form>
+
+
+
+    </div>
+
+
+</div>
+
+
+<footer>
+</footer>
+
 
 </body>
 </html>

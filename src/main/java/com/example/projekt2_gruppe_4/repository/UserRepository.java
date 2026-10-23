@@ -15,7 +15,7 @@ import java.util.List;
 public class UserRepository {
 
     private final DataSource dataSource;                //Connection object
-    private final JdbcTemplate jdbcTemplate;            //Part of spring framework, removes
+    private final JdbcTemplate jdbcTemplate;            //Part of spring framework
 
 
 //RowMapper: interface in jdbcTemplate, used for mapping rows of a ResultSet to a Java object
@@ -28,7 +28,7 @@ public class UserRepository {
                     rs.getTimestamp("user_create_date").toLocalDateTime()
             );                                               //converting timestamp to local DT
 
-    //CONSTRUCTOR: Autowired, injection
+    //CONSTRUCTOR:
     public UserRepository (DataSource dataSource, JdbcTemplate jdbcTemplate){
         this.dataSource=dataSource;
         this.jdbcTemplate=jdbcTemplate;
@@ -79,14 +79,15 @@ public class UserRepository {
         try(Connection connection = dataSource.getConnection();
             PreparedStatement stmt = connection.prepareStatement(sql);) {
 
-            stmt.setString(1, "name");
-            stmt.setString(2, "email");
-            stmt.setString(3, "password");
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getPasswordHash());
 
             stmt.executeUpdate();
 
         } catch (Exception e){
             System.out.println("Didn't SAVE User");
+            e.printStackTrace();
         }
     }
 }

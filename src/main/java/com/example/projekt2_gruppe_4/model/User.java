@@ -15,12 +15,11 @@ public class User {
         this.userCreateDate=userCreateDate;
     }
 
-
-    public User (int userId, String name, String email, LocalDateTime userCreateDate){
-        this.userId=userId;
+//to create user
+    public User (String name, String email, String passwordHash){
         this.name=name;
         this.email=email;
-        this.userCreateDate=userCreateDate;
+        this.passwordHash=passwordHash;
     }
 
 

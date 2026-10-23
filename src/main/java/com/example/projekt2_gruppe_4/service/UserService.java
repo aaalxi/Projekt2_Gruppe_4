@@ -27,4 +27,7 @@ public class UserService {
         return repository.findById(userId);
     }
 
+    public void saveUser (User user){
+        repository.saveUser(user);
+    }
 }

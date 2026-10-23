@@ -1,0 +1,28 @@
+/*   default body ....    */
+body{
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+header{
+
+}
+
+
+.main{
+    display: grid;
+    padding: 10px;
+}
+
+.forms{
+    display: grid;
+    border-color: lightgray;
+    padding: 10px;
+}
+
+.btn{
+
+}

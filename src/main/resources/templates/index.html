@@ -3,9 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/global.css}">
-    <title>Title</title>
+    <title>Homepage</title>
 </head>
 <body>
+
+<header>
+    <a th:href="@{/getCreateUser}" class="btn">Create User</a>
+    <a th:href="@{/getLogin}" class="btn">Log in</a>
+</header>
+
+
+<section>
+    <h1>Wishlist ...</h1>
+    <p>
+        Here you can store your wishlists in one place
+        and
+    </p>
+
+    <a th:href="@{/getCreateUser}" class="btn">Create User</a>
+    <a th:href="@{/getLogin}" class="btn">Log in</a>
+
+</section>
+
+
+<div class="main">
+
+
+
+</div>
+
+
+<footer>
+    <a th:href="@{/}" class="btn">Meet the team</a>
+</footer>
+
+
 
 </body>
 </html>
