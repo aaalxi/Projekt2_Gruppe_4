@@ -1,16 +1,25 @@
-/*   default body ....    */
+/* removes default values of body */
 body{
     padding: 0;
     margin: 0;
 }
 
 
-
-
-header{
-
+a {
+    text-decoration: none;
 }
 
+header{
+    display: flex;
+    justify-content: flex-end;
+    box-sizing: border-box;     /* makes sure padding is included in width*/
+    padding: 15px;
+    background-color: whitesmoke;
+
+}
+header a:active{
+    background-color: black;
+}
 
 .main{
     display: grid;
@@ -19,10 +28,22 @@ header{
 
 .forms{
     display: grid;
-    border-color: lightgray;
+    grid-template-columns: 1fr;
+    background-color: whitesmoke;
+    border: solid 2px lightgray;
+    border-radius: 4px;
     padding: 10px;
 }
 
-.btn{
 
+
+.btn{
+    padding: 8px;
+    border: solid 2px black;
+    border-radius: 4px;
+    color: darkgreen;
+}
+
+footer{
+    position: sticky;
 }
