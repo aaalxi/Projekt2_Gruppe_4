@@ -14,6 +14,21 @@ public class WishService {
         this.wishRepository = wishRepository;
     }
 
+    public void createWish(Wish wish){
+        validateTitle(wish);
+        validatePrice(wish);
+        validateAmount(wish);
+        wishRepository.saveWish(wish);
+    }
+
+    public Wish getWishByWishlistId(int wishlistId) {
+        return wishRepository.getWishByWishlistId(wishlistId);
+    }
+
+    public void editWish(Wish wish){
+        wishRepository.update(wish);
+    }
+
     private void validateTitle(Wish wish){
         if(wish.getTitle() == null || wish.getTitle().isBlank()){
             throw new IllegalArgumentException("Ønsket skal have en title.");
@@ -30,16 +45,5 @@ public class WishService {
         if(wish.getAmount() <= 0){
             throw new IllegalArgumentException("Skal skrive et antal ønsker");
         }
-    }
-
-    public void createWish(Wish wish){
-        validateTitle(wish);
-        validatePrice(wish);
-        validateAmount(wish);
-        wishRepository.saveWish(wish);
-    }
-
-    public List<Wish> getWishByWishlistId(int wishlistId) {
-        return wishRepository.getWishesByWishlistId(wishlistId);
     }
 }
