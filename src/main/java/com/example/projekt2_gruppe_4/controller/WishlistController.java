@@ -1,5 +1,6 @@
 package com.example.projekt2_gruppe_4.controller;
 
+import com.example.projekt2_gruppe_4.model.Wish;
 import com.example.projekt2_gruppe_4.model.Wishlist;
 import com.example.projekt2_gruppe_4.service.WishlistService;
 import org.springframework.stereotype.Controller;

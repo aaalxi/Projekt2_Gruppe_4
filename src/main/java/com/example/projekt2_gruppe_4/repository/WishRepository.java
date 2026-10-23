@@ -69,13 +69,13 @@ public class WishRepository {
         }
     }
 
-    public Wish getWishByWishlistId(int wishlistId) {
-        String sql = "SELECT * From Wish WHERE wishlist_id = ?";
+    public Wish findWishById(int wishId) {
+        String sql = "SELECT * From Wish WHERE wish_id = ?";
         Wish wish = new Wish();
 
         try (Connection connect = dataSource.getConnection();
              PreparedStatement ps = connect.prepareStatement(sql)) {
-            ps.setInt(1, wishlistId);
+            ps.setInt(1, wishId);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
