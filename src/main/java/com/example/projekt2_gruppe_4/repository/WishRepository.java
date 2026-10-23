@@ -118,4 +118,9 @@ public class WishRepository {
                 wish.getImgUrl(),
                 wish.getPriority());
     }
+
+    public void deleteById(int wishId){
+        String sql = "DELETE FROM wish WHERE wish_id = ?";
+        jdbcTemplate.update(sql, wishId);
+    }
 }

@@ -16,4 +16,8 @@ public class WishlistService {
         wishlistRepository.create(wishlist);
     }
 
+    public void deleteWishlist(int wishlistId){
+        wishlistRepository.deleteById(wishlistId);
+    }
+
 }

@@ -22,6 +22,7 @@ public class Wish {
     public Wish (int wishId, int wishListId, String title, String description, String productUrl,
                  BigDecimal price, int amount, String imgUrl,
                  int priority, LocalDateTime createDate, int reservedByUserId){
+        this.wishId = wishId;
         this.wishListId = wishListId;
         this.title = title;
         this.description = description;
