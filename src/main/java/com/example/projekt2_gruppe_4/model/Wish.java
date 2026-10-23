@@ -13,16 +13,16 @@ public class Wish {
     private BigDecimal price;
     private int amount;
     private String imgUrl;
-    private Integer priority;
+    private int priority;
     private LocalDateTime createDate;
-    private Integer reservedByUserId;
+    private int reservedByUserId;
     //private LocalDateTime reservedDate; ???
 
 
 
-    public Wish (int wishListId,String title, String description, String productUrl,
+    public Wish (int wishId, int wishListId, String title, String description, String productUrl,
                  BigDecimal price, int amount, String imgUrl,
-                 Integer priority, LocalDateTime createDate, Integer reservedByUserId){
+                 int priority, LocalDateTime createDate, int reservedByUserId){
         this.wishListId = wishListId;
         this.title = title;
         this.description = description;
@@ -104,11 +104,11 @@ public class Wish {
         this.imgUrl = imgUrl;
     }
 
-    public Integer getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(Integer priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 
@@ -120,11 +120,11 @@ public class Wish {
         this.createDate = createDate;
     }
 
-    public Integer getReservedByUserId() {
+    public int getReservedByUserId() {
         return reservedByUserId;
     }
 
-    public void setReservedByUserId(Integer reservedByUserId) {
+    public void setReservedByUserId(int reservedByUserId) {
         this.reservedByUserId = reservedByUserId;
     }
 }
