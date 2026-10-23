@@ -16,6 +16,23 @@ public class UserRepository {
     }
 
 
+    void findByUserId(int userId){
+        String sql = "SELECT FROM users WHERE user_id = ?";
+
+        try(Connection connection = dataSource.getConnection()){
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+        } catch (Exception e){
+            System.out.println("Error findByUserId");
+        }
+
+    }
+
+
+
+
+
+
 
     public void save (User user){
         String sql = "INSERT INTO Users (name, email, password_hash)" +

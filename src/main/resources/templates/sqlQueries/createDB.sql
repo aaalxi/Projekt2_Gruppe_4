@@ -39,7 +39,7 @@ CREATE TABLE Wish
     img_url             VARCHAR(2048),
     priority            INT,
     created_at          DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    reserved_by_user_id INT NULL,              -- FK --
+    reserved_by_user_id INT NULL,              -- FK > NULLABLE --
 
     CONSTRAINT fk_wish_wishlist FOREIGN KEY (wishlist_id) REFERENCES Wishlist (wishlist_id) ON DELETE CASCADE,
     CONSTRAINT fk_wish_reservedUser FOREIGN KEY (reserved_by_user_id) REFERENCES Users (user_id) ON DELETE SET NULL,
@@ -60,10 +60,3 @@ CREATE TABLE SharedWishlist
     -- NO DUPLICATES IN COMBINATION TABLE --
     CONSTRAINT unq_shared_wishlist_user UNIQUE (wishlist_id, shared_with_user_id)
 );
-
-
-
-
-
-
-
