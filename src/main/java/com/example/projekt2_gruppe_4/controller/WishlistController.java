@@ -30,5 +30,11 @@ public class WishlistController {
         return "redirect:/profile";
     }
 
+    @PostMapping("/wishlist/deleteWishlist")
+    public String deleteWishlist(@ModelAttribute int wishlistId){
+        wishlistService.deleteWishlist(wishlistId);
+        return "redirect:/profile";
+    }
+
 
 }
