@@ -1,40 +1,78 @@
 package com.example.projekt2_gruppe_4.repository;
 
 import com.example.projekt2_gruppe_4.model.User;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
 
 @Repository
 public class UserRepository {
-    private final DataSource dataSource;                //Connection object
 
-    public UserRepository (DataSource dataSource){      //Autowired, injection
+    private final DataSource dataSource;                //Connection object
+    private final JdbcTemplate jdbcTemplate;            //Part of spring framework, removes
+
+
+//RowMapper: interface in jdbcTemplate, used for mapping rows of a ResultSet to a Java object
+//a class variable
+    private RowMapper<User> users = (rs, rowNum) ->
+            new User (rs.getInt("user_id"),
+                    rs.getString("name"),
+                    rs.getString("email"),
+                    rs.getString("password_hash"),
+                    rs.getTimestamp("user_create_date").toLocalDateTime()
+            );                                               //converting timestamp to local DT
+
+    //CONSTRUCTOR: Autowired, injection
+    public UserRepository (DataSource dataSource, JdbcTemplate jdbcTemplate){
         this.dataSource=dataSource;
+        this.jdbcTemplate=jdbcTemplate;
     }
 
 
-    void findByUserId(int userId){
+    public List<User> getAll (){
+        String sql = "SELECT * FROM users";
+        return jdbcTemplate.query(sql, users);
+    }
+
+    public User findByEmail (String email){
+        String sql = "SELECT * FROM users WHERE email = ?";
+        return jdbcTemplate.queryForObject(sql, users, email);
+    }
+
+
+
+
+//example of boilerplate code this is what jdbcTemplate abstracts from
+    public User findById(int userId){
         String sql = "SELECT * FROM users WHERE user_id = ?";
 
-        try(Connection connection = dataSource.getConnection()){
-            PreparedStatement stmt = connection.prepareStatement(sql);
+        try(Connection connection = dataSource.getConnection();             //try with resources, closes all
+        PreparedStatement stmt = connection.prepareStatement(sql)){
+            stmt.setInt(1, userId);
 
+            try(ResultSet rs = stmt.executeQuery()){            //notice no ';' after method inside resource
+                if (rs.next()){
+                    return new User(rs.getInt("user_id"),
+                            rs.getString("name"),
+                            rs.getString("email"),
+                            rs.getString("password_hash"),
+                            rs.getTimestamp("user_create_date").toLocalDateTime());
+                }
+            }
         } catch (Exception e){
             System.out.println("Error findByUserId");
         }
-
+        return null;
     }
 
 
-
-
-
-
-
-    public void save (User user){
+    public void saveUser (User user){
         String sql = "INSERT INTO Users (name, email, password_hash)" +
                 "VALUES (?, ?, ?)";
 
@@ -45,11 +83,10 @@ public class UserRepository {
             stmt.setString(2, "email");
             stmt.setString(3, "password");
 
-            stmt.executeUpdate();                       //auto-commit is true as default
+            stmt.executeUpdate();
 
         } catch (Exception e){
             System.out.println("Didn't SAVE User");
         }
-
     }
 }
