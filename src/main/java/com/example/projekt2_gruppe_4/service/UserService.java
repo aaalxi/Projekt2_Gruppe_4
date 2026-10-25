@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public class UserService {
-    private final UserRepository repository;   //final: cannot be changed once assigned anywhere in the code
+    private final UserRepository repository;
 
 
     public UserService(UserRepository repository){

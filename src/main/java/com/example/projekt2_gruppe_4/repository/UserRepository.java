@@ -14,12 +14,10 @@ import java.util.List;
 @Repository
 public class UserRepository {
 
-    private final DataSource dataSource;                //Connection object
-    private final JdbcTemplate jdbcTemplate;            //Part of spring framework
+    private final DataSource dataSource;
+    private final JdbcTemplate jdbcTemplate;
 
 
-//RowMapper: interface in jdbcTemplate, used for mapping rows of a ResultSet to a Java object
-//a class variable
     private RowMapper<User> users = (rs, rowNum) ->
             new User (rs.getInt("user_id"),
                     rs.getString("name"),
@@ -28,7 +26,7 @@ public class UserRepository {
                     rs.getTimestamp("user_create_date").toLocalDateTime()
             );                                               //converting timestamp to local DT
 
-    //CONSTRUCTOR:
+
     public UserRepository (DataSource dataSource, JdbcTemplate jdbcTemplate){
         this.dataSource=dataSource;
         this.jdbcTemplate=jdbcTemplate;
@@ -45,18 +43,14 @@ public class UserRepository {
         return jdbcTemplate.queryForObject(sql, users, email);
     }
 
-
-
-
-//example of boilerplate code this is what jdbcTemplate abstracts from
     public User findById(int userId){
         String sql = "SELECT * FROM users WHERE user_id = ?";
 
-        try(Connection connection = dataSource.getConnection();             //try with resources, closes all
+        try(Connection connection = dataSource.getConnection();
         PreparedStatement stmt = connection.prepareStatement(sql)){
             stmt.setInt(1, userId);
 
-            try(ResultSet rs = stmt.executeQuery()){            //notice no ';' after method inside resource
+            try(ResultSet rs = stmt.executeQuery()){
                 if (rs.next()){
                     return new User(rs.getInt("user_id"),
                             rs.getString("name"),
@@ -70,7 +64,6 @@ public class UserRepository {
         }
         return null;
     }
-
 
     public void saveUser (User user){
         String sql = "INSERT INTO Users (name, email, password_hash)" +

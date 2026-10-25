@@ -20,7 +20,7 @@ public class UserController {
 
    @GetMapping("/getCreateUser")
    public String createUser(){
-       return "createUser";                 //returns view th:template, not the index.html
+       return "createUser";
    }
 
     @PostMapping("/postCreateUser")
@@ -31,9 +31,6 @@ public class UserController {
      service.addUser(new User(name, email, password_hash));
      return "createUser";
    }
-
-
-
 
 
 
