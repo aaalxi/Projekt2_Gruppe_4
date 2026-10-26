@@ -1,6 +1,7 @@
 package com.example.projekt2_gruppe_4.repository;
 
 import com.example.projekt2_gruppe_4.model.User;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -40,7 +41,11 @@ public class UserRepository {
 
     public User findByEmail (String email){
         String sql = "SELECT * FROM users WHERE email = ?";
-        return jdbcTemplate.queryForObject(sql, users, email);
+        try{
+            return jdbcTemplate.queryForObject(sql, users, email);
+        } catch (DataAccessException e) {
+            return null;
+        }
     }
 
     public User findById(int userId){
@@ -70,7 +75,7 @@ public class UserRepository {
                 "VALUES (?, ?, ?)";
 
         try(Connection connection = dataSource.getConnection();
-            PreparedStatement stmt = connection.prepareStatement(sql);) {
+            PreparedStatement stmt = connection.prepareStatement(sql)) {
 
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getEmail());
@@ -83,4 +88,13 @@ public class UserRepository {
             e.printStackTrace();
         }
     }
+
+    public void reserveWish (int wishlistId, int userId){
+        String sql ="UPDATE wish" +
+                "SET reserved_by_user_id = ?" +
+                "WHERE wish_id = ? " +
+                "AND reserved_by_user_is IS NULL";
+        jdbcTemplate.update(sql, wishlistId, userId);   //args = parameters send to template
+    }
+
 }
