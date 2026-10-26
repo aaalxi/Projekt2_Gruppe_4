@@ -41,7 +41,7 @@ public class WishController {
     @PostMapping("/wish/editWish")
     public String editWish(@ModelAttribute Wish wish){
         wishService.editWish(wish);
-        return "redirect:/wishlist";
+        return "redirect:/wishlist/" + wish.getWishlistId() + "/wishlist";
     }
 
 //    @GetMapping("/wish/{wishId}/showDeleteWish")

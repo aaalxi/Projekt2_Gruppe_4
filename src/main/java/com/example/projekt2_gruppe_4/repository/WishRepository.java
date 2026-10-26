@@ -123,4 +123,9 @@ public class WishRepository {
         String sql = "DELETE FROM wish WHERE wish_id = ?";
         jdbcTemplate.update(sql, wishId);
     }
+
+    public List<Wish> findByWishlistId(int wishlistId){
+        String sql = "SELECT * FROM Wishlist WHERE wishlist_id = ?";
+        return jdbcTemplate.query(sql, WISH_MAPPER, wishlistId);
+    }
 }

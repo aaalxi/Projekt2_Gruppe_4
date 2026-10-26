@@ -29,6 +29,10 @@ public class WishService {
         wishRepository.update(wish);
     }
 
+    public List<Wish> getByWishlistId(int wishlistId){
+        return wishRepository.findByWishlistId(wishlistId);
+    }
+
     private void validateTitle(Wish wish){
         if(wish.getTitle() == null || wish.getTitle().isBlank()){
             throw new IllegalArgumentException("Ønsket skal have en title.");
