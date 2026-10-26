@@ -46,6 +46,13 @@ header a{
 .btn{
 
 }
+/*-----Create Wish ------*/
+h1 {
+    color: #e50914;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 
 /* -----------> CREATE WISHLIST <---------- */
 
