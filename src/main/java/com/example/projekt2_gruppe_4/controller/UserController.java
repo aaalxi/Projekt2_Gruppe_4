@@ -29,7 +29,7 @@ public class UserController {
            @RequestParam("email") String email,
            @RequestParam("password") String password_hash) {
      service.addUser(new User(name, email, password_hash));
-     return "createUser";
+     return "profile";
    }
 
 

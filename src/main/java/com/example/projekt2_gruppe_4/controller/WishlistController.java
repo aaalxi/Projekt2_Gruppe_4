@@ -24,16 +24,16 @@ public class WishlistController {
         return "wishlist";
     }
 
-    @GetMapping("/wishlist/createWishlist")
-    public String showCreateWishlist(Model model){
-        model.addAttribute("wishlist");
+    @GetMapping("/wishlist/{userId}/showCreateWishlist")
+    public String showCreateWishlist(Model model, @PathVariable int userId){
+        model.addAttribute("userId", userId);
         return "createWishlist";
     }
 
     @PostMapping("/wishlist/createWishlist")
     public String createWishlist(@ModelAttribute Wishlist wishlist){
         wishlistService.createWishlist(wishlist);
-        return "redirect:/profile";
+        return "redirect:/wishlist";
     }
 
     @PostMapping("/wishlist/deleteWishlist")
