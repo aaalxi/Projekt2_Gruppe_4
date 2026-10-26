@@ -31,11 +31,10 @@ public class WishlistRepository {
     }
 
     public void create(Wishlist wishlist){
-        String sql = "INSERT INTO Wishlist(wishlist_id, user_id, title, created_at)VALUES(?,?,?,?)";
-        jdbcTemplate.update(sql, wishlist.getWishlistId(),
+        String sql = "INSERT INTO Wishlist(user_id, title) VALUES(?,?)";
+        jdbcTemplate.update(sql,
                 wishlist.getUserId(),
-                wishlist.getTitle(),
-                wishlist.getCreatedAt());
+                wishlist.getTitle());
     }
     public void deleteById(int wishlistId){
         String sql = "DELETE FROM Wishlist WHERE wishlist_id = ?";

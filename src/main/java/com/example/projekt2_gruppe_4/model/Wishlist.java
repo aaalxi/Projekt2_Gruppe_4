@@ -30,6 +30,12 @@ public class Wishlist {
         this.title = title;
     }
 
+    public Wishlist(int userId){
+        this.userId = userId;
+    }
+
+    public Wishlist(){}
+
     public void setWishlistId(int wishlistId) {
         this.wishlistId = wishlistId;
     }
