@@ -1,0 +1,24 @@
+/* ----------------------- HERO SECTION ------------------------------------- */
+.hero{
+    display: flex;
+    justify-content: center;            /*main axis*/
+    align-items: center;                /*cross axis*/
+    gap: 40px;
+
+    margin: 80px auto 40px;
+    width: 70%;
+
+    padding: 20px;
+}
+
+.hero img{
+    width: 50%;
+    height: 300px;
+    object-fit: cover;
+}
+
+main{
+    margin: 0 auto 120px;
+    width: 70%;
+    padding: 20px;
+}

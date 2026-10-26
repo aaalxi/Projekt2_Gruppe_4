@@ -1,15 +1,7 @@
-/* ---------- DEFAULT ---------- */
-
-{
-    box-sizing: border-box;
-}
-/* CHAT HAR LAVET DENNE, MÅ GERNE LAVES OM - I TAKST MED HTML */
-body {
-    margin: 0;
+/* ---------- Removes defeault for body ---------- */
+body{
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: white;
-    color: #333333;
+    margin: 0;
 }
 
 /* ---------- HEADER ---------- */
@@ -17,13 +9,14 @@ body {
 header {
     width: 100%;
     min-height: 65px;
-    background-color: #f2f4f7;
+    box-sizing: border-box;
+    background-color: whitesmoke;
+
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+
     padding: 10px 30px;
-    border-bottom: 1px solid #dddddd;
-    gap: 12px;
 }
 
 header ul {
@@ -43,17 +36,20 @@ header li {
 header a {
     text-decoration: none;
 }
-
-/* ---------- HEADINGS ---------- */
-
-h1 {
-    color: #2457a7;
-    text-align: center;
-    margin-bottom: 25px;
+/* --------------- LOGO  ----------------- */
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: solid 1px black;
+    object-fit: cover;
+    display: block;
 }
 
-h2 {
-    color: #333333;
+/* ---------- HEADINGS ---------- */
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
 }
 
 /* ---------- MAIN CONTENT ---------- */
@@ -106,13 +102,25 @@ input,
 textarea,
 select {
     outline: 2px solid #9bbcf5;
-    border-color: #2457a7;
+    border-color: #214a8c;
 }
 
 /* ---------- BUTTONS ---------- */
 
 .btn,
 button {
+    display: inline-block;
+    padding: 11px 20px;
+    background-color: #7189af;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+}
+.login-btn{
     display: inline-block;
     padding: 11px 20px;
     background-color: #2457a7;
@@ -123,11 +131,6 @@ button {
     text-align: center;
     font-size: 15px;
     cursor: pointer;
-}
-
-.btn,
-button {
-    background-color: #19427f;
 }
 
 /* ---------- LINKS ---------- */
@@ -156,17 +159,13 @@ a {
     margin-top: 0;
 }
 
-/* ---------- MESSAGES ---------- */
 
-.error {
-    color: #c62828;
-    margin: 10px 0;
-}
 
-.success {
-    color: #237a45;
-    margin: 10px 0;
-}
+
+
+
+
+
 
 /* ---------- SMALL SCREENS ---------- */
 
