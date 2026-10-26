@@ -63,7 +63,6 @@ public class UserController {
        return "redirect:/login";
     }
 
-
     //SECURITY FOR PROFILE.HTML: NO INSERT URL TO ACCESS PROFILE, CONTROL OF SESSION
     @GetMapping ("/profile")
     public String showProfile (HttpSession session, Model model){

@@ -80,7 +80,7 @@ public class WishRepository {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     wish.setWishId(rs.getInt("wish_id"));
-                    wish.setWishListId(rs.getInt("wishlist_id"));
+                    wish.setWishlistId(rs.getInt("wishlist_id"));
                     wish.setTitle(rs.getString("title"));
                     wish.setDescription(rs.getString("description"));
                     wish.setProductUrl(rs.getString("product_url"));
