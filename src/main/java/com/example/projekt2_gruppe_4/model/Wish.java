@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 public class Wish {
 
     private int wishId;
-    private int wishListId;
+    private int wishlistId;
     private String title;
     private String description;
     private String productUrl;
@@ -23,7 +23,7 @@ public class Wish {
                  BigDecimal price, int amount, String imgUrl,
                  int priority, LocalDateTime createDate, int reservedByUserId){
         this.wishId = wishId;
-        this.wishListId = wishListId;
+        this.wishlistId = wishListId;
         this.title = title;
         this.description = description;
         this.productUrl = productUrl;
@@ -36,13 +36,13 @@ public class Wish {
 
     }
 
-    public Wish(int wishListId, String title){
-        this.wishListId = wishListId;
+    public Wish(int wishlistId, String title){
+        this.wishlistId = wishlistId;
         this.title = title;
     }
 
-    public Wish(int wishListId){
-        this.wishListId = wishListId;
+    public Wish(int wishlistId){
+        this.wishlistId = wishlistId;
     }
 
     public Wish(){
@@ -57,12 +57,12 @@ public class Wish {
         this.wishId = wishId;
     }
 
-    public int getWishListId() {
-        return wishListId;
+    public int getWishlistId() {
+        return wishlistId;
     }
 
-    public void setWishListId(int wishListId) {
-        this.wishListId = wishListId;
+    public void setWishlistId(int wishlistId) {
+        this.wishlistId = wishlistId;
     }
 
     public String getTitle() {

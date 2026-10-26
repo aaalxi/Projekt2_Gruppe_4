@@ -54,7 +54,7 @@ public class WishRepository {
         try (Connection connect = dataSource.getConnection();
              PreparedStatement ps = connect.prepareStatement(sql)) {
 
-            ps.setInt(1, wish.getWishListId());
+            ps.setInt(1, wish.getWishlistId());
             ps.setString(2, wish.getTitle());
             ps.setString(3, wish.getDescription());
             ps.setString(4, wish.getProductUrl());
