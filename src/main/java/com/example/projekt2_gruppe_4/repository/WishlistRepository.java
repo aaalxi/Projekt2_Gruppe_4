@@ -20,14 +20,14 @@ public class WishlistRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public Wishlist findById(int wishlist_id){
+    public Wishlist findById(int wishlistId){
         String sql = "SELECT * FROM Wishlist WHERE wishlist_id=?";
-        return jdbcTemplate.queryForObject(sql, WISHLIST_MAPPER);
+        return jdbcTemplate.queryForObject(sql, WISHLIST_MAPPER, wishlistId);
     }
 
-    public List<Wishlist> findByUserId(int user_id){
+    public List<Wishlist> findByUserId(int userId){
         String sql = "SELECT * FROM Wishlist WHERE user_id=?";
-        return jdbcTemplate.query(sql, WISHLIST_MAPPER);
+        return jdbcTemplate.query(sql, WISHLIST_MAPPER, userId);
     }
 
     public void create(Wishlist wishlist){

@@ -13,6 +13,19 @@
         <h1 th:text="${wishlist.title}">Title</h1>
 
     </section>
+    <section>
+        <div class=""
+               th:each="wish : ${wishlist}"></div>
+               <h3 th:text="|Title: ${wish.title}|">Title</h3>
+
+
+
+        </div>
+    </section>
+    <section class="">
+        <h1>Edit Wish</h1>
+        <a class="btn" th:href="@{/wish/{wishId}/editWish(wishId=${wish.getWishId()})/}">Edit Wish</a>
+    </section>
     <section class="">
         <h1>Create Wish</h1>
         <a class="btn" th:href="@{/wish/{wishlistId}/createWish(wishlistId=${wishlist.getWishlistId()})/}">+ Create Wish</a>

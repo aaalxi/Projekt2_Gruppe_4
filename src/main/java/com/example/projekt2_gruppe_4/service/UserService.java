@@ -50,6 +50,15 @@ public class UserService {
     public List<User> getAll (){
         return repository.getAll();
     }
+    public void sumOfWishes (User user){
+
+    }
+
+
+    public void sumOfWishlists (User user){
+
+    }
+
 
     public User getById (int userId){
         return repository.findById(userId);

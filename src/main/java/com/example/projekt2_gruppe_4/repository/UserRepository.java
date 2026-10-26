@@ -89,6 +89,10 @@ public class UserRepository {
         }
     }
 
+
+
+
+
     public void reserveWish (int wishlistId, int userId){
         String sql ="UPDATE wish" +
                 "SET reserved_by_user_id = ?" +
