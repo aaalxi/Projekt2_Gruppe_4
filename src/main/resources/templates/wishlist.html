@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wishlist</title>
+    <link rel="stylesheet" th:href="@{/wishlistStyle.css}">
 </head>
 <body>
+<main class="page">
+    <section class="">
+        <h1 th:text="${wishlist.title}">Title</h1>
+    </section>
+
+    <section class="">
+        <h1>Create Wish</h1>
+        <a class="btn" th:href="@{/wish/{wishlistId}/createWish(wishlistId=${wishlist.getWishlistId()})/}">+ Create Wish</a>
+    </section>
+
+</main>
 
 </body>
 </html>
