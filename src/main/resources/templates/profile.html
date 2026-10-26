@@ -1,13 +1,30 @@
 <!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/global.css}">
     <title>Profile</title>
-    <link rel="stylesheet" th:href="@{/Global.css}">
 </head>
 <body>
+
+<header>
+    <ul>
+        <li><a th:href="@{/getCreateUser}" class="btn">Create User</a></li>
+        <li> <a th:href="@{/login}" class="btn">Log in</a> </li>
+    </ul>
+
+</header>
+
+<h1>Hej <span th:text="${user.name}">Bruger</span>!</h1>
+
+<p th:text="${user.email}">email@example.com</p>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit" class="btn">Log ud</button>
+</form>
 
 </body>
 </html>

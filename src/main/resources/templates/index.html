@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" th:href="@{/css/global.css}">
     <title>Homepage</title>
 </head>
@@ -10,8 +11,7 @@
 <header>
     <ul>
         <li><a th:href="@{/getCreateUser}" class="btn">Create User</a></li>
-        <li> <a th:href="@{/getLogin}" class="btn">Log in</a> </li>
-        <li> <a th:href="@{createWish.html}" class="btn" >Create Wish</a> </li>
+        <li> <a th:href="@{/login}" class="btn">Log in</a> </li>
     </ul>
 
 </header>
@@ -25,23 +25,16 @@
     </p>
 
     <a th:href="@{/getCreateUser}" class="btn">Create User</a>
-    <a th:href="@{/getLogin}" class="btn">Log in</a>
+    <a th:href="@{/login}" class="btn">Log in</a>
 
 </section>
 
-
 <div class="main">
 
-
-
 </div>
-
 
 <footer>
     <a th:href="@{/}" class="btn">Meet the team</a>
 </footer>
-
-
-
 </body>
 </html>
