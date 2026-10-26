@@ -41,6 +41,10 @@ public class Wish {
         this.title = title;
     }
 
+    public Wish(int wishListId){
+        this.wishListId = wishListId;
+    }
+
     public Wish(){
 
     }

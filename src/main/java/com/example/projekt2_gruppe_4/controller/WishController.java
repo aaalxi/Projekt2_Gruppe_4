@@ -19,20 +19,20 @@ public class WishController {
         this.wishService = wishService;
     }
 
-    @GetMapping("wish/{wishlistId}/showCreateWish")
+    @GetMapping("/wish/{wishlistId}/showCreateWish")
     public String showCreateWish(Model model, @PathVariable int wishlistId){
-        model.addAttribute("wishlist", wishlistId);
-        model.addAttribute("wish", new Wish());
+        model.addAttribute("wishlistId", wishlistId);
+        model.addAttribute("wish", new Wish(wishlistId));
         return "createWish";
     }
 
     @PostMapping("/wish/createWish")
     public String createWish(@ModelAttribute Wish wish){
         wishService.createWish(wish);
-        return "redirect:/wishlist";
+        return "redirect:/" + wish.getWishListId() +"/wishlist";
     }
 
-    @GetMapping("/wish/{wishId}/ShowEditWish")
+    @GetMapping("/wish/{wishId}/showEditWish")
     public String showEditWish(@PathVariable int wishId, Model model){
         model.addAttribute("wish", wishService.getById(wishId));
         return "editWish";

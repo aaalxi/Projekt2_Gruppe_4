@@ -5,6 +5,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class WishlistRepository {
     private final JdbcTemplate jdbcTemplate;
@@ -23,9 +25,9 @@ public class WishlistRepository {
         return jdbcTemplate.queryForObject(sql, WISHLIST_MAPPER);
     }
 
-    public Wishlist findByUserId(int user_id){
+    public List<Wishlist> findByUserId(int user_id){
         String sql = "SELECT * FROM Wishlist WHERE user_id=?";
-        return jdbcTemplate.queryForObject(sql, WISHLIST_MAPPER);
+        return jdbcTemplate.query(sql, WISHLIST_MAPPER);
     }
 
     public void create(Wishlist wishlist){
