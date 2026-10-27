@@ -70,7 +70,7 @@ public class UserController {
     @GetMapping ("/profile")
     public String showProfile (HttpSession session, Model model){
 
-       Integer userId = (Integer) session.getAttribute("loggedInUserId");
+       Integer userId = (Integer) session.getAttribute("userId");
        //NO INSERTION OF URL, HAS TO LOG IN FIRST, AND THEREBY HAVE A SESSION-ATTRIBUTE
        if (userId == null){
            return "redirect:/login";

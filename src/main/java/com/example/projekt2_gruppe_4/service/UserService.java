@@ -39,8 +39,6 @@ public class UserService {
     }
 
 
-
-//Hashing the password before saving to db
     public void addUser (User user){
         String hashedPassword = passwordEncorder.encode(user.getPasswordHash());
         user.setPasswordHash(hashedPassword);
