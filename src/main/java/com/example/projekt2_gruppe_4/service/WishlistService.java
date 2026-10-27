@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class WishlistService {
+    public class WishlistService {
     private final WishlistRepository wishlistRepository;
 
     public WishlistService(WishlistRepository wishlistRepository) {
@@ -25,6 +25,10 @@ public class WishlistService {
 
     public Wishlist getWishlistById(int wishlistId){
         return wishlistRepository.findById(wishlistId);
+    }
+
+    public List<Wishlist> getWishlistsByUserId(int userId){
+        return wishlistRepository.findByUserId(userId);
     }
 
 }

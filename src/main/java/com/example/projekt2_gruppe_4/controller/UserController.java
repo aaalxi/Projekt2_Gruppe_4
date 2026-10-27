@@ -2,6 +2,7 @@ package com.example.projekt2_gruppe_4.controller;
 
 import com.example.projekt2_gruppe_4.model.User;
 import com.example.projekt2_gruppe_4.service.UserService;
+import com.example.projekt2_gruppe_4.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
 
    private final UserService service;
+   private final WishlistService wishlistService;
 
-   public UserController (UserService service){
+   public UserController (UserService service, WishlistService wishlistService){
        this.service=service;
+       this.wishlistService = wishlistService; //er til at få wishlist på den enkelte profil.
    }
 
 
@@ -31,7 +34,8 @@ public class UserController {
            @RequestParam("email") String email,
            @RequestParam("password") String password) {
      service.addUser(new User(name, email, password));
-     return "createUser";
+     //return "createUser";
+     return "redirect:/login";
    }
 
     @GetMapping("/login")
@@ -78,7 +82,9 @@ public class UserController {
            return "redirect:/login";
        }
        model.addAttribute("user", user);
+       model.addAttribute("wishlists", wishlistService.getWishlistsByUserId(userId));
        return "profile";
+
     }
 //IMPORTANT: USE userId from session.getAttribute and NOT the id in url or form
 

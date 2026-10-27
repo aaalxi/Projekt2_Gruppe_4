@@ -67,4 +67,8 @@ public class UserService {
     public void saveUser (User user){
         repository.saveUser(user);
     }
+
+    public void deleteUser(int userId){
+        repository.deleteById(userId);
+    }
 }
