@@ -21,7 +21,7 @@ public class UserService {
     public void reserveWish (){
 
     }
-//using the BCrypt class method, .matches()
+
     public User login(String email, String password){
 
         User user = repository.findByEmail(email);

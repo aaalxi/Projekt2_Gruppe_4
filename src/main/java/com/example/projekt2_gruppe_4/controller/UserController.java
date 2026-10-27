@@ -54,24 +54,22 @@ public class UserController {
         if(user == null){
             model.addAttribute("error", "Forkert email eller password");
             return "login";
-        } //SETTING THE SESSION ATTRIBUTE
+        }
         session.setAttribute("userId", user.getUserId());
         return "redirect:/profile";
     }
 
-    //LOGOUT: destroying the active user in session with method invalidate
     @PostMapping("/logout")
     public String logout (HttpSession session){
        session.invalidate();
        return "redirect:/login";
     }
 
-    //SECURITY FOR PROFILE.HTML: NO INSERT URL TO ACCESS PROFILE, CONTROL OF SESSION
     @GetMapping ("/profile")
     public String showProfile (HttpSession session, Model model){
 
        Integer userId = (Integer) session.getAttribute("userId");
-       //NO INSERTION OF URL, HAS TO LOG IN FIRST, AND THEREBY HAVE A SESSION-ATTRIBUTE
+
        if (userId == null){
            return "redirect:/login";
        }
@@ -86,8 +84,6 @@ public class UserController {
 
     }
 //IMPORTANT: USE userId from session.getAttribute and NOT the id in url or form
-
-
 
     @GetMapping ("/confirmDeleteUser")
     public String getDeleteUser(){
