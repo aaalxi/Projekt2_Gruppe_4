@@ -36,8 +36,11 @@ public class WishlistController {
 
     @PostMapping("/wishlist/createWishlist")
     public String createWishlist(@ModelAttribute Wishlist wishlist){
+        //Gemmer wishlist i databasen
         wishlistService.createWishlist(wishlist);
-        return "redirect:/wishlist/" + wishlist.getWishlistId() + "/wishlist";
+        //Henter wishlist fra databasen, med wishlistId.
+        Wishlist wishlistWithId = wishlistService.getWishlistByUserIdAndByTitle(wishlist.getUserId(), wishlist.getTitle());
+        return "redirect:/wishlist/" + wishlistWithId.getWishlistId() + "/showWishlist";
     }
 
     @PostMapping("/wishlist/deleteWishlist")

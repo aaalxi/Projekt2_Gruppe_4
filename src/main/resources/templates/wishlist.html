@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/Global.css}">
 </head>
 <body>
-<main class="page">
+<main class="main">
     <section class="">
         <h1 th:text="${wishlist.title}">Title</h1>
     </section>
@@ -20,20 +20,17 @@
             <p th:text="|Product Link: ${wish.productUrl}|">Product Link</p>
             <p th:number="|Price: ${wish.price}|">Price</p>
             <p th:number="|Amount: ${wish.amount}|">Amount</p>
-            <p th:text="|Image: ${wish.imgUrl}|">Image</p>
-            <p th:number="|Priority: ${wish.priority}|">Priority</p>
             <p th:number="|Priority: ${wish.priority}|">Priority</p>
             <p th:number="|Created Date: ${wish.createDate}|">Created Date</p>
 
+            <a th:href="|Image: ${wish.imgUrl}|">Image</a>
 
-            <h1>Edit Wish</h1>
-            <a class="btn" th:href="@{/wish/{wishId}/editWish(wishId=${wish.getWishId()})/}">Edit Wish</a>
+            <a class="btn" th:href="@{/wish/{wishId}/showEditWish(wishId=${wish.getWishId()})}">Edit Wish</a>
         </div>
     </section>
 
     <section class="">
-        <h1>Create Wish</h1>
-        <a class="btn" th:href="@{/wish/{wishlistId}/createWish(wishlistId=${wishlist.getWishlistId()})/}">+ Create Wish</a>
+        <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.getWishlistId()})}">+ Create Wish</a>
     </section>
 </main>
 
