@@ -29,8 +29,8 @@ public class WishService {
         wishRepository.update(wish);
     }
 
-    public List<Wish> getByWishlistId(int wishlistId){
-        return wishRepository.findByWishlistId(wishlistId);
+    public List<Wish> getWishesByWishlistId(int wishlistId){
+        return wishRepository.findWishesByWishlistId(wishlistId);
     }
 
     private void validateTitle(Wish wish){

@@ -2,6 +2,7 @@ package com.example.projekt2_gruppe_4.controller;
 
 import com.example.projekt2_gruppe_4.model.Wish;
 import com.example.projekt2_gruppe_4.model.Wishlist;
+import com.example.projekt2_gruppe_4.service.WishService;
 import com.example.projekt2_gruppe_4.service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,14 +14,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class WishlistController {
     private final WishlistService wishlistService;
+    private final WishService wishService;
 
-    public WishlistController(WishlistService wishlistService) {
+    public WishlistController(WishlistService wishlistService, WishService wishService) {
         this.wishlistService = wishlistService;
+        this.wishService = wishService;
     }
 
     @GetMapping("/wishlist/{wishlistId}/showWishlist")
     public String showWishlist(Model model, @PathVariable int wishlistId){
         model.addAttribute("wishlist", wishlistService.getWishlistById(wishlistId));
+        model.addAttribute("wishes", wishService.getWishesByWishlistId(wishlistId));
         return "wishlist";
     }
 
@@ -33,7 +37,7 @@ public class WishlistController {
     @PostMapping("/wishlist/createWishlist")
     public String createWishlist(@ModelAttribute Wishlist wishlist){
         wishlistService.createWishlist(wishlist);
-        return "redirect:/wishlist/" + wishlist.getUserId() + "/profile";
+        return "redirect:/wishlist/" + wishlist.getWishlistId() + "/wishlist";
     }
 
     @PostMapping("/wishlist/deleteWishlist")

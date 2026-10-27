@@ -1,5 +1,6 @@
 package com.example.projekt2_gruppe_4.service;
 
+import com.example.projekt2_gruppe_4.model.Wish;
 import com.example.projekt2_gruppe_4.model.Wishlist;
 import com.example.projekt2_gruppe_4.repository.WishlistRepository;
 import org.springframework.stereotype.Service;
