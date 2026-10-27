@@ -163,8 +163,20 @@ a {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    margin: auto;
-    /*max-width:*/
+    margin: 40px;
+    border: 10px solid #214a8c;
+    border-radius: 20px;
+    padding: 40px;
+}
+.wishlist-card{
+    border: 5px solid #214a8c;
+    border-radius: 20px;
+    padding: 20px;
+}
+.wishlist-cardImg{
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
 }
 
 .wish-image {
