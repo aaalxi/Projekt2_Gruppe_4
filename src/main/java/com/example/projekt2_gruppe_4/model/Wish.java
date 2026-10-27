@@ -33,7 +33,6 @@ public class Wish {
         this.priority = priority;
         this.createDate = createDate;
         this.reservedByUserId = reservedByUserId;
-
     }
 
     public Wish(int wishlistId, String title){

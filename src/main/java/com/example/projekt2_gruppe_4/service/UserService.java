@@ -47,6 +47,20 @@ public class UserService {
         repository.saveUser(user);
     }
 
+    //confirms and calls repo to delete, returns a boolean, true if 1 user is deleted
+    public boolean deleteUser (int userId, String password){
+        User user = repository.findById(userId);
+
+        if (user == null){
+            return false;
+        }
+        if (!passwordEncorder.matches(password, user.getPasswordHash())){
+            return false;
+        }
+        int rowsDeleted = repository.deleteUser(userId);
+        return rowsDeleted == 1;
+    }
+
     public List<User> getAll (){
         return repository.getAll();
     }
