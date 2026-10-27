@@ -14,18 +14,23 @@
     </section>
 
     <section>
-        <div class="Wishes" th:each="wish : ${wishes}">
+        <div class="wish" th:each="wish : ${wishes}">
             <h3 th:text="|Title: ${wish.title}|">Title</h3>
             <p th:text="|Description: ${wish.description}|">Description</p>
             <p th:text="|Product Link: ${wish.productUrl}|">Product Link</p>
-            <p th:number="|Price: ${wish.price}|">Price</p>
-            <p th:number="|Amount: ${wish.amount}|">Amount</p>
-            <p th:number="|Priority: ${wish.priority}|">Priority</p>
-            <p th:number="|Created Date: ${wish.createDate}|">Created Date</p>
+            <p th:text="|Price: ${wish.price}|">Price</p>
+            <p th:text="|Amount: ${wish.amount}|">Amount</p>
+            <p th:text="|Priority: ${wish.priority}|">Priority</p>
+            <p th:text="|Created Date: ${wish.createDate}|">Created Date</p>
 
-            <a th:href="|Image: ${wish.imgUrl}|">Image</a>
-
+            <div class="wish-image">
+                <img th:src="${wish.imgUrl}" alt="wish image">
+            </div>
+            <br>
+            <br>
             <a class="btn" th:href="@{/wish/{wishId}/showEditWish(wishId=${wish.getWishId()})}">Edit Wish</a>
+            <br>
+            <br>
         </div>
     </section>
 
