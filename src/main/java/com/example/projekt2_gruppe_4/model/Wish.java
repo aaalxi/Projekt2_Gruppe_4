@@ -19,11 +19,11 @@ public class Wish {
 
 
 
-    public Wish (int wishId, int wishListId, String title, String description, String productUrl,
+    public Wish (int wishId, int wishlistId, String title, String description, String productUrl,
                  BigDecimal price, int amount, String imgUrl,
                  int priority, LocalDateTime createDate, int reservedByUserId){
         this.wishId = wishId;
-        this.wishlistId = wishListId;
+        this.wishlistId = wishlistId;
         this.title = title;
         this.description = description;
         this.productUrl = productUrl;
