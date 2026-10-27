@@ -19,13 +19,17 @@
         Enter your password to confirm that you want to delete your account.
     </p>
 
-    <form th:action="@{/deleteUser}" method="post">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Confirm deletion</button>
-    </form>
-    <a th:href="@{/profile}">Cancel</a>
-    <p th:if="${error}" th:text="${error}"></p>
+    <div class="forms">
+        <form th:action="@{/deleteUser}" method="post">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Confirm deletion</button>
+        </form>
+
+        <a th:href="@{/profile}">Cancel</a>
+        <p th:if="${error}" th:text="${error}"></p>
+    </div>
+
 </main>
 </body>
 </html>
