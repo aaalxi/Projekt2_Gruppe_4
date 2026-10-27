@@ -10,11 +10,11 @@
 
 <header>
     <a th:href="@{/}" class="company-logo-link">
-        <img th:src="@{/img/cloud.jpg}" class="logo" alt="Company Logo">
+        <img th:src="@{/img/index.jpg}" class="logo" alt="Company Logo">
     </a>
     <nav>
         <ul>
-            <li><a th:href="@{/getCreateUser}" class="btn">Create User</a></li>
+            <li><a th:href="@{/getCreateUser}" class="btn">Create Account</a></li>
             <li><a th:href="@{/login}" class="login-btn">Log in</a></li>
         </ul>
     </nav>
@@ -24,7 +24,7 @@
 
     <div class="forms">
 
-        <div class="headline_forms">Opret bruger</div>
+        <h2>Create a New Account</h2>
 
         <form th:action="@{/postCreateUser}" method="post">
             <label for="name">Name:</label>
@@ -37,7 +37,7 @@
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" required>
 
-            <button type="submit" class="btn">Create User</button>
+            <button type="submit" class="btn">Create Account</button>
         </form>
 
         <a th:href="@{/}" class="btn">Back</a>

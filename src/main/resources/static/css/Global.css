@@ -1,11 +1,11 @@
-/* ---------- Removes defeault for body ---------- */
+/* ---------- defeault for body ---------- */
 body{
     padding: 0;
     margin: 0;
+    font-family: Arial, sans-serif; /*GØR SÅ DETTE GÆLDER FOR ALT*/
 }
 
 /* ---------- HEADER ---------- */
-
 header {
     width: 100%;
     min-height: 65px;
@@ -27,12 +27,12 @@ header ul {
     margin: 0;
     padding: 0;
 }
-
+/*
 header li {
     margin: 0;
     padding: 0;
 }
-
+*/
 header a {
     text-decoration: none;
 }
@@ -47,13 +47,12 @@ header a {
 }
 
 /* ---------- HEADINGS ---------- */
-h1 {
+h1, h2, h3{
     text-align: center;
     margin-bottom: 25px;
 }
 
 /* ---------- MAIN CONTENT ---------- */
-
 .main {
     display: flex;
     flex-direction: column;
@@ -66,55 +65,42 @@ h1 {
     width: 100%;
 }
 
-/* ---------- FORMS AND BOXES ---------- */
-
 .forms {
     display: flex;
     flex-direction: column;
     gap: 15px;
     width: 100%;
     max-width: 450px;
-    margin: 20px auto;
-    padding: 25px;
-    background-color: #f2f4f7;
-    border: 1px solid #dddddd;
-    border-radius: 8px;
+    margin: 60px auto;
+    padding: 30px;
+    background-color: whitesmoke;
+    border: 1px solid grey;
+    border-radius: 6px;
 }
 
 label {
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 18px;
 }
 
 input,
-textarea,
-select {
+textarea{
     width: 100%;
     padding: 11px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-    background-color: white;
-}
-
-input,
-textarea,
-select {
-    outline: 2px solid #9bbcf5;
-    border-color: #214a8c;
+    border: 1px solid grey;
+    border-radius: 6px;
+    outline: 2px solid whitesmoke;
+    margin-bottom: 10px;
 }
 
 /* ---------- BUTTONS ---------- */
-
-.btn,
-button {
+.btn{
     display: inline-block;
     padding: 11px 20px;
     background-color: #7189af;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     text-decoration: none;
     text-align: center;
     font-size: 15px;
@@ -134,17 +120,11 @@ button {
 }
 
 /* ---------- LINKS ---------- */
-
-a {
-    color: #2457a7;
-}
-
 a {
     color: #19427f;
 }
 
 /* ---------- WISHLISTS AND WISHES ---------- */
-
 .wishlist,
 .wish {
     background-color: #f2f4f7;
@@ -188,11 +168,6 @@ a {
     height: 100%;
     object-fit: contain;
 }
-
-
-
-
-
 
 
 

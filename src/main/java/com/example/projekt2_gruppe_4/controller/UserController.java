@@ -33,7 +33,6 @@ public class UserController {
            @RequestParam("email") String email,
            @RequestParam("password") String password) {
      service.addUser(new User(name, email, password));
-     //return "createUser";
      return "redirect:/login";
    }
 
@@ -42,7 +41,6 @@ public class UserController {
         return "login";
     }
 
-    //Ved klik på login: Session:
     @PostMapping ("/login")
     public String login(
             @RequestParam String email,
@@ -62,9 +60,10 @@ public class UserController {
     @PostMapping("/logout")
     public String logout (HttpSession session){
        session.invalidate();
-       return "redirect:/login";
+       return "redirect:/";
     }
 
+    //SECURITY FOR PROFILE.HTML: Control of session
     @GetMapping ("/profile")
     public String showProfile (HttpSession session, Model model){
 
@@ -81,9 +80,8 @@ public class UserController {
        model.addAttribute("user", user);
        model.addAttribute("wishlists", wishlistService.getWishlistsByUserId(userId));
        return "profile";
-
     }
-//IMPORTANT: USE userId from session.getAttribute and NOT the id in url or form
+
 
     @GetMapping ("/confirmDeleteUser")
     public String getDeleteUser(){

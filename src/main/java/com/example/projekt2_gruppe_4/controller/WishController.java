@@ -3,12 +3,10 @@ package com.example.projekt2_gruppe_4.controller;
 import com.example.projekt2_gruppe_4.model.Wish;
 import com.example.projekt2_gruppe_4.service.WishService;
 import com.example.projekt2_gruppe_4.service.WishlistService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WishController {
@@ -55,4 +53,17 @@ public class WishController {
         wishService.deleteWish(wishId);
         return "redirect:/wishlist";
     }
+
+    @PostMapping("/reserve")
+    public String reserveWish(
+            @RequestParam int wishId,
+            HttpSession session){
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (userId == null){
+            return "redirect:/";
+        }
+        wishService.reserveWish(wishId, userId);
+        return "redirect:profile";
+    }       //change this to sharedwishlist site
+
 }

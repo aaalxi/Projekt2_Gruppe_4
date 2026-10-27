@@ -37,7 +37,7 @@ public class UserRepository {
     public List<User> getAll (){
         String sql = "SELECT * FROM users";
         return jdbcTemplate.query(sql, users);
-    }       //.query and .queryForObject gets value/s, use .update() for insert, update and delete
+    }
 
     public User findByEmail (String email){
         String sql = "SELECT * FROM users WHERE email = ?";
@@ -89,25 +89,9 @@ public class UserRepository {
         }
     }
 
-
     public int deleteUser (int userId){
         String sql="DELETE FROM users WHERE user_id =?";
         return jdbcTemplate.update(sql, userId);
-    } //returns how many rows deleted
-
-
-    public void reserveWish (int wishlistId, int userId){
-        String sql ="UPDATE wish" +
-                "SET reserved_by_user_id = ?" +
-                "WHERE wish_id = ? " +
-                "AND reserved_by_user_is IS NULL";
-        jdbcTemplate.update(sql, wishlistId, userId);   //args = parameters send to template
     }
-
-    public void deleteById(int userId){
-        String sql = "DELETE FROM Users WHERE user_id = ?";
-        jdbcTemplate.update(sql, userId);
-    }
-
 
 }

@@ -10,31 +10,23 @@
 
 <header>
     <a th:href="@{/profile}" class="company-logo-link">
-        <img th:src="@{/img/cloud.jpg}" class="logo" alt="Company Logo">
+        <img th:src="@{/img/index.jpg}" class="logo" alt="Company Logo">
     </a>
     <nav>
         <ul> <!-- giving the wishlistId value with, to the getmapping in wish -->
-            <li><a th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${user.getUserId})}" class="btn">&plus; Create a Wishlist</a></li>
-            <li><a th:href="@{/logout}" class="login-btn">Log Out</a></li>
+            <li><a th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${user.getUserId})}" class="btn">&plus; Create Wishlist</a></li>
+            <li><form th:action="@{/logout}" method="post">
+                <button type="submit" class="login-btn">Log ud</button>
+            </form></li>
         </ul>
     </nav>
 </header>
 
 <section>
-    <div class="profile-user-info">
-        <img th:src="@{/img/userProfilePic.jpg}" class="logo" alt="User default picture">
-        <p th:text="${user.name}"></p>
-
+    <div class="standard">
+        <h1>Overview of <span th:text="${user.name}"></span>'s Wishlists</h1>
     </div>
 </section>
-
-<h1>Hej <span th:text="${user.name}">Bruger</span>!</h1>
-
-<p th:text="${user.email}">email@example.com</p>
-
-<form th:action="@{/logout}" method="post">
-    <button type="submit" class="loging-btn">Log ud</button>
-</form>
 
 <div class="wishlist-grid">
     <div class="wishlist-card" th:each="wishlist : ${wishlists}">
@@ -48,15 +40,6 @@
     </div>
 
 </div>
-
-
-
-
-
-
-
-
-
 
 <footer>
     <a th:href="@{/confirmDeleteUser}">Delete account</a>

@@ -23,8 +23,10 @@ public class WishlistController {
 
     @GetMapping("/wishlist/{wishlistId}/showWishlist")
     public String showWishlist(Model model, @PathVariable int wishlistId){
+        Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
         model.addAttribute("wishlist", wishlistService.getWishlistById(wishlistId));
         model.addAttribute("wishes", wishService.getWishesByWishlistId(wishlistId));
+        model.addAttribute("userId", wishlist.getUserId());
         return "wishlist";
     }
 
