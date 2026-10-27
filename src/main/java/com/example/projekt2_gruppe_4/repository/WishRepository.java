@@ -116,7 +116,8 @@ public class WishRepository {
                 wish.getPrice(),
                 wish.getAmount(),
                 wish.getImgUrl(),
-                wish.getPriority());
+                wish.getPriority(),
+                wish.getWishId());
     }
 
     public void deleteById(int wishId){
