@@ -5,32 +5,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wishlist</title>
-    <link rel="stylesheet" th:href="@{/Global.css}">
+    <link rel="stylesheet" th:href="@{/css/Global.css}">
 </head>
 <body>
 <main class="page">
     <section class="">
         <h1 th:text="${wishlist.title}">Title</h1>
-
     </section>
+
     <section>
-        <div class=""
-               th:each="wish : ${wishlist}"></div>
-               <h3 th:text="|Title: ${wish.title}|">Title</h3>
+        <div class="Wishes" th:each="wish : ${wishes}">
+            <h3 th:text="|Title: ${wish.title}|">Title</h3>
+            <p th:text="|Description: ${wish.description}|">Description</p>
+            <p th:text="|Product Link: ${wish.productUrl}|">Product Link</p>
+            <p th:number="|Price: ${wish.price}|">Price</p>
+            <p th:number="|Amount: ${wish.amount}|">Amount</p>
+            <p th:text="|Image: ${wish.imgUrl}|">Image</p>
+            <p th:number="|Priority: ${wish.priority}|">Priority</p>
+            <p th:number="|Priority: ${wish.priority}|">Priority</p>
+            <p th:number="|Created Date: ${wish.createDate}|">Created Date</p>
 
 
-
+            <h1>Edit Wish</h1>
+            <a class="btn" th:href="@{/wish/{wishId}/editWish(wishId=${wish.getWishId()})/}">Edit Wish</a>
         </div>
     </section>
-    <section class="">
-        <h1>Edit Wish</h1>
-        <a class="btn" th:href="@{/wish/{wishId}/editWish(wishId=${wish.getWishId()})/}">Edit Wish</a>
-    </section>
+
     <section class="">
         <h1>Create Wish</h1>
         <a class="btn" th:href="@{/wish/{wishlistId}/createWish(wishlistId=${wishlist.getWishlistId()})/}">+ Create Wish</a>
     </section>
-
 </main>
 
 </body>
