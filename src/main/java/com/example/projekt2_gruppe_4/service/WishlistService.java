@@ -5,6 +5,7 @@ import com.example.projekt2_gruppe_4.model.Wishlist;
 import com.example.projekt2_gruppe_4.repository.WishlistRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,6 +30,17 @@ import java.util.List;
 
     public List<Wishlist> getWishlistsByUserId(int userId){
         return wishlistRepository.findByUserId(userId);
+    }
+
+    public Wishlist getWishlistByUserIdAndByTitle(int userId, String title){
+        ArrayList<Wishlist> wishlists = new ArrayList<>(wishlistRepository.findByUserId(userId));
+
+        for (Wishlist wishlist : wishlists){
+            if (wishlist.getTitle().equals(title)){
+                return wishlist;
+            }
+        }
+        return null;
     }
 
 }

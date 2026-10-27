@@ -125,7 +125,7 @@ public class WishRepository {
     }
 
     public List<Wish> findWishesByWishlistId(int wishlistId){
-        String sql = "SELECT * FROM Wishlist WHERE wishlist_id = ?";
+        String sql = "SELECT * FROM Wish WHERE wishlist_id = ?";
         return jdbcTemplate.query(sql, WISH_MAPPER, wishlistId);
     }
 }
