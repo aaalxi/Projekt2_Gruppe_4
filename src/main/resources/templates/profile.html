@@ -39,11 +39,11 @@
 <div class="wishlist-grid">
     <div class="wishlist-card" th:each="wishlist : ${wishlists}">
         <h2 th:text="${wishlist.title}"> Titel </h2>
-        <a th:href="@{/wishlist/{wishlistId}/showWishlist(wishlistId=${wishlist.wishlistId})}" class="btn">Se ønskeliste</a>
+        <a th:href="@{/wishlist/{wishlistId}/showWishlist(wishlistId=${wishlist.wishlistId})}" class="btn">See wishlist</a>
     </div>
 
     <div class="wishlist-card">
-        <p>Opret wishlist</p>
+        <p>Create wishlist</p>
         <a th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${user.userId})}" class="btn">+</a>
     </div>
 
