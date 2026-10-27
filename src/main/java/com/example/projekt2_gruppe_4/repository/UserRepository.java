@@ -101,4 +101,10 @@ public class UserRepository {
         jdbcTemplate.update(sql, wishlistId, userId);   //args = parameters send to template
     }
 
+    public void deleteById(int userId){
+        String sql = "DELETE FROM Users WHERE user_id = ?";
+        jdbcTemplate.update(sql, userId);
+    }
+
+
 }

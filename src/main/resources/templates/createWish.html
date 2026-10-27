@@ -4,15 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Create Wish </title>
-    <link rel="stylesheet" th:href="@{/css/Globall.css}">
+    <link rel="stylesheet" th:href="@{/css/Global.css}">
 </head>
 
 
 <body>
+<header>
+
+</header>
 <h1>Create Wish</h1>
 
-<form class="form-modify" th:action="@{/wish/createWish}" th:object="${wish}" method="post">
+<div class="main">
 
+    <div class="forms" th:action="@{/wish/createWish}" th:object="${wish}" method="post">
     <input type="hidden" th:field="*{wishlistId}">
 
     <label for="title" > Title </label>
@@ -30,10 +34,14 @@
     <label for="description" > Description </label>
     <input type="text" id="description" th:field="*{description}" required>
 
-    <label for="imgUrl" > Image </label>
+    <label for="imgUrl" > Image link </label>
     <input type="url" id="imgUrl" th:field="*{imgUrl}">
 
     <button type="submit">Create</button>
+
+
 </form>
+    </div>
+</div>
 </body>
 </html>
