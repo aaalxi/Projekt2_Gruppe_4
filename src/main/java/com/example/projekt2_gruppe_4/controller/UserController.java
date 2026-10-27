@@ -4,7 +4,6 @@ import com.example.projekt2_gruppe_4.model.User;
 import com.example.projekt2_gruppe_4.service.UserService;
 import com.example.projekt2_gruppe_4.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,7 +55,7 @@ public class UserController {
             model.addAttribute("error", "Forkert email eller password");
             return "login";
         } //SETTING THE SESSION ATTRIBUTE
-        session.setAttribute("loggedInUserId", user.getUserId());
+        session.setAttribute("userId", user.getUserId());
         return "redirect:/profile";
     }
 
@@ -87,5 +86,35 @@ public class UserController {
 
     }
 //IMPORTANT: USE userId from session.getAttribute and NOT the id in url or form
+
+
+
+    @GetMapping ("/confirmDeleteUser")
+    public String getDeleteUser(){
+       return "confirmDeleteUser";
+    }
+
+    @PostMapping("/deleteUser")
+    public String postDeleteUser (
+            @RequestParam String password,
+            HttpSession session,
+            Model model){
+
+       Integer userId = (Integer) session.getAttribute("userId");  //parsing value to Integer
+
+        System.out.println("UserId fra session: " + userId);
+        if(userId==null){
+            return "redirect:/getLogin";
+        }
+
+        System.out.println("Forsøger slette bruger" + userId);
+        boolean deleted = service.deleteUser(userId, password);
+        if (!deleted) {
+            model.addAttribute("error", "Incorrect password");
+            return "confirmDeleteUser";
+        }
+        session.invalidate();
+        return "redirect:/";
+    }
 
 }

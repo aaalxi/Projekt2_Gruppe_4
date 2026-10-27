@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <title>Confirm delete of User</title>
+</head>
+<body>
+
+<main>
+    <h1>Delete Account</h1>
+    <p class="danger-zone">
+        DANGER ZONE: All your Wishlists will be deleted.
+    </p>
+
+    <p>
+        Enter your password to confirm that you want to delete your account.
+    </p>
+
+    <div class="forms">
+        <form th:action="@{/deleteUser}" method="post">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Confirm deletion</button>
+        </form>
+
+        <a th:href="@{/profile}">Cancel</a>
+        <p th:if="${error}" th:text="${error}"></p>
+    </div>
+
+</main>
+</body>
+</html>
