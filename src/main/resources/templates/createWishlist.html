@@ -31,10 +31,12 @@
         <input type="text" id="title" name="title">
 
         <button class="btn" type="submit">Create Wishlist</button>
-
-        <button class="btn" th:href="@{/profile}">Cancel</button>
     </form>
-
+    <form class="forms"
+          th:action="@{/profile}"
+          onsubmit="return confirm('This wishlist will NOT be stored!!')">
+        <button class="btn" type="submit">Back</button>
+    </form>
 </main>
 
 </body>
