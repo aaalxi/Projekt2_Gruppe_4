@@ -23,8 +23,8 @@ header {
     top: 0;
     z-index: 100;
     background-color: rgba(242, 242, 242, 0.5);
-    -webkit-backdrop-filter: blur(0px);
-    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(7px);
 }
 
 header ul {
@@ -58,6 +58,14 @@ header a {
 h1, h2, h3{
     text-align: center;
     margin-bottom: 25px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    color: #1b3f7a;
+}
+
+h1 {
+    color: #163566;
+    font-size: 36px;
 }
 
 /* ---------- MAIN CONTENT ---------- */

@@ -42,6 +42,8 @@ public class Wish {
 
     public Wish(int wishlistId){
         this.wishlistId = wishlistId;
+        this.priority = 1;
+        this.amount = 1;
     }
 
     public Wish(){
