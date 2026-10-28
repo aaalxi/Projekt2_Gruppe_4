@@ -135,31 +135,6 @@ textarea{
     background-color: rgba(36, 87, 167, 0.8);   /* lidt mere solid ved hover */
     transform: scale(1.03);
 }
-/*.btn{*/
-/*    display: inline-block;*/
-/*    padding: 11px 20px;*/
-
-/*    !*background-color: #2457a7;*!*/
-/*    background-color: rgba(36, 87, 167, 0.5);   !* 0.5 = 50 % synlig *!*/
-/*    color: white;*/
-
-/*    border: none;*/
-/*    border-radius: 15px;*/
-/*    text-decoration: none;*/
-/*    text-align: center;*/
-/*    font-size: 15px;*/
-/*    cursor: pointer;*/
-/*    box-shadow: 0 4px 6px rgba(36, 87, 167, 0.25);*/
-/*}*/
-/*.btn-transparent {*/
-/*    background: transparent;*/
-/*    border: 2px solid #6880a8;   !* kant, så knappen stadig kan ses *!*/
-/*    color: #6880a8;*/
-/*}*/
-
-/*.btn-transparent:hover {*/
-/*    background-color: rgba(36, 87, 167, 0.8);   !* let farve ved hover *!*/
-/*}*/
 
 .login-btn{
     display: inline-block;
@@ -174,10 +149,13 @@ textarea{
     font-size: 15px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(36, 87, 167, 0.25);
+
+    transition: transform 0.2s ease;
 }
 
 .login-btn:hover {
     background-color: rgba(36, 87, 167, 0.8);
+    transform: scale(1.03);
 }
 
 /* ---------- LINKS ---------- */
@@ -271,6 +249,7 @@ a {
     background: white;
     border-radius: 60px;
     padding: 40px;
+
     /* box-shadow følger ikke boblerne, drop-shadow gør */
     filter: drop-shadow(0 8px 15px rgba(36, 87, 167, 0.25));
 }
@@ -311,16 +290,87 @@ a {
     margin: 0 0 8px;               /* mindre luft mellem linjerne */
 }
 
+/* Titel */
+.wish-card h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    color: #1b3f7a;
+    text-align: center;
+    margin: 0 0 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* overskriver den globale h1, h2, h3-regel */
+    background: none;
+    width: auto;
+    padding: 0;
+}
+
+/* Beskrivelse der kan foldes ud */
+.wish-desc summary {
+    list-style: none;
+    cursor: pointer;
+    text-align: center;
+    color: #6b7280;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wish-desc summary::-webkit-details-marker {
+    display: none;
+}
+
+.wish-desc[open] summary {
+    white-space: normal;
+}
+
+/* Pris og shop-link */
 .wish-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* to felter pr. række */
-    gap: 8px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: space-between;
+    align-items: center;
     margin: 12px 0;
 }
 
-.wish-info p {
-    margin: 0;
+.wish-price {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 20px;
+    color: #2457a7;
+    white-space: nowrap;
 }
+
+.shop-link {
+    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background-color: rgba(36, 87, 167, 0.1);
+    color: #2457a7;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+.shop-link:hover {
+    background-color: rgba(36, 87, 167, 0.2);
+}
+
+.wish-priority {
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
+
+.star-filled { color: #f5b301; }   /* guld */
+.star-empty  { color: #c8d3e6; }   /* lys blågrå */
 
 /* Billede i kortet, vises helt uden beskæring */
 .wish-image {
@@ -333,7 +383,7 @@ a {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    border-radius: 60px;
+    border-radius: 15px;
 }
 
 

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wishlist</title>
     <link rel="stylesheet" th:href="@{/css/Global.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -13,8 +14,8 @@
         <img th:src="@{/img/index.jpg}" class="logo" alt="Company Logo">
     </a>
     <nav>
-        <ul> <!-- giving the wishlistId value with, to the getmapping in wish -->
-            <li><a th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${wishlistId})}" class="btn">&plus; Create Wishlist</a></li>
+        <ul>
+            <li><a th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${wishlist.userId})}" class="btn">&plus; Create Wishlist</a></li>
             <li><form th:action="@{/logout}" method="post">
                 <button type="submit" class="login-btn">Log ud</button>
             </form></li>
@@ -22,53 +23,68 @@
     </nav>
 </header>
 <main class="main">
+
     <h1 th:text="${wishlist.title}">Title</h1>
     <div class="wish-actions">
         <!--        create new wish-->
-        <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.getWishlistId()})}">+ Create Wish</a>
+        <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.wishlistId})}">+ Create Wish</a>
         <!--        sort wishes by price:-->
-        <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPrice(wishlistId=${wishlistId})}">Sort By Price</a>
+        <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPrice(wishlistId=${wishlist.wishlistId})}">Sort By Price</a>
         <!--        sort wishes by priority:-->
-        <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPriority(wishlistId=${wishlistId})}">Sort By Priority</a>
+        <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPriority(wishlistId=${wishlist.wishlistId})}">Sort By Priority</a>
     </div>
 
     <section>
-<!--        show wishes-->
+        <!--        show wishes-->
         <div class="wish-grid">
             <div class="wish-card" th:each="wish : ${wishes}">
-                <h3 th:text="${wish.title}">Title</h3>
-                <p th:text="${wish.description}">Description</p>
+                <div class="wish-priority"
+                     th:title="'Prioritet ' + ${wish.priority} + ' out of 5'">
+                    <span th:each="i : ${#numbers.sequence(1, 5)}"
+                          th:text="${i <= wish.priority} ? '★' : '☆'"
+                          th:classappend="${i <= wish.priority} ? 'star-filled' : 'star-empty'">★</span>
+                </div>
+
+                <h3 th:text="${wish.title}" th:title="${wish.title}">Title</h3>
+
+                <details class="wish-desc" th:if="${!#strings.isEmpty(wish.description)}">
+                    <summary th:text="${wish.description}">Description</summary>
+                </details>
 
                 <div class="wish-info">
-                    <p th:text="${wish.price} + ' kr.'">Price</p>
-                    <p th:text="'Amount: ' + ${wish.amount}">Amount</p>
-                    <p th:text="'Priority: ' + ${wish.priority}">Priority</p>
-                    <a th:href="${wish.productUrl}" th:if="${wish.productUrl}" target="_blank" rel="noopener">Go to shop</a>
+                    <span class="wish-price"
+                          th:if="${wish.price != null}"
+                          th:text="${#numbers.formatDecimal(wish.price, 1, 'POINT', 2, 'COMMA')} + ' kr.'">1.234,00 kr.</span>
+
+                    <a class="shop-link"
+                       th:href="${wish.productUrl}"
+                       th:if="${!#strings.isEmpty(wish.productUrl)}"
+                       target="_blank" rel="noopener">Til butik ↗</a>
                 </div>
 
                 <div class="wish-image">
-                    <img th:src="${wish.imgUrl}" th:if="${wish.imgUrl}" alt="wish image">
+                    <img th:src="${wish.imgUrl}" th:if="${!#strings.isEmpty(wish.imgUrl)}" alt="wish image">
                 </div>
 
                 <a class="btn" th:href="@{/wish/{wishId}/showEditWish(wishId=${wish.wishId})}">Edit Wish</a>
             </div>
 
             <div class="wish-card">
-                <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.getWishlistId()})}">+ Create Wish</a>
+                <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.wishlistId})}">+ Create Wish</a>
             </div>
         </div>
     </section>
-        <div class="wish-actions">
-            <form th:action="@{/wishlist/deleteWishlist}"
-                  method="post"
-                  th:object="${wishlist}"
-                  onsubmit="return confirm('Your wishlist will be DELETED!')">
-                <input type="hidden" th:field="*{wishlistId}">
-                <button class="btn"
-                        type="submit">Delete Wishlist</button>
-            </form>
-            <a class="btn" th:href="@{/profile}">Back to Profile</a>
-        </div>
+
+    <div class="wish-actions">
+        <form th:action="@{/wishlist/deleteWishlist}"
+              method="post"
+              th:object="${wishlist}"
+              onsubmit="return confirm('Your wishlist will be DELETED!')">
+            <input type="hidden" th:field="*{wishlistId}">
+            <button class="btn" type="submit">Delete Wishlist</button>
+        </form>
+        <a class="btn" th:href="@{/profile}">Back to Profile</a>
+    </div>
 </main>
 
 </body>
