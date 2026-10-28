@@ -170,22 +170,36 @@ textarea{
     background: transparent;
     color: #2457a7;
     box-shadow: none;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .btn.btn-delete:hover {
-    background-color: rgba(180, 35, 24, 0.2);   /* svagt rød */
+    background-color: rgba(180, 35, 24, 0.4);   /* svagt rød */
+    box-shadow: 0 4px 6px rgba(36, 87, 167, 0.25);
 }
 
 .btn.btn-back {
     background: transparent;
     color: #2457a7;
     box-shadow: none;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .btn.btn-back:hover {
-    background-color: rgba(36, 87, 167, 0.2);   /* svagt rød */
+    background-color: rgba(36, 87, 167, 0.2);
+    box-shadow: 0 4px 6px rgba(36, 87, 167, 0.25);
+}
+
+.btn.btn-page {
+    background: transparent;
+    color: #2457a7;
+    box-shadow: none;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.btn-page:hover {
+    box-shadow: 0 4px 6px rgba(36, 87, 167, 0.25);
+    background-color: rgba(36, 87, 167, 0.2);
 }
 
 /* ---------- LINKS ---------- */
@@ -380,6 +394,14 @@ a {
 
     /* box-shadow følger ikke boblerne, drop-shadow gør */
     filter: drop-shadow(0 8px 15px rgba(36, 87, 167, 0.25));
+}
+
+.wish-card-new {
+    justify-content: center;          /* lodret i midten (kortet er en flex-kolonne) */
+}
+
+.wish-card-new .wish-card-actions {
+    margin-top: 0;                    /* slår "skub ned" fra for dette kort */
 }
 
 .wish-card:hover {
