@@ -158,6 +158,28 @@ textarea{
     transform: scale(1.03);
 }
 
+.btn.btn-delete {
+    background: transparent;
+    color: #2457a7;
+    box-shadow: none;
+    transition: background-color 0.2s ease;
+}
+
+.btn.btn-delete:hover {
+    background-color: rgba(180, 35, 24, 0.2);   /* svagt rød */
+}
+
+.btn.btn-back {
+    background: transparent;
+    color: #2457a7;
+    box-shadow: none;
+    transition: background-color 0.2s ease;
+}
+
+.btn.btn-back:hover {
+    background-color: rgba(36, 87, 167, 0.2);   /* svagt rød */
+}
+
 /* ---------- LINKS ---------- */
 
 a {
@@ -190,6 +212,19 @@ a {
     gap: 10px;
 }
 
+.wish-actions .btn {
+    min-width: 180px;
+    box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+}
+.wish-actions a {
+    width: 180px;
+    box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+}
+
 
 .wishlist-grid{
     display: grid;
@@ -201,7 +236,11 @@ a {
 
 .wishlist-card {
     transition: transform 0.2s ease;
-    display: flex;
+
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;   /* top | midte | bund */
+    justify-items: center;
+
     flex-direction: column;
     position: relative;
     background: white;
@@ -252,6 +291,9 @@ a {
     background: none;          /* overskriver den globale h2-regel */
     width: auto;
     padding: 0;
+    grid-row: 1;
+    align-self: end;            /* titlen sidder lige over knappen */
+    margin: 0 0 20px;
 }
 
 .wishlist-card-new {
@@ -265,10 +307,17 @@ a {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+
+    grid-row: 2;
+    position: relative;
 }
 
 .wishlist-card-actions form {
-    margin: 0;
+    position: absolute;         /* Delete tæller ikke med i centreringen */
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 10px;
 }
 
 .wishlist-card-actions .btn {
@@ -329,6 +378,25 @@ a {
     transform: scale(1.05);    /* 3 % større */
 }
 
+.wish-card-actions {
+    margin-top: auto;            /* stadig helt i bunden */
+    display: flex;
+    flex-direction: column;      /* under hinanden */
+    align-items: center;
+    gap: 10px;
+}
+
+.wish-card-actions .btn {
+    width: 180px;
+    box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+}
+
+.wish-card-actions form {
+    margin: 0;
+}
+
 .wish-card::before,
 .wish-card::after {
     content: "";
@@ -352,11 +420,6 @@ a {
     right: 40px;
 }
 
-.wish-card .btn{
-    margin-top: auto;
-    align-self: center;
-}
-
 .wish-card p {
     margin: 0 0 8px;               /* mindre luft mellem linjerne */
 }
@@ -378,6 +441,7 @@ a {
     width: auto;
     padding: 0;
 }
+
 
 /* Beskrivelse der kan foldes ud */
 .wish-desc summary {

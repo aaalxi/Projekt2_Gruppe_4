@@ -27,7 +27,7 @@
     <h1 th:text="${wishlist.title}">Title</h1>
     <div class="wish-actions">
         <!--        create new wish-->
-        <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.wishlistId})}">+ Create Wish</a>
+        <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.wishlistId})}">+ New Wish</a>
         <!--        sort wishes by price:-->
         <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPrice(wishlistId=${wishlist.wishlistId})}">Sort By Price</a>
         <!--        sort wishes by priority:-->
@@ -62,15 +62,26 @@
                        target="_blank" rel="noopener">Til butik ↗</a>
                 </div>
 
-                <div class="wish-image">
-                    <img th:src="${wish.imgUrl}" th:if="${!#strings.isEmpty(wish.imgUrl)}" alt="wish image">
+                <div class="wish-image" th:if="${!#strings.isEmpty(wish.imgUrl)}">
+                    <img th:src="${wish.imgUrl}" alt="wish image">
                 </div>
 
-                <a class="btn" th:href="@{/wish/{wishId}/showEditWish(wishId=${wish.wishId})}">Edit Wish</a>
+                <div class="wish-card-actions">
+                    <a class="btn" th:href="@{/wish/{wishId}/showEditWish(wishId=${wish.wishId})}">Edit Wish</a>
+
+                    <form th:action="@{/wish/deleteWish}" method="post"
+                          onsubmit="return confirm('Your wish will be DELETED!')">
+                        <input type="hidden" name="wishId" th:value="${wish.wishId}">
+                        <input type="hidden" name="wishlistId" th:value="${wish.wishlistId}">
+                        <button class="btn btn-delete" type="submit">Delete wish</button>
+                    </form>
             </div>
+                </div>
 
             <div class="wish-card">
-                <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.wishlistId})}">+ Create Wish</a>
+                <div class="wish-card-actions">
+                    <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.wishlistId})}">+ New Wish</a>
+                </div>
             </div>
         </div>
     </section>
@@ -81,9 +92,9 @@
               th:object="${wishlist}"
               onsubmit="return confirm('Your wishlist will be DELETED!')">
             <input type="hidden" th:field="*{wishlistId}">
-            <button class="btn" type="submit">Delete Wishlist</button>
+            <button class="btn btn-delete" type="submit">Delete Wishlist</button>
         </form>
-        <a class="btn" th:href="@{/profile}">Back to Profile</a>
+        <a class="btn btn-back" th:href="@{/profile}">Back to Profile</a>
     </div>
 </main>
 
