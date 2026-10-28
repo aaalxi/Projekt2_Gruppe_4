@@ -199,18 +199,89 @@ a {
     padding: 40px;
 }
 
-.wishlist-card{
-    border: none;
-    border-radius: 60px;
+.wishlist-card {
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
     background: white;
-    box-shadow: 0 8px 25px rgba(36, 87, 167, 0.25);
+    border-radius: 60px;
     padding: 40px;
+
+    /* box-shadow følger ikke boblerne, drop-shadow gør */
+    filter: drop-shadow(0 8px 15px rgba(36, 87, 167, 0.25));
+}
+
+.wishlist-card:hover {
+    transform: scale(1.05);    /* 3 % større */
+}
+
+.wishlist-card::before,
+.wishlist-card::after {
+    content: "";
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    z-index: -1;          /* ligger bag teksten */
+}
+
+.wishlist-card::before {      /* lille boble til venstre */
+    width: 120px;
+    height: 120px;
+    top: -50px;
+    left: 40px;
+}
+
+.wishlist-card::after {       /* stor boble til højre */
+    width: 160px;
+    height: 160px;
+    top: -70px;
+    right: 40px;
 }
 
 .wishlist-cardImg{
     width: 100%;
     height: 150px;
     object-fit: cover;
+}
+.wishlist-card h2 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: #1b3f7a;
+    background: none;          /* overskriver den globale h2-regel */
+    width: auto;
+    padding: 0;
+}
+
+.wishlist-card-new {
+    display: flex;
+    justify-content: center;   /* vandret i midten */
+    align-items: center;       /* lodret i midten */
+}
+
+.wishlist-card-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.wishlist-card-actions form {
+    margin: 0;
+}
+
+.wishlist-card-actions .btn {
+    min-width: 180px;
+    box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+}
+.wishlist-card-actions a {
+    width: 180px;
+    box-sizing: border-box;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
 }
 
 /* Lad wish-grid fylde hele skærmen */
