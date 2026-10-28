@@ -14,7 +14,7 @@
     </a>
     <nav>
         <ul> <!-- giving the wishlistId value with, to the getmapping in wish -->
-            <li><a th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${userId})}" class="btn">&plus; Create Wishlist</a></li>
+            <li><a th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${wishlistId})}" class="btn">&plus; Create Wishlist</a></li>
             <li><form th:action="@{/logout}" method="post">
                 <button type="submit" class="login-btn">Log ud</button>
             </form></li>
@@ -49,7 +49,7 @@
     </section>
 
     <section class="">
-        <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.getWishlistId()})}">+ Create Wish</a>
+        <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.wishlistId})}">+ Create Wish</a>
     </section>
 </main>
 
