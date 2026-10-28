@@ -1,7 +1,6 @@
 package com.example.projekt2_gruppe_4.controller;
 
 import com.example.projekt2_gruppe_4.model.User;
-import com.example.projekt2_gruppe_4.model.Wish;
 import com.example.projekt2_gruppe_4.service.UserService;
 import com.example.projekt2_gruppe_4.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
@@ -10,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class UserController {

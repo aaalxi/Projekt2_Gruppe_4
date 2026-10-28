@@ -12,7 +12,7 @@
 <body>
 <header>
     <a th:href="@{/profile}" class="company-logo-link">
-        <img th:src="@{/img/cloud.jpg}" class="logo" alt="Company Logo">
+        <img th:src="@{/img/index.jpg}" class="logo" alt="Company Logo">
     </a>
     <nav>
         <ul>
@@ -29,7 +29,7 @@
 
     <section class="">
         <h1>Edit Profile</h1>
-
+        <div class="wishlist-card">
         <form class="form-modify" th:action="@{/profile/editNameAndEmail}" th:object="${profile}" method="post">
 
             <label for="name">Name</label>
@@ -44,6 +44,7 @@
 
         <a th:href="@{/profile}">Cancel</a>
         <p th:if="${error}" th:text="${error}"></p>
+        </div>
     </section>
 
 </main>
