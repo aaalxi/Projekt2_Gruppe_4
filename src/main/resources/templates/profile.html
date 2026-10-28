@@ -42,12 +42,12 @@
         <h2 th:text="${wishlist.title}">Titel</h2>
 
         <div class="wishlist-card-actions">
-            <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlist(wishlistId=${wishlist.wishlistId})}">See wishlist</a>
+            <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlist(wishlistId=${wishlist.wishlistId})}">See Wishlist</a>
 
             <form th:action="@{/wishlist/deleteWishlist}" method="post"
                   onsubmit="return confirm('Your wishlist will be DELETED!')">
                 <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
-                <button class="btn btn-delete" type="submit">Delete wishlist</button>
+                <button class="btn btn-delete" type="submit">Delete Wishlist</button>
             </form>
         </div>
     </div>
