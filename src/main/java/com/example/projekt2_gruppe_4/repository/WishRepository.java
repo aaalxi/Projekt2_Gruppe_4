@@ -129,4 +129,4 @@ public class WishRepository {
         String sql = "SELECT * FROM Wish WHERE wishlist_id = ?";
         return jdbcTemplate.query(sql, WISH_MAPPER, wishlistId);
     }
-}
+    }

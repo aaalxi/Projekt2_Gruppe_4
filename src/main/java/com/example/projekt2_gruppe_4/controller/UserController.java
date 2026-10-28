@@ -1,14 +1,13 @@
 package com.example.projekt2_gruppe_4.controller;
 
 import com.example.projekt2_gruppe_4.model.User;
+import com.example.projekt2_gruppe_4.model.Wish;
 import com.example.projekt2_gruppe_4.service.UserService;
 import com.example.projekt2_gruppe_4.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -86,6 +85,20 @@ public class UserController {
 
     }
 //IMPORTANT: USE userId from session.getAttribute and NOT the id in url or form
+
+    @GetMapping("/profile/showEditNameAndEmail")
+    public String showEditNameAndEmail(@PathVariable HttpSession session, Model model){
+        Integer userId = (Integer) session.getAttribute("userId");
+        model.addAttribute("profile", service.getById(userId));
+        return "editWisheditNameAndEmail";
+    }
+
+//    @PostMapping("/profile/editNameAndEmail")
+//    public String editNameAndEmail(@ModelAttribute HttpSession session){
+//        Integer userId = (Integer) session.getAttribute("userId");
+//        service.editNameAndEmail();
+//        return "redirect:/profile";
+//    }
 
 
 

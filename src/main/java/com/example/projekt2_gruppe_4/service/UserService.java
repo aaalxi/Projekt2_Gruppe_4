@@ -1,10 +1,12 @@
 package com.example.projekt2_gruppe_4.service;
 
 import com.example.projekt2_gruppe_4.model.User;
+import com.example.projekt2_gruppe_4.model.Wish;
 import com.example.projekt2_gruppe_4.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -59,18 +61,27 @@ public class UserService {
         return rowsDeleted == 1;
     }
 
+    public void editNameAndEmail(User user){
+        validateEmail(user);
+        repository.editNameAndEmail(user);
+    }
+    private void validateEmail(User user){
+        User existing = repository.findByEmail(user.getEmail());
+
+        if(existing != null && existing.getUserId() != user.getUserId()){
+            throw new IllegalArgumentException("Emailen er allerede i brug.");
+        }
+    }
+
     public List<User> getAll (){
         return repository.getAll();
     }
+
     public void sumOfWishes (User user){
-
     }
-
 
     public void sumOfWishlists (User user){
-
     }
-
 
     public User getById (int userId){
         return repository.findById(userId);

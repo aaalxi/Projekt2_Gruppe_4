@@ -89,6 +89,15 @@ public class UserRepository {
         }
     }
 
+    public void editNameAndEmail (User user){
+        String sql = """
+                UPDATE Users SET name = ?,
+                email = ? 
+                WHERE user_id = ?                 
+                """;
+        jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getUserId());
+    }
+
 
     public int deleteUser (int userId){
         String sql="DELETE FROM users WHERE user_id =?";
