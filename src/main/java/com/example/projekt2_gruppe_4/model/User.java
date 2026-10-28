@@ -22,6 +22,9 @@ public class User {
         this.passwordHash=passwordHash;
     }
 
+    public User(){
+
+    }
 
     public int getUserId() {
         return userId;

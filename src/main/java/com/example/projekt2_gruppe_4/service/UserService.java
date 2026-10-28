@@ -51,6 +51,19 @@ public class UserService {
         int rowsDeleted = repository.deleteUser(userId);
         return rowsDeleted == 1;
     }
+
+    public void editNameAndEmail(User user){
+        validateEmail(user);
+        repository.editNameAndEmail(user);
+    }
+    private void validateEmail(User user){
+        User existing = repository.findByEmail(user.getEmail());
+
+        if(existing != null && existing.getUserId() != user.getUserId()){
+            throw new IllegalArgumentException("Emailen er allerede i brug.");
+        }
+    }
+
     public List<User> getAll (){
         return repository.getAll();
     }
