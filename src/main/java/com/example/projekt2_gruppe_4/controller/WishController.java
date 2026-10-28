@@ -1,6 +1,7 @@
 package com.example.projekt2_gruppe_4.controller;
 
 import com.example.projekt2_gruppe_4.model.Wish;
+import com.example.projekt2_gruppe_4.model.Wishlist;
 import com.example.projekt2_gruppe_4.service.WishService;
 import com.example.projekt2_gruppe_4.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
@@ -12,14 +13,18 @@ import org.springframework.web.bind.annotation.*;
 public class WishController {
 
     private final WishService wishService;
+    private final WishlistService wishlistService;
 
-    public WishController(WishService wishService) {
+    public WishController(WishService wishService, WishlistService wishlistService ) {
         this.wishService = wishService;
+        this.wishlistService=wishlistService;
     }
 
     @GetMapping("/wish/{wishlistId}/showCreateWish")
     public String showCreateWish(Model model, @PathVariable int wishlistId){
+        Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
         model.addAttribute("wishlistId", wishlistId);
+        model.addAttribute("userId", wishlist.getUserId());
         model.addAttribute("wish", new Wish(wishlistId));
         return "createWish";
     }
