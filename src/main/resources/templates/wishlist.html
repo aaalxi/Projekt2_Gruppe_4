@@ -63,6 +63,18 @@
         </form>
         <a class="btn" th:href="@{/profile}">Back to Profile</a>
     </section>
+
+    <section>
+        <h3>Share this wishlist</h3>
+        <p>Enter the email of the user you want to share this Wishlist with.
+            The user has to have an account </p>
+        <form th:action="@{/wishlist/share}" method="get">
+            <input type="hidden" name="wishlistId" th:value="${wishlistId}">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Share this list</button>
+        </form>
+    </section>
 </main>
 
 </body>
