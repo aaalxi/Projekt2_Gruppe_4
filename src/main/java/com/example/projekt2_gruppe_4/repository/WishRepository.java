@@ -130,17 +130,5 @@ public class WishRepository {
         return jdbcTemplate.query(sql, WISH_MAPPER, wishlistId);
     }
 
-    //Returns true if conditions meet
-    public boolean reserveWish (int wishId, int userId){
-        String sql = """
-                UPDATE Wish wish 
-                JOIN SharedWishlist sw
-                     ON w.wishlist_id = sw.wishlist_id
-                SET wish.reserved_by_user_id = ?
-                WHERE wish.wish_id = ?
-                AND sw.shared_with_user_id = ?
-                AND w.reserved_by_user_id IS NULL     
-                """;
-        return jdbcTemplate.update(sql, userId, wishId) ==1;
-    }
+
 }

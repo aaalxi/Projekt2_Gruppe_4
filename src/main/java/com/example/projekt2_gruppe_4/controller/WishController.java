@@ -59,16 +59,4 @@ public class WishController {
         return "redirect:/wishlist";
     }
 
-    @PostMapping("/reserve")
-    public String reserveWish(
-            @RequestParam int wishId,
-            HttpSession session){
-        Integer userId = (Integer) session.getAttribute("userId");
-        if (userId == null){
-            return "redirect:/";
-        }
-        wishService.reserveWish(wishId, userId);
-        return "redirect:profile";
-    }       //change this to sharedwishlist site
-
 }

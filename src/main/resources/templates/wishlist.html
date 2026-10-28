@@ -31,6 +31,7 @@
         <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPrice(wishlistId=${wishlistId})}">Sort By Price</a>
 <!--        sort wishes by priority:-->
         <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPriority(wishlistId=${wishlistId})}">Sort By Priority</a>
+        <a class="btn" th:href="@{/wishlist}"></a>
 <!--        show wishes-->
         <div class="wish" th:each="wish : ${wishes}">
             <h4 th:text="|Title: ${wish.title}|">Title</h4>
