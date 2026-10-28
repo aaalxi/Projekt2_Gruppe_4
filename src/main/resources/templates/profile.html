@@ -28,6 +28,14 @@
     </div>
 </section>
 
+<h1>Hej <span th:text="${user.name}">Bruger</span>!</h1>
+
+<p th:text="${user.email}">email@example.com</p>
+
+<form th:action="@{/logout}" method="post">
+    <button type="submit" class="loging-btn">Log ud</button>
+</form>
+
 <div class="wishlist-grid">
     <div class="wishlist-card" th:each="wishlist : ${wishlists}">
         <h2 th:text="${wishlist.title}"> Titel </h2>
@@ -49,6 +57,7 @@
 </div>
 
 <footer>
+    <a th:href="@{/profile/showEditNameAndEmail}">Edit profile</a>
     <a th:href="@{/confirmDeleteUser}">Delete account</a>
 </footer>
 </body>

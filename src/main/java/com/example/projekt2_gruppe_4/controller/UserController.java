@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 public class UserController {
@@ -81,6 +82,35 @@ public class UserController {
        model.addAttribute("wishlists", wishlistService.getWishlistsByUserId(userId));
        return "profile";
     }
+//IMPORTANT: USE userId from session.getAttribute and NOT the id in url or form
+
+    @GetMapping("/profile/showEditNameAndEmail")
+    public String showEditNameAndEmail(HttpSession session, Model model){
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (userId == null){
+            return "redirect:/login";
+        }
+        model.addAttribute("profile", service.getById(userId));
+        return "editProfile";
+    }
+
+    @PostMapping("/profile/editNameAndEmail")
+    public String editNameAndEmail(@ModelAttribute User user, HttpSession session, Model model){
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (userId == null){
+            return "redirect:/login";
+        }
+        user.setUserId(userId);
+        try {
+            service.editNameAndEmail(user);
+        } catch (IllegalArgumentException e) {
+            model.addAttribute("error", e.getMessage());
+            model.addAttribute("profile", user);
+            return "editProfile";
+        }
+        return "redirect:/profile";
+    }
+
 
 
     @GetMapping ("/confirmDeleteUser")
