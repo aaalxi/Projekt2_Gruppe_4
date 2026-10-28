@@ -1,4 +1,4 @@
-/* ---------- defeault for body ---------- */
+/* ---------- Removes defeault for body ---------- */
 body{
     padding: 0;
     margin: 0;
@@ -6,6 +6,7 @@ body{
 }
 
 /* ---------- HEADER ---------- */
+
 header {
     width: 100%;
     min-height: 65px;
@@ -53,6 +54,7 @@ h1, h2, h3{
 }
 
 /* ---------- MAIN CONTENT ---------- */
+
 .main {
     display: flex;
     flex-direction: column;
@@ -64,6 +66,8 @@ h1, h2, h3{
     max-width: 700px;
     width: 100%;
 }
+
+/* ---------- FORMS AND BOXES ---------- */
 
 .forms {
     display: flex;
@@ -120,11 +124,17 @@ textarea{
 }
 
 /* ---------- LINKS ---------- */
+
+a {
+    color: #2457a7;
+}
+
 a {
     color: #19427f;
 }
 
 /* ---------- WISHLISTS AND WISHES ---------- */
+
 .wishlist,
 .wish {
     background-color: #f2f4f7;
@@ -144,15 +154,17 @@ a {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin: 40px;
-    border: 10px solid #214a8c;
-    border-radius: 20px;
     padding: 40px;
 }
+
 .wishlist-card{
-    border: 5px solid #214a8c;
-    border-radius: 20px;
-    padding: 20px;
+    border: none;
+    border-radius: 60px;
+    background: white;
+    box-shadow: 0 8px 25px rgba(36, 87, 167, 0.25);
+    padding: 40px;
 }
+
 .wishlist-cardImg{
     width: 100%;
     height: 150px;
