@@ -31,17 +31,17 @@
             <label for="title" > Title </label>
             <input type="text" id="title" th:field="*{title}" required>
 
+            <label for="description" > Description </label>
+            <input type="text" id="description" th:field="*{description}">
+
             <label for="price" > Price </label>
             <input type="number" id="price" th:field="*{price}" step="0.01" min="0">
 
-            <label for="amount" > Amount </label>
-            <input type="number" id="amount" th:field="*{amount}" min="1" required>
+            <label for="priority" > Priority </label>
+            <input type="text" id="priority" th:field="*{priority}">
 
             <label for="productUrl" > Product link </label>
             <input type="url" id="productUrl" th:field="*{productUrl}">
-
-            <label for="description" > Description </label>
-            <input type="text" id="description" th:field="*{description}">
 
             <label for="imgUrl" > Image link </label>
             <input type="url" id="imgUrl" th:field="*{imgUrl}">
@@ -50,8 +50,9 @@
         </form>
 
         <form class="forms"
-              th:action="@{/profile}"
+              th:action="@{/wishlist/{wishlistId}/showWishlist(wishlistId=${wishlistId})}"
               onsubmit="return confirm('This wish will NOT be stored!!')">
+            <input type="hidden" name="wishlistId" th:value="${wish.getWishlistId()}">
             <button class="btn" type="submit">Back</button>
         </form>
     </div>
