@@ -10,15 +10,18 @@
 <body>
 <header>
     <a th:href="@{/profile}" class="company-logo-link">
-        <img th:src="@{/img/cloud.jpg}" class="logo" alt="Company Logo">
+        <img th:src="@{/img/index.jpg}" class="logo" alt="Company Logo">
     </a>
     <nav>
-        <ul>
-            <li><a th:href="@{/profile}" class="btn">Profile</a></li>
-            <li><a th:href="@{/logout}" class="login-btn">Log Out</a></li>
+        <ul> <!-- giving the wishlistId value with, to the getmapping in wish -->
+            <li><a th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${)}" class="btn">&plus; Create Wishlist</a></li>
+            <li><form th:action="@{/logout}" method="post">
+                <button type="submit" class="login-btn">Log ud</button>
+            </form></li>
         </ul>
     </nav>
 </header>
+
 <main class="main">
 
     <form class="forms" method="post" th:action="@{/wishlist/createWishlist}">
