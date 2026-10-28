@@ -43,7 +43,7 @@ public class WishService {
 
     public List<Wish> getWishesSortedByPriority(int wishlistId){
         List<Wish> wishesSortedByPriority = getWishesByWishlistId(wishlistId);
-        wishesSortedByPriority.sort(Comparator.comparing(Wish::getPriority));
+        wishesSortedByPriority.sort(Comparator.comparing(Wish::getPriority).reversed());
         return wishesSortedByPriority;
     }
 
