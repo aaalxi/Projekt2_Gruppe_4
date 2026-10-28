@@ -30,6 +30,24 @@ public class WishlistController {
         return "wishlist";
     }
 
+    @GetMapping("/wishlist/{wishlistId}/showWishlistSortedByPrice")
+    public String showWishlistSortedByPrice(Model model, @PathVariable int wishlistId){
+        Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
+        model.addAttribute("wishlist", wishlistService.getWishlistById(wishlistId));
+        model.addAttribute("wishes", wishService.getWishesSortedByPrice(wishlistId));
+        model.addAttribute("userId", wishlist.getUserId());
+        return "wishlist";
+    }
+
+    @GetMapping("/wishlist/{wishlistId}/showWishlistSortedByPriority")
+    public String showWishlistSortedByPriority(Model model, @PathVariable int wishlistId){
+        Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
+        model.addAttribute("wishlist", wishlistService.getWishlistById(wishlistId));
+        model.addAttribute("wishes", wishService.getWishesSortedByPriority(wishlistId));
+        model.addAttribute("userId", wishlist.getUserId());
+        return "wishlist";
+    }
+
     @GetMapping("/wishlist/{userId}/showCreateWishlist")
     public String showCreateWishlist(Model model, @PathVariable int userId){
         model.addAttribute("userId", userId);
