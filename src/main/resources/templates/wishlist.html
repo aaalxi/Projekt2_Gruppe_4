@@ -14,7 +14,7 @@
     </a>
     <nav>
         <ul>
-            <li><a th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${userId})}" class="btn">&plus; Create Wishlist</a></li>
+            <li><a th:href="@{/profile}" class="btn">Profile</a></li>
             <li><form th:action="@{/logout}" method="post">
                 <button type="submit" class="login-btn">Log ud</button></form>
             </li>
@@ -27,6 +27,11 @@
     </section>
 
     <section>
+<!--        sort wishes by price:-->
+        <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPrice(wishlistId=${wishlistId})}">Sort By Price</a>
+<!--        sort wishes by priority:-->
+        <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPriority(wishlistId=${wishlistId})}">Sort By Priority</a>
+<!--        show wishes-->
         <div class="wish" th:each="wish : ${wishes}">
             <h4 th:text="|Title: ${wish.title}|">Title</h4>
             <p th:text="|Description: ${wish.description}|">Description</p>
@@ -39,11 +44,7 @@
                 <img th:src="${wish.imgUrl}" alt="wish image">
                 <a th:href="${wish.productUrl}">Product Link</a>
             </div>
-            <br>
-            <br>
             <a class="btn" th:href="@{/wish/{wishId}/showEditWish(wishId=${wish.getWishId()})}">Edit Wish</a>
-            <br>
-            <br>
         </div>
     </section>
 
