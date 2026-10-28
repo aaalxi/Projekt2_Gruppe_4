@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
     <title>Homepage</title>
 </head>
 <body>
@@ -36,23 +37,25 @@
     <button type="submit" class="loging-btn">Log ud</button>
 </form>
 
-<div class="wishlist-grid">
+<div class="wish-grid">
     <div class="wishlist-card" th:each="wishlist : ${wishlists}">
-        <h2 th:text="${wishlist.title}"> Titel </h2>
-        <a th:href="@{/wishlist/{wishlistId}/showWishlist(wishlistId=${wishlist.wishlistId})}" class="btn">See wishlist</a>
+        <h2 th:text="${wishlist.title}">Titel</h2>
 
-        <form th:action="@{/wishlist/deleteWishlist}"
-              method="post"
-              onsubmit="return confirm('Your wishlist will be DELETED!')">
-            <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
-            <button class="btn"
-                    type="submit">Delete Wishlist</button>
-        </form>
+        <div class="wishlist-card-actions">
+            <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlist(wishlistId=${wishlist.wishlistId})}">See wishlist</a>
+
+            <form th:action="@{/wishlist/deleteWishlist}" method="post"
+                  onsubmit="return confirm('Your wishlist will be DELETED!')">
+                <input type="hidden" name="wishlistId" th:value="${wishlist.wishlistId}">
+                <button class="btn btn-delete" type="submit">Delete wishlist</button>
+            </form>
+        </div>
     </div>
 
-    <div class="wishlist-card">
-        <p>Create wishlist</p>
-        <a th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${user.userId})}" class="btn">+</a>
+    <div class="wishlist-card wishlist-card-new">
+        <div class="wishlist-card-actions">
+            <a class="btn" th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${user.userId})}">+ New Wishlist</a>
+        </div>
     </div>
 </div>
 

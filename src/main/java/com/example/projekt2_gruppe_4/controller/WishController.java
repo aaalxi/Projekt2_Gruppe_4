@@ -53,10 +53,10 @@ public class WishController {
 //        return "deleteWish";
 //    }
 
-    @PostMapping("/wish/{wishId}/deleteWish")
-    public String deleteWish(@PathVariable int wishId){
+    @PostMapping("/wish/deleteWish")
+    public String deleteWish(@RequestParam int wishId, @RequestParam int wishlistId){
         wishService.deleteWish(wishId);
-        return "redirect:/wishlist";
+        return "redirect:/wishlist/" + wishlistId + "/showWishlist";
     }
 
     @PostMapping("/reserve")
