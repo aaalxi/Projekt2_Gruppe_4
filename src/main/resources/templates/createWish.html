@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Create Wish </title>
+    <title> + New wish </title>
     <link rel="stylesheet" th:href="@{/css/Global.css}">
 </head>
 <body>
@@ -39,6 +39,8 @@
 
             <label for="priority" > Priority </label>
             <input type="text" id="priority" th:field="*{priority}">
+
+            <input type="hidden" th:field="*{amount}">
 
             <label for="productUrl" > Product link </label>
             <input type="url" id="productUrl" th:field="*{productUrl}">

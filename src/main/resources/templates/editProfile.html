@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" th:href="@{/css/Global.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
     <title>Edit profile</title>
 </head>
 
@@ -23,8 +24,10 @@
 </header>
 
 <main class="main">
-    <section class="">
-        <h1 th:text="${profile.getName()}">Title</h1>
+    <section>
+        <div class="standard">
+            <h1 th:text="${profile.getName()}">Title</h1>
+        </div>
     </section>
 
     <section class="">
