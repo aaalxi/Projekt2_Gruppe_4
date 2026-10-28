@@ -22,46 +22,53 @@
     </nav>
 </header>
 <main class="main">
-    <section class="">
-        <h1 th:text="${wishlist.title}">Title</h1>
-    </section>
-
-    <section>
-<!--        sort wishes by price:-->
+    <h1 th:text="${wishlist.title}">Title</h1>
+    <div class="wish-actions">
+        <!--        create new wish-->
+        <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.getWishlistId()})}">+ Create Wish</a>
+        <!--        sort wishes by price:-->
         <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPrice(wishlistId=${wishlistId})}">Sort By Price</a>
-<!--        sort wishes by priority:-->
+        <!--        sort wishes by priority:-->
         <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPriority(wishlistId=${wishlistId})}">Sort By Priority</a>
-<!--        show wishes-->
-        <div class="wish" th:each="wish : ${wishes}">
-            <h4 th:text="|Title: ${wish.title}|">Title</h4>
-            <p th:text="|Description: ${wish.description}|">Description</p>
-            <p th:text="|Price: ${wish.price} kr.|">Price</p>
-            <p th:text="|Amount: ${wish.amount}|">Amount</p>
-            <p th:text="|Priority: ${wish.priority}|">Priority</p>
-            <p th:text="|Created Date: ${wish.createDate}|">Created Date</p>
+    </div>
 
-            <div class="wish-image">
-                <img th:src="${wish.imgUrl}" alt="wish image">
-                <a th:href="${wish.productUrl}">Product Link</a>
-            </div>
-            <a class="btn" th:href="@{/wish/{wishId}/showEditWish(wishId=${wish.getWishId()})}">Edit Wish</a>
-        </div>
-    </section>
     <section>
-        <div class="wish">
-            <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.getWishlistId()})}">+ Create Wish</a>
-        </div>
+<!--        show wishes-->
+        <div class="wish-grid">
+            <div class="wish-card" th:each="wish : ${wishes}">
+                <h3 th:text="${wish.title}">Title</h3>
+                <p th:text="${wish.description}">Description</p>
 
-        <form th:action="@{/wishlist/deleteWishlist}"
-              method="post"
-              th:object="${wishlist}"
-              onsubmit="return confirm('Your wishlist will be DELETED!')">
-            <input type="hidden" th:field="*{wishlistId}">
-            <button class="btn"
-                    type="submit">Delete Wishlist</button>
-        </form>
-        <a class="btn" th:href="@{/profile}">Back to Profile</a>
+                <div class="wish-info">
+                    <p th:text="${wish.price} + ' kr.'">Price</p>
+                    <p th:text="'Amount: ' + ${wish.amount}">Amount</p>
+                    <p th:text="'Priority: ' + ${wish.priority}">Priority</p>
+                    <a th:href="${wish.productUrl}" th:if="${wish.productUrl}" target="_blank" rel="noopener">Go to shop</a>
+                </div>
+
+                <div class="wish-image">
+                    <img th:src="${wish.imgUrl}" th:if="${wish.imgUrl}" alt="wish image">
+                </div>
+
+                <a class="btn" th:href="@{/wish/{wishId}/showEditWish(wishId=${wish.wishId})}">Edit Wish</a>
+            </div>
+
+            <div class="wish-card">
+                <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.getWishlistId()})}">+ Create Wish</a>
+            </div>
+        </div>
     </section>
+        <div class="wish-actions">
+            <form th:action="@{/wishlist/deleteWishlist}"
+                  method="post"
+                  th:object="${wishlist}"
+                  onsubmit="return confirm('Your wishlist will be DELETED!')">
+                <input type="hidden" th:field="*{wishlistId}">
+                <button class="btn"
+                        type="submit">Delete Wishlist</button>
+            </form>
+            <a class="btn" th:href="@{/profile}">Back to Profile</a>
+        </div>
 </main>
 
 </body>

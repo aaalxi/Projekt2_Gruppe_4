@@ -18,6 +18,13 @@ header {
     align-items: center;
 
     padding: 10px 30px;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(242, 242, 242, 0.5);
+    -webkit-backdrop-filter: blur(0px);
+    backdrop-filter: blur(20px);
 }
 
 header ul {
@@ -63,9 +70,10 @@ h1, h2, h3{
 }
 
 .main > * {
-    max-width: 700px;
+    max-width: 90%;
     width: 100%;
 }
+
 
 /* ---------- FORMS AND BOXES ---------- */
 
@@ -78,8 +86,14 @@ h1, h2, h3{
     margin: 60px auto;
     padding: 30px;
     background-color: whitesmoke;
-    border: 1px solid grey;
+    /*border: 1px solid grey;*/
     border-radius: 6px;
+    box-shadow: 0 8px 25px rgba(36, 87, 167, 0.25);
+
+}
+
+.forms input{
+    width: 95%;
 }
 
 label {
@@ -98,29 +112,72 @@ textarea{
 }
 
 /* ---------- BUTTONS ---------- */
-.btn{
+
+.btn {
     display: inline-block;
     padding: 11px 20px;
-    background-color: #7189af;
+
+    background-color: rgba(36, 87, 167, 0.7);   /* blå, lidt gennemsigtig */
     color: white;
     border: none;
-    border-radius: 4px;
+
+    border-radius: 15px;
     text-decoration: none;
     text-align: center;
     font-size: 15px;
     cursor: pointer;
+    box-shadow: 0 4px 6px rgba(36, 87, 167, 0.25);
+
+    transition: transform 0.2s ease;
 }
+
+.btn:hover {
+    background-color: rgba(36, 87, 167, 0.8);   /* lidt mere solid ved hover */
+    transform: scale(1.03);
+}
+/*.btn{*/
+/*    display: inline-block;*/
+/*    padding: 11px 20px;*/
+
+/*    !*background-color: #2457a7;*!*/
+/*    background-color: rgba(36, 87, 167, 0.5);   !* 0.5 = 50 % synlig *!*/
+/*    color: white;*/
+
+/*    border: none;*/
+/*    border-radius: 15px;*/
+/*    text-decoration: none;*/
+/*    text-align: center;*/
+/*    font-size: 15px;*/
+/*    cursor: pointer;*/
+/*    box-shadow: 0 4px 6px rgba(36, 87, 167, 0.25);*/
+/*}*/
+/*.btn-transparent {*/
+/*    background: transparent;*/
+/*    border: 2px solid #6880a8;   !* kant, så knappen stadig kan ses *!*/
+/*    color: #6880a8;*/
+/*}*/
+
+/*.btn-transparent:hover {*/
+/*    background-color: rgba(36, 87, 167, 0.8);   !* let farve ved hover *!*/
+/*}*/
+
 .login-btn{
     display: inline-block;
     padding: 11px 20px;
-    background-color: #2457a7;
+    /*background-color: #2457a7;*/
+    background-color: rgba(36, 87, 167, 0.5);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     text-decoration: none;
     text-align: center;
     font-size: 15px;
     cursor: pointer;
+    box-shadow: 0 4px 6px rgba(36, 87, 167, 0.25);
+}
+
+.login-btn:hover {
+    background-color: rgba(36, 87, 167, 0.8);
 }
 
 /* ---------- LINKS ---------- */
@@ -149,6 +206,13 @@ a {
     margin-top: 0;
 }
 
+.wish-actions {
+    display: flex;
+    justify-content: center;   /* vandret i midten */
+    gap: 10px;
+}
+
+
 .wishlist-grid{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -171,14 +235,105 @@ a {
     object-fit: cover;
 }
 
+/* Lad wish-grid fylde hele skærmen */
+.main > .wish-grid {
+    max-width: none;
+}
+
+/* Vandret scroll-række med fade i siderne */
+.wish-grid {
+    scrollbar-width: none;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 300px;
+    gap: 100px;                    /* plads til sideboblerne */
+    overflow-x: auto;
+    width: 100%;
+    margin: 40px 0;
+    padding: 100px 80px;
+    box-sizing: border-box;
+
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/*Fjerne scroll bar i wish elementer*/
+.wish-grid::-webkit-scrollbar {
+    display: none;                  /* Chrome, Safari, Edge */
+}
+
+/* Sky-formet kort */
+.wish-card {
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: white;
+    border-radius: 60px;
+    padding: 40px;
+    /* box-shadow følger ikke boblerne, drop-shadow gør */
+    filter: drop-shadow(0 8px 15px rgba(36, 87, 167, 0.25));
+}
+
+.wish-card:hover {
+    transform: scale(1.05);    /* 3 % større */
+}
+
+.wish-card::before,
+.wish-card::after {
+    content: "";
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    z-index: -1;          /* ligger bag teksten */
+}
+
+.wish-card::before {      /* lille boble til venstre */
+    width: 120px;
+    height: 120px;
+    top: -50px;
+    left: 40px;
+}
+
+.wish-card::after {       /* stor boble til højre */
+    width: 160px;
+    height: 160px;
+    top: -70px;
+    right: 40px;
+}
+
+.wish-card .btn{
+    margin-top: auto;
+    align-self: center;
+}
+
+.wish-card p {
+    margin: 0 0 8px;               /* mindre luft mellem linjerne */
+}
+
+.wish-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* to felter pr. række */
+    gap: 8px 16px;
+    margin: 12px 0;
+}
+
+.wish-info p {
+    margin: 0;
+}
+
+/* Billede i kortet, vises helt uden beskæring */
 .wish-image {
     width: 200px;
+    height: 200px;
+    padding: 10px;
 }
 
 .wish-image img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    border-radius: 60px;
 }
 
 
