@@ -6,10 +6,7 @@ import com.example.projekt2_gruppe_4.service.WishService;
 import com.example.projekt2_gruppe_4.service.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WishlistController {
@@ -64,10 +61,8 @@ public class WishlistController {
     }
 
     @PostMapping("/wishlist/deleteWishlist")
-    public String deleteWishlist(@ModelAttribute int wishlistId){
+    public String deleteWishlist(@RequestParam int wishlistId){
         wishlistService.deleteWishlist(wishlistId);
         return "redirect:/profile";
     }
-
-
 }

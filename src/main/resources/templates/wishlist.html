@@ -27,6 +27,8 @@
     </section>
 
     <section>
+<!--        create wish-->
+        <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.getWishlistId()})}">+ Create Wish</a>
 <!--        sort wishes by price:-->
         <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPrice(wishlistId=${wishlistId})}">Sort By Price</a>
 <!--        sort wishes by priority:-->
@@ -47,9 +49,20 @@
             <a class="btn" th:href="@{/wish/{wishId}/showEditWish(wishId=${wish.getWishId()})}">Edit Wish</a>
         </div>
     </section>
+    <section>
+        <div class="wish">
+            <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.getWishlistId()})}">+ Create Wish</a>
+        </div>
 
-    <section class="">
-        <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.getWishlistId()})}">+ Create Wish</a>
+        <form th:action="@{/wishlist/deleteWishlist}"
+              method="post"
+              th:object="${wishlist}"
+              onsubmit="return confirm('Your wishlist will be DELETED!')">
+            <input type="hidden" th:field="*{wishlistId}">
+            <button class="btn"
+                    type="submit">Delete Wishlist</button>
+        </form>
+        <a class="btn" th:href="@{/profile}">Back to Profile</a>
     </section>
 </main>
 
