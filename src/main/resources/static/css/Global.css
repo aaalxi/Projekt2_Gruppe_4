@@ -39,6 +39,41 @@ header ul {
 header a {
     text-decoration: none;
 }
+
+/* ---------- FOOTER ---------- */
+.site-footer {
+    color: black;
+    padding: 80px 100px;
+}
+.footer-top {
+    display: flex;
+    align-items: center;         /* HUL 5: så logo og navn står på linje */
+    gap: 12px;
+    margin-bottom: 30px;
+}
+.footer-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.footer-col h3 {
+    text-align: left;
+    margin: 0 0 10px;
+}
+.footer-col a {
+
+    color: blue;
+    text-decoration: none;
+}
+
+
+
+
 /* --------------- LOGO  ----------------- */
 .logo {
     width: 50px;

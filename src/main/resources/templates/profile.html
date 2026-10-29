@@ -16,6 +16,7 @@
     <nav>
         <ul> <!-- giving the wishlistId value with, to the getmapping in wish -->
             <li><button class="btn" type="button" popovertarget="new-wishlist">+ New Wishlist</button></li>
+            <li><a th:href="@{/sharedWishlists}" class="btn">Shared with me</a></li>
             <li><button class="btn" type="button" popovertarget="edit-profile">Edit profile</button></li>
             <li><form th:action="@{/logout}" method="post">
                 <button type="submit" class="login-btn">Log ud</button>

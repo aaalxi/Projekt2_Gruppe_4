@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" th:href="@{/css/global.css}">
+    <link rel="stylesheet" th:href="@{/css/Global.css}">
     <link rel="stylesheet" th:href="@{/css/index.css}">
     <title>Homepage</title>
 </head>
@@ -36,9 +36,39 @@
     </div>
 </div>
 
-<footer>
+<footer class="site-footer">
 
+    <div class="footer-top">
+
+        <img th:src="@{/img/index.jpg}" class="logo" alt="WishCloud logo">
+
+        <span class="footer-brand">WishCloud</span>
+
+    </div>
+
+    <div class="footer-columns">
+
+        <div class="footer-col">
+
+            <h3>Kundeservice</h3>
+
+            <a href="mailto:kontakt@wishcloud.dk">kontakt@wishcloud.dk</a>
+
+        </div>
+
+        <div class="footer-col">
+
+            <h3></h3>
+
+            <!--  1-2 links her, på samme måde som ovenfor -->
+
+        </div>
+
+        <!-- HUL 2: lav selv kolonne 3 og 4 (fx "Inspiration" og "Om os") -->
+
+    </div>
 </footer>
 
 </body>
+
 </html>
