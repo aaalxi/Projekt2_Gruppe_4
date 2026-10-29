@@ -17,19 +17,12 @@ public class UserService {
         this.passwordEncorder=passwordEncoder;
     }
 
-    public User login(String email, String password){
+    public User getById (int userId){
+        return repository.findById(userId);
+    }
 
-        User user = repository.findByEmail(email);
-        if (user == null){
-            return null;
-        }
-        boolean allowedAccess = passwordEncorder.matches(
-                password, user.getPasswordHash());
-        System.out.println("Password matcher: " + allowedAccess);
-        if (allowedAccess){
-            return user;
-        }
-        return null;
+    public User getByEmail(String email){
+        return repository.findByEmail(email);
     }
 
     public void addUser (User user){
@@ -52,6 +45,21 @@ public class UserService {
         return rowsDeleted == 1;
     }
 
+//using the bcrypt class method .matches()
+    public User login(String email, String password){
+
+        User user = repository.findByEmail(email);
+        if (user == null){
+            return null;
+        }
+        boolean allowedAccess = passwordEncorder.matches(
+                password, user.getPasswordHash());
+        System.out.println("Password matcher: " + allowedAccess);
+        if (allowedAccess){
+            return user;
+        }
+        return null;
+}
     public void editNameAndEmail(User user){
         validateEmail(user);
         repository.editNameAndEmail(user);
@@ -68,12 +76,7 @@ public class UserService {
         return repository.getAll();
     }
 
-    public User getById (int userId){
-        return repository.findById(userId);
-    }
-
     public void saveUser (User user){
         repository.saveUser(user);
     }
-
 }

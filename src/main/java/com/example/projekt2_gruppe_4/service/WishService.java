@@ -69,7 +69,4 @@ public class WishService {
         wishRepository.deleteById(wishId);
     }
 
-    public boolean reserveWish (int wishId, int userId){
-        return wishRepository.reserveWish(wishId, userId);
-    }
 }

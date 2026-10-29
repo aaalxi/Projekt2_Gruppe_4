@@ -54,6 +54,16 @@ header a {
     display: block;
 }
 
+.share-message{
+    margin-top: 18px;
+    color: darkred;
+    font-weight: bold;
+    align-content: center;
+}
+
+
+
+
 /* ---------- HEADINGS ---------- */
 h1, h2, h3{
     text-align: center;

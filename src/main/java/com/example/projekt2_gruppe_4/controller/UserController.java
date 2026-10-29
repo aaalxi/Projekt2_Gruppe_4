@@ -57,7 +57,7 @@ public class UserController {
         session.setAttribute("userId", user.getUserId());
         return "redirect:/profile";
     }
-
+    //destroys the session
     @PostMapping("/logout")
     public String logout (HttpSession session){
        session.invalidate();
@@ -110,7 +110,6 @@ public class UserController {
         }
         return "redirect:/profile";
     }
-
 
 
     @GetMapping ("/confirmDeleteUser")
