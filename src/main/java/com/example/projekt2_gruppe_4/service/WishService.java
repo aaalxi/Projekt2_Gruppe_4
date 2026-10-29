@@ -37,7 +37,8 @@ public class WishService {
 
     public List<Wish> getWishesSortedByPrice(int wishlistId){
         List<Wish> wishesSortedByPrice = getWishesByWishlistId(wishlistId);
-        wishesSortedByPrice.sort(Comparator.comparing(Wish::getPrice));
+        wishesSortedByPrice.sort(Comparator.comparing(Wish::getPrice,
+                Comparator.nullsLast(Comparator.naturalOrder())));
         return wishesSortedByPrice;
     }
 

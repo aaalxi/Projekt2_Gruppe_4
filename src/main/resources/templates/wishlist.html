@@ -47,7 +47,7 @@
         <div class="wish-grid">
             <div class="wish-card" th:each="wish : ${wishes}">
                 <div class="wish-priority"
-                     th:title="'Prioritet ' + ${wish.priority} + ' out of 5'">
+                     th:title="'Priority ' + ${wish.priority} + ' out of 5'">
                     <span th:each="i : ${#numbers.sequence(1, 5)}"
                           th:text="${i <= wish.priority} ? '★' : '☆'"
                           th:classappend="${i <= wish.priority} ? 'star-filled' : 'star-empty'">★</span>

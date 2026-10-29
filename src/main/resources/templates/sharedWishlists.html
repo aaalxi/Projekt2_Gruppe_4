@@ -1,10 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Wishlist</title>
+    <link rel="stylesheet" th:href="@{/css/Global.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
 </head>
 <body>
+<header>
+    <a th:href="@{/profile}" class="company-logo-link">
+        <img th:src="@{/img/index.jpg}" class="logo" alt="Company Logo">
+    </a>
+    <nav>
+        <ul>
+            <li><a th:href="@{/profile}" class="btn">&plus; Create your own Wishlist</a></li>
+            <li><form th:action="@{/logout}" method="post">
+                <button type="submit" class="login-btn">Log ud</button>
+            </form></li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+    <section>
+        <section th:each="sw : ${sharedWishlists}">
+            <h2 th:text="${sw.title}">Titel</h2>
+            <h2 th:text="'Wishlist from ' + ${sw.owner}">Ejer</h2>
+            <div class="wish-actions">
+                <a class="btn btn-page" th:href="@{/sharedWishlists(sort='price')}">Sort By Price</a>
+                <a class="btn btn-page" th:href="@{/sharedWishlists(sort='priority')}">Sort By Priority</a>
+            </div>
+
+            <div class="wish-grid">
+                <div class="wish-card" th:each="wish : ${sw.wishes}">
+                    <div class="wish-priority"
+                         th:title="'Priority ' + ${wish.priority} + ' out of 5'">
+                        <span th:each="i : ${#numbers.sequence(1, 5)}"
+                              th:text="${i <= wish.priority} ? '★' : '☆'"
+                              th:classappend="${i <= wish.priority} ? 'star-filled' : 'star-empty'">★</span>
+                    </div>
+
+                    <h3 th:text="${wish.title}" th:title="${wish.title}">Title</h3>
+
+                    <details class="wish-desc" th:if="${!#strings.isEmpty(wish.description)}">
+                        <summary th:text="${wish.description}">Description</summary>
+                    </details>
+
+                    <div class="wish-info">
+                        <span class="wish-price"
+                              th:if="${wish.price != null}"
+                              th:text="${#numbers.formatDecimal(wish.price, 1, 'POINT', 2, 'COMMA')} + ' kr.'">1.234,00 kr.</span>
+
+                        <a class="shop-link"
+                           th:href="${wish.productUrl}"
+                           th:if="${!#strings.isEmpty(wish.productUrl)}"
+                           target="_blank" rel="noopener">To Shop ↗</a>
+                    </div>
+
+                    <div class="wish-image" th:if="${!#strings.isEmpty(wish.imgUrl)}">
+                        <img th:src="${wish.imgUrl}" alt="wish image">
+                    </div>
+
+                    <div class="wish-card-actions">
+    <!--                    <a class="btn" th:href="*{/wish/{wishId}/!!!!!!!SOMETHINGSOMETHING_RESERVE">Reserve Wish</a>-->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <div class="wish-actions">
+        <a class="btn btn-back" th:href="@{/profile}">Back to Profile</a>
+    </div>
+</main>
 
 </body>
 </html>

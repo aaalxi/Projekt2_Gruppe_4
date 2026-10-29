@@ -1,9 +1,12 @@
 package com.example.projekt2_gruppe_4.controller;
 
+import com.example.projekt2_gruppe_4.model.SharedWishlist;
 import com.example.projekt2_gruppe_4.model.User;
+import com.example.projekt2_gruppe_4.model.Wish;
 import com.example.projekt2_gruppe_4.model.Wishlist;
 import com.example.projekt2_gruppe_4.service.SharedWishlistService;
 import com.example.projekt2_gruppe_4.service.UserService;
+import com.example.projekt2_gruppe_4.service.WishService;
 import com.example.projekt2_gruppe_4.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.dao.DuplicateKeyException;
@@ -15,19 +18,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 public class SharedWishlistController {
 
     private final SharedWishlistService sharedWishlistService;
     private final UserService userService;
     private final WishlistService wishlistService;
+    private final WishService wishService;
 
     public SharedWishlistController(SharedWishlistService sharedWishlistService,
                                     UserService userService,
-                                    WishlistService wishlistService){
+                                    WishlistService wishlistService, WishService wishService){
         this.sharedWishlistService=sharedWishlistService;
         this.userService=userService;
         this.wishlistService=wishlistService;
+        this.wishService = wishService;
     }
 
     @PostMapping("/wishlist/share")
@@ -72,16 +79,28 @@ public class SharedWishlistController {
         return "redirect:/wishlist/"+wishlistId+"/showWishlist";
     }
 
-//this one is not made yet
     @GetMapping("/sharedWishlists")
-    public String showSharedWishlist(HttpSession session, Model model){
+    public String showSharedWishlist(HttpSession session, Model model, @RequestParam(required = false) String sort){
         Integer userId = (Integer) session.getAttribute("userId");
 
         if (userId==null){
             return "redirect:/login";
         }
-        model.addAttribute("sharedWishlists",
-                sharedWishlistService.getSharedWishlistsByUserId(userId));
+        List<SharedWishlist> sharedWishlists = sharedWishlistService.getSharedWishlistsByUserId(userId);
+
+        for (SharedWishlist sw : sharedWishlists) {
+            List<Wish> wishes;
+            if ("price".equals(sort)) {
+                wishes = wishService.getWishesSortedByPrice(sw.getWishlistId());
+            } else if ("priority".equals(sort)) {
+                wishes = wishService.getWishesSortedByPriority(sw.getWishlistId());
+            } else {
+                wishes = wishService.getWishesByWishlistId(sw.getWishlistId());
+            }
+            sw.setWishes(wishes);
+        }
+
+        model.addAttribute("sharedWishlists", sharedWishlists);
 
         return "sharedWishlists";
     }

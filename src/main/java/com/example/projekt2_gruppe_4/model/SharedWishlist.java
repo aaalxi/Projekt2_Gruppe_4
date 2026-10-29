@@ -1,5 +1,7 @@
 package com.example.projekt2_gruppe_4.model;
 
+import java.util.List;
+
 public class SharedWishlist {
     private int shareId;
     private int wishlistId;
@@ -54,5 +56,15 @@ public class SharedWishlist {
 
     public void setOwner(String owner) {
         this.owner = owner;
+    }
+
+    private List<Wish> wishes;
+
+    public List<Wish> getWishes() {
+    return wishes;
+    }
+
+    public void setWishes(List<Wish>wishes ){
+        this.wishes = wishes;
     }
 }
