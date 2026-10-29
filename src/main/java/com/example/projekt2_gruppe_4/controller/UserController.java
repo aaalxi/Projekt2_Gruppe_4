@@ -57,7 +57,7 @@ public class UserController {
         session.setAttribute("userId", user.getUserId());
         return "redirect:/profile";
     }
-    //destroys the session
+
     @PostMapping("/logout")
     public String logout (HttpSession session){
        session.invalidate();
@@ -82,7 +82,6 @@ public class UserController {
        model.addAttribute("wishlists", wishlistService.getWishlistsByUserId(userId));
        return "profile";
     }
-//IMPORTANT: USE userId from session.getAttribute and NOT the id in url or form
 
     @GetMapping("/profile/showEditNameAndEmail")
     public String showEditNameAndEmail(HttpSession session, Model model){

@@ -4,8 +4,8 @@ public class SharedWishlist {
     private int shareId;
     private int wishlistId;
     private int sharedWithUserId;
-    private String title;   //from wishlistId
-    private String owner;  //from sharedWithUserId
+    private String title;
+    private String owner;
 
     public SharedWishlist(int shareId, int wishlistId, int sharedWithUserId,
                           String title, String ownerName) {

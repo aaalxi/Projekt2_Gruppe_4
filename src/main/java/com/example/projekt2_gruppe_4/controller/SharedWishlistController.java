@@ -30,23 +30,6 @@ public class SharedWishlistController {
         this.wishlistService=wishlistService;
     }
 
-    //WHEN CLICK ON "SHARE" BTN ON WISHLIST.HTML, the wishlistId is sent to th:template
-    @GetMapping("/wishlist/{wishlistId}/share")
-    public String shareWishlist(@PathVariable int wishlistId,
-                                HttpSession session,
-                                Model model){
-        Integer userId = (Integer) session.getAttribute("userId");
-        if (userId==null){
-            return "redirect:/";        //redirects if sessionAttb. is null
-        }
-        if (wishlistService.getWishlistById(wishlistId).getUserId()!= userId){
-            return "redirect:/profile";  //redirects if userId not the same as session
-        }
-        model.addAttribute("wishlistId", wishlistId);
-        return "shareWishlist";
-    }
-
-    //when clicking submit on sharing wishlist on wishlist.html
     @PostMapping("/wishlist/share")
     public String shareWishlist(
             @RequestParam int wishlistId,
@@ -58,10 +41,9 @@ public class SharedWishlistController {
         if (userId == null){
             return "redirect:/";
         }
-        //find the wishlist
+
         Wishlist wishlist = wishlistService.getWishlistById(wishlistId);
 
-        //CONTROL CHECKS, user owns this wishlist
         if (wishlist.getUserId() != userId){
             return "redirect:/";
         }
@@ -70,16 +52,15 @@ public class SharedWishlistController {
         if (sharedWithUser == null){
             redirectAttributes.addFlashAttribute("shareMessage",
                     "There's no active Users with this email.");
-            return "redirect:/wishlist/"+wishlistId+"/share";
+            return "redirect:/wishlist/"+wishlistId+"/showWishlist";
         }
 
         if (sharedWithUser.getUserId() == userId){
             redirectAttributes.addFlashAttribute("shareMessage",
                     "You can't share it with yourself");
-            return "redirect:/wishlist/"+wishlistId +"/share";
+            return "redirect:/wishlist/"+wishlistId+"/showWishlist";
         }
 
-        //saving share
         try{
             sharedWishlistService.shareWishlist(wishlistId, sharedWithUser.getUserId());
             redirectAttributes.addFlashAttribute("shareMessage",
@@ -87,7 +68,7 @@ public class SharedWishlistController {
         } catch (DuplicateKeyException e) {
             redirectAttributes.addFlashAttribute("shareMessage",
                     "This wishlist has already been shared with the user");
-        } //this Spring exception is thrown when trying to insert duplicate combination of UNIQUE(wishlist_id, shared_with_user_id)
+        }
         return "redirect:/wishlist/"+wishlistId+"/showWishlist";
     }
 

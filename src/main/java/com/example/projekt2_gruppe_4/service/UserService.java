@@ -46,20 +46,20 @@ public class UserService {
     }
 
 //using the bcrypt class method .matches()
-    public User login(String email, String password){
+    public User login(String email, String password) {
 
         User user = repository.findByEmail(email);
-        if (user == null){
+        if (user == null) {
             return null;
         }
         boolean allowedAccess = passwordEncorder.matches(
                 password, user.getPasswordHash());
         System.out.println("Password matcher: " + allowedAccess);
-        if (allowedAccess){
+        if (allowedAccess) {
             return user;
         }
         return null;
-}
+    }
     public void editNameAndEmail(User user){
         validateEmail(user);
         repository.editNameAndEmail(user);

@@ -15,7 +15,6 @@ public class SharedWishlistService {
         this.repository=repository;
     }
 
-
     public void shareWishlist(int wishlistId, int userId){
         repository.shareWishlist(wishlistId, userId);
     }
