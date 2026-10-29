@@ -62,7 +62,7 @@ header a {
 /* ---------- HEADINGS ---------- */
 h1, h2, h3{
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     font-family: 'Fredoka', sans-serif;
     font-weight: 600;
     color: #1b3f7a;
@@ -71,6 +71,16 @@ h1, h2, h3{
 h1 {
     color: #163566;
     font-size: 36px;
+}
+
+/* --------------- Paragraphs ------------ */
+
+p {
+    text-align: center;
+    margin-bottom: 15px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    color: rgba(27, 63, 122, 1);
 }
 
 /* ---------- MAIN CONTENT ---------- */
@@ -109,9 +119,45 @@ h1 {
     width: 95%;
 }
 
+.form-share {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 50%;
+    max-width: 450px;
+    margin: 30px auto;
+    padding: 20px;
+    /*background-color: whitesmoke;*/
+    border-radius: 40px;
+    /*box-shadow: 0 8px 25px rgba(36, 87, 167, 0.25);*/
+
+}
+
+.form-share p{
+    color: rgba(27, 63, 122, 0.6);
+    margin-bottom: 5px;
+
+}
+
+.form-share h3{
+    color: rgba(27, 63, 122, 1);
+    margin-bottom: 5px;
+
+}
+
+.form-share input{
+    width: 90%;
+}
+
+.form-share label{
+    color: rgba(27, 63, 122, 1);
+    margin-bottom: 5px;
+
+}
+
 label {
     font-weight: bold;
-    margin-bottom: 18px;
+    margin-bottom: 5px;
 }
 
 input,
@@ -121,7 +167,7 @@ textarea{
     border: 1px solid grey;
     border-radius: 6px;
     outline: 2px solid whitesmoke;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 /* ---------- BUTTONS ---------- */
@@ -134,7 +180,7 @@ textarea{
     color: white;
     border: none;
 
-    border-radius: 15px;
+    border-radius: 5px;
     text-decoration: none;
     text-align: center;
     font-size: 15px;
@@ -156,7 +202,7 @@ textarea{
     background-color: rgba(36, 87, 167, 0.5);
     color: white;
     border: none;
-    border-radius: 15px;
+    border-radius: 5px;
     text-decoration: none;
     text-align: center;
     font-size: 15px;
@@ -205,6 +251,24 @@ textarea{
 .btn-page:hover {
     box-shadow: 0 4px 6px rgba(36, 87, 167, 0.25);
     background-color: rgba(36, 87, 167, 0.2);
+}
+
+.btn.btn-share{
+    display: inline-block;
+    padding: 11px 20px;
+
+    background-color: rgba(36, 87, 167, 0.7);   /* blå, lidt gennemsigtig */
+    color: white;
+    border: none;
+
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(36, 87, 167, 0.25);
+
+    transition: transform 0.2s ease;
 }
 
 /* ---------- LINKS ---------- */
@@ -556,6 +620,114 @@ a {
     border-radius: 15px;
 }
 
+/* ---------- POPOVER: NY ØNSKELISTE ---------- */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;                 /* centrerer i midten af skærmen */
+    height: fit-content;
+    max-width: none;
+    overflow: visible;            /* boblerne må stikke ud */
+
+    border: none;
+    border-radius: 60px;
+    padding: 50px 40px 40px;
+    background: white;
+    filter: drop-shadow(0 8px 15px rgba(36, 87, 167, 0.25));
+
+    width: 300px;
+    box-sizing: border-box;
+}
+
+.modal::before,
+.modal::after {
+    content: "";
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.modal::before {              /* lille boble */
+    width: 120px;
+    height: 120px;
+    top: -50px;
+    left: 15%;
+}
+
+.modal::after {               /* stor boble */
+    width: 160px;
+    height: 160px;
+    top: -70px;
+    right: 15%;
+}
+
+/* Sløret glas bag popover'en */
+.modal::backdrop {
+    background-color: rgba(242, 242, 242, 0.4);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-form input {
+    box-sizing: border-box;       /* så feltet ikke stikker ud af boksen */
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* ----------- CREATE & EDIT ------------ */
+
+.modal-edits {
+    position: fixed;
+    inset: 0;
+    margin: auto;                 /* centrerer i midten af skærmen */
+    height: fit-content;
+    max-width: none;
+    overflow: visible;            /* boblerne må stikke ud */
+
+    border: none;
+    border-radius: 60px;
+    padding: 50px 40px 40px;
+    background: white;
+    filter: drop-shadow(0 8px 15px rgba(36, 87, 167, 0.25));
+
+    width: 300px;
+    box-sizing: border-box;
+}
+
+/* Sløret glas bag popover'en */
+.modal-edits::backdrop {
+    background-color: rgba(242, 242, 242, 0.4);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+}
+
+.modal-edits-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-edits-form input {
+    box-sizing: border-box;       /* så feltet ikke stikker ud af boksen */
+}
+
+.modal-edits-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
 
 /*----------------- DANGER ZONE ---------------*/
 .danger-zone{

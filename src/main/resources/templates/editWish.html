@@ -14,7 +14,7 @@
     </a>
     <nav>
         <ul>
-            <li><a th:href="@{/profile}" class="btn">Profile</a></li>
+            <li><a th:href="@{/wishlist/{wishlistId}/showWishlist(wishlistId=${wish.getWishlistId})}" class="btn">Back to Wishlist</a></li>
             <li><a th:href="@{/logout}" class="login-btn">Log Out</a></li>
         </ul>
     </nav>

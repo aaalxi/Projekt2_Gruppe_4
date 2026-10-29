@@ -24,7 +24,7 @@ public class UserController {
 
 
    @GetMapping("/getCreateUser")
-   public String createUser(){
+   public String getCreateUser(){
        return "createUser";
    }
 
@@ -99,13 +99,12 @@ public class UserController {
         if (userId == null){
             return "redirect:/login";
         }
-        user.setUserId(userId);
         try {
             service.editNameAndEmail(user);
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", e.getMessage());
             model.addAttribute("profile", user);
-            return "editProfile";
+            return "redirect:/profile";
         }
         return "redirect:/profile";
     }
