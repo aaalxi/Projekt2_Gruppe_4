@@ -18,18 +18,18 @@
     <p>
         Enter your password to confirm that you want to delete your account.
     </p>
+    <div class="modal-edits">
+        <div class="modal-edits-form">
+            <form th:action="@{/deleteUser}" method="post">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+                <button class="btn" type="submit">Confirm deletion</button>
+            </form>
 
-    <div class="forms">
-        <form th:action="@{/deleteUser}" method="post">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Confirm deletion</button>
-        </form>
-
-        <a th:href="@{/profile}">Cancel</a>
-        <p th:if="${error}" th:text="${error}"></p>
+            <a class="btn" th:href="@{/profile}">Cancel</a>
+            <p th:if="${error}" th:text="${error}"></p>
+        </div>
     </div>
-
 </main>
 </body>
 </html>

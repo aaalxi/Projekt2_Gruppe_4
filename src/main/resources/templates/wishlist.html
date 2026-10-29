@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wishlist</title>
     <link rel="stylesheet" th:href="@{/css/Global.css}">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+<!--    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">-->
 </head>
 <body>
 <header>
@@ -15,7 +15,8 @@
     </a>
     <nav>
         <ul>
-            <li><a th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${wishlist.userId})}" class="btn">&plus; Create Wishlist</a></li>
+            <li><button class="btn btn-share" type="button" popovertarget="share-wishlist">Share Wishlist</button></li>
+            <li><a th:href="@{/profile}" class="btn">Profile</a></li>
             <li><form th:action="@{/logout}" method="post">
                 <button type="submit" class="login-btn">Log ud</button>
             </form></li>
@@ -27,7 +28,7 @@
     <h1 th:text="${wishlist.title}">Title</h1>
     <div class="wish-actions">
         <!--        create new wish-->
-        <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.wishlistId})}">+ New Wish</a>
+        <button class="btn" type="button" popovertarget="new-wish">+ New Wish</button>
         <!--        sort wishes by price:-->
         <a class="btn btn-page" th:href="@{/wishlist/{wishlistId}/showWishlistSortedByPrice(wishlistId=${wishlist.wishlistId})}">Sort By Price</a>
         <!--        sort wishes by priority:-->
@@ -39,7 +40,7 @@
             <input type="hidden" th:field="*{wishlistId}">
             <button class="btn btn-delete" type="submit">DELETE Wishlist</button>
         </form>
-        <a class="btn" th:href="@{/profile}">Back to Profile</a>
+
     </div>
 
     <section>
@@ -88,35 +89,92 @@
 
             <div class="wish-card wish-card-new">
                 <div class="wish-card-actions">
-                    <a class="btn" th:href="@{/wish/{wishlistId}/showCreateWish(wishlistId=${wishlist.wishlistId})}">+ New Wish</a>
+                    <button class="btn" type="button" popovertarget="new-wish">+ New Wish</button>
                 </div>
             </div>
         </div>
     </section>
 
+    <div id="new-wish" popover class="modal">
+        <form class="modal-form" th:action="@{/wish/createWish}" th:object="${wish}" method="post">
+            <h2>New Wish</h2>
+                <input type="hidden" th:field="*{wishlistId}">
+
+                <label for="title" > Title </label>
+                <input type="text" id="title" th:field="*{title}" required>
+
+                <label for="description" > Description </label>
+                <input type="text" id="description" th:field="*{description}">
+
+                <label for="price" > Price </label>
+                <input type="number" id="price" th:field="*{price}" step="0.01" min="0">
+
+                <label for="priority" > Priority </label>
+                <input type="text" id="priority" th:field="*{priority}">
+
+                <input type="hidden" th:field="*{amount}">
+
+                <label for="productUrl" > Product link </label>
+                <input type="url" id="productUrl" th:field="*{productUrl}">
+
+                <label for="imgUrl" > Image link </label>
+                <input type="url" id="imgUrl" th:field="*{imgUrl}">
+
+            <div class="modal-actions">
+                <button class="btn btn-page" type="button"
+                        popovertarget="new-wish" popovertargetaction="hide">Cancel</button>
+                <button class="btn" type="submit">Create</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="share-wishlist" popover class="modal-edits">
+        <form class="modal-edits-form" th:action="@{/wishlist/share}" method="post" onsubmit="return confirm('Sure you wanna share?')">
+            <h2>Share Wishlist</h2>
+            <p>Enter the email of the user you want to share this Wishlist with.
+                The user has to have an account 👇</p>
+
+            <input type="hidden" name="wishlistId" th:value="${wishlistId}">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <div class="modal-edits-actions">
+                <button class="btn btn-page" type="button"
+                        popovertarget="share-wishlist" popovertargetaction="hide">Cancel</button>
+                <button class="btn" type="submit">Share Wishlist</button>
+            </div>
+            <div class="share-message"
+                 th:if="${shareMessage != null}"
+                 th:text="${shareMessage}">
+            </div>
+        </form>
+    </div>
+
+    <!--    <div class="wish-actions">-->
+    <!--    <section>-->
+    <!--        <form class="form-share" th:action="@{/wishlist/share}" method="post">-->
+    <!--            <h3>Share this wishlist</h3>-->
+    <!--            <p>Enter the email of the user you want to share this Wishlist with.-->
+    <!--                The user has to have an account 👇</p>-->
+    <!--            <input type="hidden" name="wishlistId" th:value="${wishlistId}">-->
+
+    <!--            <label for="email">Email:</label>-->
+    <!--            <input type="email" id="email" name="email" required>-->
+
+    <!--            <button type="submit" class="btn">Share this list</button>-->
+    <!--        </form>-->
+
+    <!--        <div class="share-message"-->
+    <!--        th:if="${shareMessage != null}"-->
+    <!--        th:text="${shareMessage}">-->
+    <!--        </div>-->
+    <!--    </section>-->
+    <!--    </div>-->
+
     <div class="wish-actions">
         <a class="btn btn-back" th:href="@{/profile}">Back to Profile</a>
     </div>
-
-    <section>
-        <h3>Share this wishlist</h3>
-        <p>Enter the email of the user you want to share this Wishlist with.
-            The user has to have an account </p>
-
-        <form th:action="@{/wishlist/share}" method="post">
-            <input type="hidden" name="wishlistId" th:value="${wishlistId}">
-
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-
-            <button type="submit" class="btn">Share this list</button>
-        </form>
-
-        <div class="share-message"
-        th:if="${shareMessage != null}"
-        th:text="${shareMessage}">
-        </div>
-    </section>
 
 </main>
 

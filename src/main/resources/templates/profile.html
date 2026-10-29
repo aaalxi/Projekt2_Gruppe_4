@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" th:href="@{/css/global.css}">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+<!--    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">-->
     <title>Homepage</title>
 </head>
 <body>
@@ -15,8 +15,8 @@
     </a>
     <nav>
         <ul> <!-- giving the wishlistId value with, to the getmapping in wish -->
-            <li><a th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${user.userId})}" class="btn">&plus; Create Wishlist</a></li>
-            <li><a th:href="@{/sharedWishlists}" class="btn">Shared with me</a></li>
+            <li><button class="btn" type="button" popovertarget="new-wishlist">+ New Wishlist</button></li>
+            <li><button class="btn" type="button" popovertarget="edit-profile">Edit profile</button></li>
             <li><form th:action="@{/logout}" method="post">
                 <button type="submit" class="login-btn">Log ud</button>
             </form></li>
@@ -26,7 +26,7 @@
 
 <section>
     <div class="standard">
-        <h1>Overview of <span th:text="${user.name}"></span>'s Wishlists</h1>
+        <h1><span th:text="${user.name}"></span>'s Wishlists</h1>
     </div>
 </section>
 
@@ -47,14 +47,58 @@
 
     <div class="wishlist-card wishlist-card-new">
         <div class="wishlist-card-actions">
-            <a class="btn" th:href="@{/wishlist/{userId}/showCreateWishlist(userId=${user.userId})}">+ New Wishlist</a>
+            <button class="btn" type="button" popovertarget="new-wishlist">+ New Wishlist</button>
         </div>
     </div>
 </div>
 
+<div id="new-wishlist" popover class="modal">
+    <form class="modal-form" th:action="@{/wishlist/createWishlist}" method="post">
+        <h2>New Wishlist</h2>
+
+        <input type="hidden" name="userId" th:value="${user.userId}">
+
+        <label for="new-wishlist-title">Title</label>
+        <input type="text" id="new-wishlist-title" name="title" required>
+
+        <div class="modal-actions">
+            <button class="btn btn-page" type="button"
+                    popovertarget="new-wishlist" popovertargetaction="hide">Cancel</button>
+            <button class="btn" type="submit">Create</button>
+        </div>
+    </form>
+</div>
+
+<!-- Popover med formen (skjult indtil man trykker) -->
+<div id="edit-profile" popover class="modal-edits">
+    <form class="modal-edits-form" th:action="@{/profile/editNameAndEmail}" method="post" onsubmit="return confirm('Keep changes?')">
+        <h2>Edit Profile</h2>
+
+        <input type="hidden" name="userId" th:value="${user.userId}">
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" required>
+
+        <div class="modal-edits-actions">
+            <button class="btn btn-page" type="button"
+                    popovertarget="edit-profile" popovertargetaction="hide">Cancel</button>
+            <button class="btn" type="submit">Save</button>
+        </div>
+        <a class="btn btn-delete" th:href="@{/confirmDeleteUser}">DELETE account</a>
+    </form>
+</div>
+
+<p th:if="${error}" th:text="${error}"></p>
+
+
+
+
+
 <footer>
-    <a th:href="@{/profile/showEditNameAndEmail}">Edit profile</a>
-    <a th:href="@{/confirmDeleteUser}">Delete account</a>
+
 </footer>
 </body>
 </html>

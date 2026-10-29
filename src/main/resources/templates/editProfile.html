@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" th:href="@{/css/Global.css}">
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+<!--    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&display=swap" rel="stylesheet">-->
     <title>Edit profile</title>
 </head>
 
@@ -41,11 +41,13 @@
             <label for="email">Email</label>
             <input type="email" id="email" th:field ="*{email}">
 
-
-            <button type="submit">Confirm Edit</button>
+            <button class="btn" type="submit">Confirm Edit</button>
         </form>
+            <div class="wish-actions">
+                <a class="btn btn-delete" th:href="@{/confirmDeleteUser}">DELETE account</a>
+                <a class="btn btn-back" th:href="@{/profile}">Back to Profile</a>
+            </div>
 
-        <a th:href="@{/profile}">Cancel</a>
         <p th:if="${error}" th:text="${error}"></p>
         </div>
     </section>
