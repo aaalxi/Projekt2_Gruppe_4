@@ -56,7 +56,7 @@ public class UserController {
         session.setAttribute("userId", user.getUserId());
         return "redirect:/profile";
     }
-
+    //destroys the session
     @PostMapping("/logout")
     public String logout (HttpSession session){
        session.invalidate();
@@ -81,7 +81,6 @@ public class UserController {
        model.addAttribute("wishlists", wishlistService.getWishlistsByUserId(userId));
        return "profile";
     }
-
 
     @GetMapping ("/confirmDeleteUser")
     public String getDeleteUser(){

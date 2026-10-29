@@ -21,9 +21,9 @@ public class SharedWishlistRepository {
     public void shareWishlist(int wishlistId, int userId){
         String sql="INSERT INTO sharedwishlist (wishlist_id, shared_with_user_id) " +
                 "VALUES (?, ?)";
-        jdbcTemplate.update(sql, wishlistId);
+        jdbcTemplate.update(sql, wishlistId, userId);
     }
-
+    //FINDS wishlists shared with THIS userId
     //JOIN table: sw = sharedwishlist, w = wishlist, u = user,
     public List<SharedWishlist> findSharedWishlistsByUserId(int userId){
         String sql= """
