@@ -1,7 +1,8 @@
-DROP DATABASE IF EXISTS Onskeskyen;
-CREATE DATABASE Onskeskyen;
+DROP DATABASE IF EXISTS projekt2_gruppe_4_db;
+CREATE DATABASE projekt2_gruppe_4_db;
 
-       USE Onskeskyen;
+       USE projekt2_gruppe_4_db;
+
 DROP TABLE IF EXISTS SharedWishlist;
 DROP TABLE IF EXISTS Wish;
 DROP TABLE IF EXISTS Wishlist;
