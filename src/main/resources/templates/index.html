@@ -11,18 +11,19 @@
 
 <header>
     <a th:href="@{/}" class="company-logo-link">
-        <img th:src="@{/img/index.jpg}" class="logo" alt="Company Logo">
+        <img th:src="@{/img/logo-icon.svg}" class="logo" alt="Company Logo">
+        <img th:src="@{/img/logo-text.svg}" class="logo-text" alt="Company Logo">
     </a>
     <nav>
         <ul>
-            <li><a th:href="@{/getCreateUser}" class="btn">Create Account</a></li>
-            <li><a th:href="@{/login}" class="login-btn">Log in</a></li>
+            <li><button type="button" popovertarget="create-account" class="login-btn">Create Account</button></li>
+            <li><button type="button" popovertarget="login" class="login-btn">Log In</button></li>
         </ul>
     </nav>
 </header>
 
 <div class="hero">
-    <img th:src="@{/img/forIndex1.jpg}" alt="Homepage image">
+    <img th:src="@{/img/logo-icon.svg}" alt="Homepage image">
     <div class="hero-text">
         <h1>Share the Things You Love</h1>
         <p>Create your own wishlist,
@@ -31,44 +32,54 @@
             Keep everything organized in one place and
             make it easier for your loved ones to find the
             perfect gift for every special occasion.</p>
-        <a th:href="@{/getCreateUser}" class="btn">Create Account</a>
-        <a th:href="@{/login}" class="login-btn">Log in</a>
+        <div class="hero-btn">
+            <button type="button" popovertarget="create-account" class="btn">Create Account</button>
+            <button type="button" popovertarget="login" class="btn">Log In</button>
+        </div>
     </div>
 </div>
 
-<footer class="site-footer">
+<div id="login" popover class="modal-edits">
+    <form class="modal-edits-form" th:action="@{/login}" method="post">
+        <h2>Login</h2>
+        <p>Login to share your biggest dreams👇</p>
 
-    <div class="footer-top">
+        <label for="login-email">Email:</label>
+        <input type="email" id="login-email" name="email" value ="F26A@stud.ek.dk" required>
 
-        <img th:src="@{/img/index.jpg}" class="logo" alt="WishCloud logo">
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password" name="password" value ="1234" required>
 
-        <span class="footer-brand">WishCloud</span>
-
-    </div>
-
-    <div class="footer-columns">
-
-        <div class="footer-col">
-
-            <h3>Kundeservice</h3>
-
-            <a href="mailto:kontakt@wishcloud.dk">kontakt@wishcloud.dk</a>
-
+        <div class="modal-edits-actions">
+            <button class="btn btn-delete" type="button"
+                    popovertarget="login" popovertargetaction="hide">Cancel</button>
+            <button class="btn" type="submit">Login</button>
         </div>
+    </form>
+</div>
 
-        <div class="footer-col">
+<div id="create-account" popover class="modal-edits">
+    <form class="modal-edits-form" th:action="@{/postCreateUser}" method="post">
 
-            <h3></h3>
+        <h2>Create New Account</h2>
+        <p>Be able to share your biggest dreams👇</p>
 
-            <!--  1-2 links her, på samme måde som ovenfor -->
+        <label for="create-account-name">Name:</label>
+        <input type="text" id="create-account-name" name="name" required>
 
+        <label for="create-account-email">Email:</label>
+        <input type="email" id="create-account-email" name="email" required>
+
+        <label for="create-account-password">Password:</label>
+        <input type="password" id="create-account-password" name="password" required>
+
+        <div class="modal-edits-actions">
+            <button class="btn btn-delete" type="button"
+                    popovertarget="create-account" popovertargetaction="hide">Cancel</button>
+            <button type="submit" class="btn">Create Account</button>
         </div>
-
-        <!-- HUL 2: lav selv kolonne 3 og 4 (fx "Inspiration" og "Om os") -->
-
-    </div>
-</footer>
-
+    </form>
+</div>
 </body>
 
 </html>

@@ -11,7 +11,7 @@
 <body>
 <header>
     <a th:href="@{/profile}" class="company-logo-link">
-        <img th:src="@{/img/index.jpg}" class="logo" alt="Company Logo">
+        <img th:src="@{/img/logo-icon.svg}" class="logo" alt="Company Logo">
     </a>
     <nav>
         <ul>
@@ -54,7 +54,9 @@
                           th:classappend="${i <= wish.priority} ? 'star-filled' : 'star-empty'">★</span>
                 </div>
 
-                <h3 th:text="${wish.title}" th:title="${wish.title}">Title</h3>
+                <details class="wish-title" th:if="${!#strings.isEmpty(wish.title)}">
+                    <summary><h3 th:text="${wish.title}">Title</h3></summary>
+                </details>
 
                 <details class="wish-desc" th:if="${!#strings.isEmpty(wish.description)}">
                     <summary th:text="${wish.description}">Description</summary>
@@ -64,19 +66,19 @@
                     <span class="wish-price"
                           th:if="${wish.price != null}"
                           th:text="${#numbers.formatDecimal(wish.price, 1, 'POINT', 2, 'COMMA')} + ' kr.'">1.234,00 kr.</span>
-
-                    <a class="shop-link"
-                       th:href="${wish.productUrl}"
-                       th:if="${!#strings.isEmpty(wish.productUrl)}"
-                       target="_blank" rel="noopener">Til butik ↗</a>
                 </div>
 
                 <div class="wish-image" th:if="${!#strings.isEmpty(wish.imgUrl)}">
                     <img th:src="${wish.imgUrl}" alt="wish image">
                 </div>
 
+                <a class="shop-link"
+                   th:href="${wish.productUrl}"
+                   th:if="${!#strings.isEmpty(wish.productUrl)}"
+                   target="_blank" rel="noopener">Go To Shop ↗</a>
+
                 <div class="wish-card-actions">
-                    <button class="btn" type="button"
+                    <button class="btn btn-page" type="button"
                             th:attr="popovertarget='edit-wish-' + ${wish.wishId}">Edit Wish</button>
 
                     <form th:action="@{/wish/deleteWish}" method="post"

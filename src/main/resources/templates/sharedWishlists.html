@@ -11,7 +11,7 @@
 <body>
 <header>
     <a th:href="@{/profile}" class="company-logo-link">
-        <img th:src="@{/img/index.jpg}" class="logo" alt="Company Logo">
+        <img th:src="@{/img/logo-icon.svg}" class="logo" alt="Company Logo">
     </a>
     <nav>
         <ul>
@@ -25,7 +25,11 @@
 <main class="main">
     <section>
         <section th:each="sw : ${sharedWishlists}">
-            <h2 th:text="${sw.title}">Titel</h2>
+
+            <details class="wish-title" th:if="${!#strings.isEmpty(sw.title)}">
+                <summary><h3 th:text="${sw.title}">Title</h3></summary>
+            </details>
+
             <h2 th:text="'Wishlist from ' + ${sw.owner}">Ejer</h2>
             <div class="wish-actions">
                 <a class="btn btn-page" th:href="@{/sharedWishlists(sort='price')}">Sort By Price</a>
