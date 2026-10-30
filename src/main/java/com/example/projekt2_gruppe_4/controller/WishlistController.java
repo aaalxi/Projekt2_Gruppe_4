@@ -34,6 +34,7 @@ public class WishlistController {
         model.addAttribute("wishlist", wishlistService.getWishlistById(wishlistId));
         model.addAttribute("wishes", wishService.getWishesSortedByPrice(wishlistId));
         model.addAttribute("userId", wishlist.getUserId());
+        model.addAttribute("wish", new Wish(wishlistId));
         return "wishlist";
     }
 
@@ -43,14 +44,17 @@ public class WishlistController {
         model.addAttribute("wishlist", wishlistService.getWishlistById(wishlistId));
         model.addAttribute("wishes", wishService.getWishesSortedByPriority(wishlistId));
         model.addAttribute("userId", wishlist.getUserId());
+        model.addAttribute("wish", new Wish(wishlistId));
         return "wishlist";
     }
 
-    @GetMapping("/wishlist/{userId}/showCreateWishlist")
-    public String showCreateWishlist(Model model, @PathVariable int userId){
-        model.addAttribute("userId", userId);
-        return "createWishlist";
+
+    @PostMapping("/wishlist/deleteWishlist")
+    public String deleteWishlist(@RequestParam int wishlistId){
+        wishlistService.deleteWishlist(wishlistId);
+        return "redirect:/profile";
     }
+
 
     @PostMapping("/wishlist/createWishlist")
     public String createWishlist(@ModelAttribute Wishlist wishlist){
@@ -61,9 +65,9 @@ public class WishlistController {
         return "redirect:/wishlist/" + wishlistWithId.getWishlistId() + "/showWishlist";
     }
 
-    @PostMapping("/wishlist/deleteWishlist")
-    public String deleteWishlist(@RequestParam int wishlistId){
-        wishlistService.deleteWishlist(wishlistId);
-        return "redirect:/profile";
-    }
+    //    @GetMapping("/wishlist/{userId}/showCreateWishlist")
+//    public String showCreateWishlist(Model model, @PathVariable int userId){
+//        model.addAttribute("userId", userId);
+//        return "createWishlist";
+//    }
 }
