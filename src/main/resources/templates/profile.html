@@ -25,11 +25,10 @@
     </nav>
 </header>
 
-<section>
-    <div class="standard">
+<main class="main">
+    <div class="wishlist-title">
         <h1><span th:text="${user.name}"></span>'s Wishlists</h1>
     </div>
-</section>
 
 <div class="wish-grid">
     <div class="wishlist-card" th:each="wishlist : ${wishlists}">
@@ -97,6 +96,8 @@
 </div>
 
 <p th:if="${error}" th:text="${error}"></p>
+
+</main>
 
 
 
