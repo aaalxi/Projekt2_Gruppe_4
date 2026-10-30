@@ -43,7 +43,7 @@
 
     </div>
 
-    <section>
+
         <!--        show wishes-->
         <div class="wish-grid">
             <div class="wish-card" th:each="wish : ${wishes}">
@@ -76,7 +76,8 @@
                 </div>
 
                 <div class="wish-card-actions">
-                    <a class="btn" th:href="@{/wish/{wishId}/showEditWish(wishId=${wish.wishId})}">Edit Wish</a>
+                    <button class="btn" type="button"
+                            th:attr="popovertarget='edit-wish-' + ${wish.wishId}">Edit Wish</button>
 
                     <form th:action="@{/wish/deleteWish}" method="post"
                           onsubmit="return confirm('Your wish will be DELETED!')">
@@ -93,8 +94,8 @@
                 </div>
             </div>
         </div>
-    </section>
 
+<!--New wish-->
     <div id="new-wish" popover class="modal">
         <form class="modal-form" th:action="@{/wish/createWish}" th:object="${wish}" method="post">
             <h2>New Wish</h2>
@@ -123,11 +124,12 @@
             <div class="modal-actions">
                 <button class="btn btn-page" type="button"
                         popovertarget="new-wish" popovertargetaction="hide">Cancel</button>
-                <button class="btn" type="submit">Create</button>
+                <button class="btn" type="submit">Add</button>
             </div>
         </form>
     </div>
 
+<!--Share wishlist-->
     <div id="share-wishlist" popover class="modal-edits">
         <form class="modal-edits-form" th:action="@{/wishlist/share}" method="post" onsubmit="return confirm('Sure you wanna share?')">
             <h2>Share Wishlist</h2>
@@ -151,26 +153,41 @@
         </form>
     </div>
 
-    <!--    <div class="wish-actions">-->
-    <!--    <section>-->
-    <!--        <form class="form-share" th:action="@{/wishlist/share}" method="post">-->
-    <!--            <h3>Share this wishlist</h3>-->
-    <!--            <p>Enter the email of the user you want to share this Wishlist with.-->
-    <!--                The user has to have an account 👇</p>-->
-    <!--            <input type="hidden" name="wishlistId" th:value="${wishlistId}">-->
+<!--Edit wish-->
+    <div th:each="wish : ${wishes}" th:id="'edit-wish-' + ${wish.wishId}" popover class="modal">
+        <form class="modal-edits-form" th:action="@{/wish/editWish}" method="post"
+              onsubmit="return confirm('Keep changes?')">
+            <h2>Edit Wish</h2>
 
-    <!--            <label for="email">Email:</label>-->
-    <!--            <input type="email" id="email" name="email" required>-->
+            <input type="hidden" name="wishId" th:value="${wish.wishId}">
+            <input type="hidden" name="wishlistId" th:value="${wish.wishlistId}">
+            <input type="hidden" name="amount" th:value="${wish.amount}">
 
-    <!--            <button type="submit" class="btn">Share this list</button>-->
-    <!--        </form>-->
+            <label th:for="'edit-title-' + ${wish.wishId}">Title</label>
+            <input type="text" th:id="'edit-title-' + ${wish.wishId}" name="title" th:value="${wish.title}" required>
 
-    <!--        <div class="share-message"-->
-    <!--        th:if="${shareMessage != null}"-->
-    <!--        th:text="${shareMessage}">-->
-    <!--        </div>-->
-    <!--    </section>-->
-    <!--    </div>-->
+            <label th:for="'edit-desc-' + ${wish.wishId}">Description</label>
+            <input type="text" th:id="'edit-desc-' + ${wish.wishId}" name="description" th:value="${wish.description}">
+
+            <label th:for="'edit-price-' + ${wish.wishId}">Price</label>
+            <input type="number" th:id="'edit-price-' + ${wish.wishId}" name="price" th:value="${wish.price}" step="0.01" min="0">
+
+            <label th:for="'edit-priority-' + ${wish.wishId}">Priority</label>
+            <input type="number" th:id="'edit-priority-' + ${wish.wishId}" name="priority" th:value="${wish.priority}" min="0" max="5">
+
+            <label th:for="'edit-url-' + ${wish.wishId}">Product link</label>
+            <input type="url" th:id="'edit-url-' + ${wish.wishId}" name="productUrl" th:value="${wish.productUrl}">
+
+            <label th:for="'edit-img-' + ${wish.wishId}">Image link</label>
+            <input type="url" th:id="'edit-img-' + ${wish.wishId}" name="imgUrl" th:value="${wish.imgUrl}">
+
+            <div class="modal-actions">
+                <button class="btn btn-page" type="button"
+                        th:attr="popovertarget='edit-wish-' + ${wish.wishId}" popovertargetaction="hide">Cancel</button>
+                <button class="btn" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
 
     <div class="wish-actions">
         <a class="btn btn-back" th:href="@{/profile}">Back to Profile</a>

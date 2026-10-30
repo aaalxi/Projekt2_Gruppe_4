@@ -355,7 +355,7 @@ a {
 .wishlist-grid{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 10px;
     margin: 40px;
     padding: 40px;
 }
@@ -371,7 +371,7 @@ a {
     position: relative;
     background: white;
     border-radius: 60px;
-    padding: 40px;
+    padding: 20px 40px 20px;
 
     /* box-shadow følger ikke boblerne, drop-shadow gør */
     filter: drop-shadow(0 8px 15px rgba(36, 87, 167, 0.25));
@@ -494,7 +494,7 @@ a {
     position: relative;
     background: white;
     border-radius: 60px;
-    padding: 40px;
+    padding: 40px 40px 20px;
 
     /* box-shadow følger ikke boblerne, drop-shadow gør */
     filter: drop-shadow(0 8px 15px rgba(36, 87, 167, 0.25));
@@ -667,7 +667,7 @@ a {
 
     border: none;
     border-radius: 60px;
-    padding: 50px 40px 40px;
+    padding: 20px 40px 20px;
     background: white;
     filter: drop-shadow(0 8px 15px rgba(36, 87, 167, 0.25));
 
@@ -708,7 +708,7 @@ a {
 .modal-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 1px;
 }
 
 .modal-form input {
@@ -733,7 +733,7 @@ a {
 
     border: none;
     border-radius: 60px;
-    padding: 50px 40px 40px;
+    padding: 30px 40px 30px;
     background: white;
     filter: drop-shadow(0 8px 15px rgba(36, 87, 167, 0.25));
 
@@ -751,7 +751,7 @@ a {
 .modal-edits-form {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 3px;
 }
 
 .modal-edits-form input {
