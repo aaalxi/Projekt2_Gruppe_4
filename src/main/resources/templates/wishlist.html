@@ -24,8 +24,9 @@
     </nav>
 </header>
 <main class="main">
-
-    <h1 th:text="${wishlist.title}">Title</h1>
+    <div class="wishlist-title">
+        <h1 th:text="${wishlist.title}">Title</h1>
+    </div>
     <div class="wish-actions">
         <!--        create new wish-->
         <button class="btn" type="button" popovertarget="new-wish">+ New Wish</button>

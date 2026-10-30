@@ -3,6 +3,7 @@ body{
     padding: 0;
     margin: 0;
     font-family: Arial, sans-serif; /*GØR SÅ DETTE GÆLDER FOR ALT*/
+    background-color: whitesmoke;
 }
 
 /* ---------- HEADER ---------- */
@@ -22,7 +23,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: rgba(242, 242, 242, 0.5);
+    background-color: rgba(245, 245, 245, 0.5);
     -webkit-backdrop-filter: blur(7px);
     backdrop-filter: blur(7px);
 }
@@ -257,8 +258,30 @@ textarea{
     transition: transform 0.2s ease;
 }
 
+.login-btn-index{
+    background-color: rgba(36, 87, 120, 0.8);
+
+    display: inline-block;
+    padding: 11px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(36, 87, 167, 0.25);
+
+    transition: transform 0.2s ease;
+}
+
 .login-btn:hover {
-    background-color: rgba(36, 87, 167, 0.8);
+    background-color: rgba(36, 87, 120, 0.8);
+    transform: scale(1.03);
+}
+
+.login-btn-index:hover {
+    background-color: rgba(36, 87, 120, 1);
     transform: scale(1.03);
 }
 
@@ -335,6 +358,10 @@ a {
     border-radius: 8px;
     padding: 20px;
     margin: 15px 0;
+}
+
+.wishlist-title{
+    margin-bottom: 20px;
 }
 
 .wishlist h2,
@@ -483,7 +510,7 @@ a {
     gap: 100px;                    /* plads til sideboblerne */
     overflow-x: auto;
     width: 100%;
-    margin: 40px 0;
+    margin-top: 50px;
     padding: 100px 80px;
     box-sizing: border-box;
 
