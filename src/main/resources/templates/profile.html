@@ -11,7 +11,7 @@
 
 <header>
     <a th:href="@{/profile}" class="company-logo-link">
-        <img th:src="@{/img/logo.svg}" class="logo" alt="Company Logo">
+        <img th:src="@{/img/logo-icon.svg}" class="logo" alt="Company Logo">
     </a>
     <nav>
         <ul> <!-- giving the wishlistId value with, to the getmapping in wish -->
@@ -29,6 +29,7 @@
     <div class="wishlist-title">
         <h1><span th:text="${user.name}"></span>'s Wishlists</h1>
     </div>
+</section>
 
 <div class="wish-grid">
     <div class="wishlist-card" th:each="wishlist : ${wishlists}">

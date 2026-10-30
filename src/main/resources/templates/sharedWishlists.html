@@ -11,13 +11,13 @@
 <body>
 <header>
     <a th:href="@{/profile}" class="company-logo-link">
-        <img th:src="@{/img/logo.svg}" class="logo" alt="Company Logo">
+        <img th:src="@{/img/logo-icon.svg}" class="logo" alt="Company Logo">
     </a>
     <nav>
         <ul>
             <li><a th:href="@{/profile}" class="btn">&plus; Create your own Wishlist</a></li>
             <li><form th:action="@{/logout}" method="post">
-                <button type="submit" class="login-btn">Log ud</button>
+                <button type="submit" class="login-btn">Log out</button>
             </form></li>
         </ul>
     </nav>
