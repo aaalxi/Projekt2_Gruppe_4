@@ -8,6 +8,11 @@
     <title>Confirm delete of User</title>
 </head>
 <body>
+<header>
+    <a th:href="@{/profile}" class="company-logo-link">
+        <img th:src="@{/img/logo-icon.svg}" class="logo" alt="Company Logo">
+    </a>
+</header>
 
 <main>
     <h1>Delete Account</h1>
@@ -20,13 +25,16 @@
     </p>
     <div class="modal-edits">
         <div class="modal-edits-form">
-            <form th:action="@{/deleteUser}" method="post">
+            <form th:action="@{/deleteUser}" onsubmit="return confirm('!!!! You account will be DELETED !!!!!')" method="post">
+
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
-                <button class="btn" type="submit">Confirm deletion</button>
-            </form>
 
-            <a class="btn" th:href="@{/profile}">Cancel</a>
+                <div class="modal-edits-actions">
+                    <button class="btn btn-delete" type="submit">DELETE</button>
+                    <a class="btn" th:href="@{/profile}">Cancel</a>
+                </div>
+            </form>
             <p th:if="${error}" th:text="${error}"></p>
         </div>
     </div>

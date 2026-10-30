@@ -1,6 +1,7 @@
 /* ----------------------- HERO SECTION ------------------------------------- */
 .hero{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;            /*main axis*/
     align-items: center;                /*cross axis*/
     gap: 40px;
@@ -12,8 +13,10 @@
 }
 
 .hero img{
-    width: 50%;
+    width: 300px;
     height: 300px;
+    flex-shrink: 0;
+    max-width: 100%;
     object-fit: cover;
 }
 
@@ -21,6 +24,16 @@
     justify-self: center;
 }
 
+.hero-text{
+    flex: 1 1 300px;
+}
+
+.hero-btn{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+}
 
 main{
     margin: 0 auto 120px;

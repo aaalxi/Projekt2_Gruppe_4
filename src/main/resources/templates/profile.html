@@ -11,7 +11,7 @@
 
 <header>
     <a th:href="@{/profile}" class="company-logo-link">
-        <img th:src="@{/img/index.jpg}" class="logo" alt="Company Logo">
+        <img th:src="@{/img/logo-icon.svg}" class="logo" alt="Company Logo">
     </a>
     <nav>
         <ul> <!-- giving the wishlistId value with, to the getmapping in wish -->
@@ -33,7 +33,10 @@
 
 <div class="wish-grid">
     <div class="wishlist-card" th:each="wishlist : ${wishlists}">
-        <h2 th:text="${wishlist.title}">Titel</h2>
+
+        <details class="wish-title" th:if="${!#strings.isEmpty(wishlist.title)}">
+            <summary><h3 th:text="${wishlist.title}">Title</h3></summary>
+        </details>
 
         <div class="wishlist-card-actions">
             <a class="btn" th:href="@{/wishlist/{wishlistId}/showWishlist(wishlistId=${wishlist.wishlistId})}">See Wishlist</a>
@@ -74,6 +77,7 @@
 <div id="edit-profile" popover class="modal-edits">
     <form class="modal-edits-form" th:action="@{/profile/editNameAndEmail}" method="post" onsubmit="return confirm('Keep changes?')">
         <h2>Edit Profile</h2>
+        <p>Change name or email</p>
 
         <input type="hidden" name="userId" th:value="${user.userId}">
 

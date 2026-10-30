@@ -17,7 +17,7 @@ header {
     justify-content: space-between;
     align-items: center;
 
-    padding: 10px 30px;
+    padding: 0px 30px;
 
     position: sticky;
     top: 0;
@@ -76,12 +76,21 @@ header a {
 
 /* --------------- LOGO  ----------------- */
 .logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: solid 1px black;
-    object-fit: cover;
+    width: auto;
+    height: 80px;
     display: block;
+}
+
+.logo-text {
+    width: auto;
+    height: 30px;
+    display: block;
+}
+
+.company-logo-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .share-message{
@@ -214,6 +223,7 @@ textarea{
     background-color: rgba(36, 87, 167, 0.7);   /* blå, lidt gennemsigtig */
     color: white;
     border: none;
+
 
     border-radius: 5px;
     text-decoration: none;
@@ -362,7 +372,7 @@ a {
 
 .wishlist-card {
     transition: transform 0.2s ease;
-
+    grid-template-columns: minmax(0, 1fr);
     display: grid;
     grid-template-rows: 1fr auto 1fr;   /* top | midte | bund */
     justify-items: center;
@@ -489,6 +499,7 @@ a {
 /* Sky-formet kort */
 .wish-card {
     transition: transform 0.2s ease;
+    grid-template-columns: minmax(0, 1fr);
     display: flex;
     flex-direction: column;
     position: relative;
@@ -575,6 +586,42 @@ a {
     width: auto;
     padding: 0;
 }
+.wish-title summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+.wish-title summary::-webkit-details-marker {
+    display: none;
+}
+
+.wish-title h3 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    font-size: 26px;
+    color: #1b3f7a;
+    text-align: center;
+    margin: 0 0 10px;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;          /* højst 2 linjer før "…" */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    overflow-wrap: anywhere;        /* lange ord uden mellemrum brydes også */
+}
+
+.wish-title[open] h3 {
+    -webkit-line-clamp: unset;      /* hele titlen, når den er åben */
+}
+
+/* I wishlist-kortet skal titlen ligge i griddets øverste række */
+.wish-title {
+    grid-row: 1;
+    align-self: end;
+    max-width: 100%;
+    width: 100%;
+    min-width: 0;
+}
 
 
 /* Beskrivelse der kan foldes ud */
@@ -604,6 +651,7 @@ a {
     justify-content: space-between;
     align-items: center;
     margin: 12px 0;
+    flex-direction: column;
 }
 
 .wish-price {
@@ -614,6 +662,9 @@ a {
 }
 
 .shop-link {
+    display: block;
+    width: fit-content;
+    margin: 0 auto 25px;
     font-size: 13px;
     padding: 5px 12px;
     border-radius: 20px;
