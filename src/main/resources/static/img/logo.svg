@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Wishlist logo">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 12 70 64" role="img" aria-label="Wishlist logo">
   <!-- Baggrund (rund, passer til .logo med border-radius: 50%) -->
-  <circle cx="50" cy="50" r="50" fill="#f5f8fc"/>
+<!--  <circle cx="50" cy="50" r="50" fill="#ffffff"/>-->
 
   <!-- Sky -->
   <g fill="#2457a7">
@@ -14,6 +14,6 @@
   <circle cx="46" cy="44" r="3" fill="#ffffff" opacity="0.6"/>
 
   <!-- Guldstjerne (samme farve som prioritetsstjernerne) -->
-  <polygon fill="#f5b301"
+  <polygon fill="#f5b312" opacity="0.6"
            points="74,16 76.6,23.4 84.5,23.6 78.2,28.4 80.5,36 74,31.5 67.5,36 69.8,28.4 63.5,23.6 71.4,23.4"/>
 </svg>
