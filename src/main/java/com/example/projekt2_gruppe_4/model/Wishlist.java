@@ -48,14 +48,6 @@ public class Wishlist {
         this.title = title;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public void setSharedToken(String sharedToken) {
-        this.sharedToken = sharedToken;
-    }
-
     public int getWishlistId() {
         return wishlistId;
     }
@@ -67,14 +59,4 @@ public class Wishlist {
     public String getTitle() {
         return title;
     }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public String getSharedToken() {
-        return sharedToken;
-    }
-
-
 }

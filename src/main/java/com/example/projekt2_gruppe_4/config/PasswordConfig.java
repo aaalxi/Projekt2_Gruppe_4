@@ -14,7 +14,7 @@ public class PasswordConfig {
     }
 
 //verifying password for testData
-    public static void main(String []args){
+     static void main(String []args){
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         System.out.println(encoder.encode("1234"));
         System.out.println(encoder.matches("1234",

@@ -84,16 +84,11 @@ public class WishController {
         if(userId == null){
             return "redirect:/";
         }
-        //url protection,
+        //control of url insertion
         Wish wish = wishService.getById(wishId);
         if (!sharedWishlistService.userHasAccessToWishlist(wish.getWishlistId(), userId)){
             return "redirect:/sharedWishlists";
         }
-        boolean cancelled = wishService.cancelReservation(wishId, userId);
-        System.out.println("Wish ID: " + wishId);
-        System.out.println("User ID: " + userId);
-        System.out.println("Reservation cancelled: " + cancelled);
-
         wishService.cancelReservation(wishId, userId);
         return "redirect:/sharedWishlists";
     }

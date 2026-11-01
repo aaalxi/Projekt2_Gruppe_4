@@ -15,7 +15,7 @@ public class Wish {
     private String imgUrl;
     private int priority;
     private LocalDateTime createDate;
-    private Integer reservedByUserId;
+    private Integer reservedByUserId;       //FIELD IN DB (INT NULL) HAS TO BE INTEGER
 
 
 
@@ -47,7 +47,6 @@ public class Wish {
     }
 
     public Wish(){
-
     }
 
     public int getWishId() {
@@ -128,10 +127,6 @@ public class Wish {
 
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
-    }
-
-    public Integer getReservedByUserId() {
-        return reservedByUserId;
     }
 
     public void setReservedByUserId(Integer reservedByUserId) {
