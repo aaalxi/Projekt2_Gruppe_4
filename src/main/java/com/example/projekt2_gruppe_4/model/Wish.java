@@ -132,4 +132,8 @@ public class Wish {
     public void setReservedByUserId(Integer reservedByUserId) {
         this.reservedByUserId = reservedByUserId;
     }
+
+    public Integer getReservedByUserId() {
+        return reservedByUserId;
+    }
 }
