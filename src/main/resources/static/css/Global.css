@@ -397,6 +397,30 @@ a {
     padding: 40px;
 }
 
+/* Scrollbar: Chrome, Safari, Edge */
+.wishlist-grid::-webkit-scrollbar {
+    height: 5px;
+}
+
+.wishlist-grid::-webkit-scrollbar-track {
+    background: rgba(36, 87, 167, 0.08);
+    border-radius: 10px;
+    margin: 0 600px;                 /* fylder kun de midterste 40 % */
+}
+
+.wishlist-grid::-webkit-scrollbar-thumb {
+    background: rgba(36, 87, 167, 0.4);
+    border-radius: 10px;
+}
+
+/* Scrollbar: Firefox */
+@supports not selector(::-webkit-scrollbar) {
+    .wishlist-grid {
+        scrollbar-color: rgba(36, 87, 167, 0.4) transparent;
+        scrollbar-width: thin;
+    }
+}
+
 .wishlist-card {
     transition: transform 0.2s ease;
     grid-template-columns: minmax(0, 1fr);
@@ -503,7 +527,6 @@ a {
 
 /* Vandret scroll-række med fade i siderne */
 .wish-grid {
-    scrollbar-width: none;
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: 300px;
@@ -518,9 +541,28 @@ a {
     mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
-/*Fjerne scroll bar i wish elementer*/
+/* Scrollbar: Chrome, Safari, Edge */
 .wish-grid::-webkit-scrollbar {
-    display: none;                  /* Chrome, Safari, Edge */
+    height: 5px;
+}
+
+.wish-grid::-webkit-scrollbar-track {
+    background: rgba(36, 87, 167, 0.08);
+    border-radius: 10px;
+    margin: 0 600px;                 /* fylder kun de midterste 40 % */
+}
+
+.wish-grid::-webkit-scrollbar-thumb {
+    background: rgba(36, 87, 167, 0.4);
+    border-radius: 10px;
+}
+
+/* Scrollbar: Firefox */
+@supports not selector(::-webkit-scrollbar) {
+    .wish-grid {
+        scrollbar-color: rgba(36, 87, 167, 0.4) transparent;
+        scrollbar-width: thin;
+    }
 }
 
 /* Sky-formet kort */
