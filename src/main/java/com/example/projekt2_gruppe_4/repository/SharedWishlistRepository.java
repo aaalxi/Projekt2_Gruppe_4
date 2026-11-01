@@ -15,7 +15,6 @@ public class SharedWishlistRepository {
         this.jdbcTemplate=jdbcTemplate;
     }
 
-
     public void shareWishlist(int wishlistId, int userId){
         String sql="INSERT INTO sharedwishlist (wishlist_id, shared_with_user_id) " +
                 "VALUES (?, ?)";
@@ -39,5 +38,17 @@ public class SharedWishlistRepository {
                         rs.getInt("shared_with_user_id"),
                         rs.getString("title"),
                         rs.getString("owner")), userId);
+    }
+
+    public boolean userHasAccessToWishlist(int wishlistId, int userId){
+        String sql= """
+                SELECT COUNT(*)
+                FROM sharedWishlist
+                WHERE wishlist_id = ?
+                AND shared_with_user_id = ?
+                """;
+                //converts to Integer, since (INT NULL in db)
+                Integer count = jdbcTemplate.queryForObject(sql, Integer.class, wishlistId, userId);
+                return count != null && count > 0;
     }
 }

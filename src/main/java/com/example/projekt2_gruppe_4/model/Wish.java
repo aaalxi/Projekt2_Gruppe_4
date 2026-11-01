@@ -15,13 +15,13 @@ public class Wish {
     private String imgUrl;
     private int priority;
     private LocalDateTime createDate;
-    private int reservedByUserId;
+    private Integer reservedByUserId;
 
 
 
     public Wish (int wishId, int wishlistId, String title, String description, String productUrl,
                  BigDecimal price, int amount, String imgUrl,
-                 int priority, LocalDateTime createDate, int reservedByUserId){
+                 int priority, LocalDateTime createDate, Integer reservedByUserId){
         this.wishId = wishId;
         this.wishlistId = wishlistId;
         this.title = title;
@@ -130,11 +130,11 @@ public class Wish {
         this.createDate = createDate;
     }
 
-    public int getReservedByUserId() {
+    public Integer getReservedByUserId() {
         return reservedByUserId;
     }
 
-    public void setReservedByUserId(int reservedByUserId) {
+    public void setReservedByUserId(Integer reservedByUserId) {
         this.reservedByUserId = reservedByUserId;
     }
 }

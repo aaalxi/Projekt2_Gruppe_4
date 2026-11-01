@@ -46,7 +46,7 @@ public class UserController {
         session.setAttribute("userId", user.getUserId());
         return "redirect:/profile";
     }
-
+//show error in model is missing
     @PostMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate();

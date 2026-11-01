@@ -66,6 +66,27 @@
                         <img th:src="${wish.imgUrl}" alt="wish image">
                     </div>
 
+            <!-- RESERVATION OF A WISH -->
+                    <div class="wish-card-actions">
+                        <!-- IF WISH IS NOT RESERVED -->
+                        <form th:if="${wish.reservedByUserId==null}"
+                              th:action="@{/sharedWishlists/{wishId}/reserve(wishId=${wish.wishId})}"
+                              method="post">
+                            <button class="btn" type="submit">Reserve</button>
+                        </form>
+            <!-- IF WISH IS RESERVED BY USER: CANCEL -->
+                        <form th:if="${wish.reservedByUserId !=null and wish.reservedByUserId == userId}"
+                        th:action="@{/sharedWishlists/{wishId}/cancelReservation(wishId=${wish.wishId})}"
+                        method="post">
+                            <button type="submit" class="btn">Cancel Reservation</button>
+                        </form>
+
+            <!-- IF WISH IS RESERVED BY ANOTHER USER-->
+                        <p th:if="${wish.reservedByUserId !=null and wish.reservedByUserId != userId}">
+                        Reserved by Another User
+                        </p>
+                    </div>
+
                     <div class="wish-card-actions">
     <!--                    <a class="btn" th:href="*{/wish/{wishId}/!!!!!!!SOMETHINGSOMETHING_RESERVE">Reserve Wish</a>-->
                     </div>

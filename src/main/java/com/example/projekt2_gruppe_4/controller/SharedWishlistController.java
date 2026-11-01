@@ -10,6 +10,7 @@ import com.example.projekt2_gruppe_4.service.WishService;
 import com.example.projekt2_gruppe_4.service.WishlistService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,7 +81,9 @@ public class SharedWishlistController {
     }
 
     @GetMapping("/sharedWishlists")
-    public String showSharedWishlist(HttpSession session, Model model, @RequestParam(required = false) String sort){
+    public String showSharedWishlist(@RequestParam(required = false)String sort,
+                                     HttpSession session,
+                                     Model model){
         Integer userId = (Integer) session.getAttribute("userId");
 
         if (userId==null){
@@ -101,7 +104,9 @@ public class SharedWishlistController {
         }
 
         model.addAttribute("sharedWishlists", sharedWishlists);
+        model.addAttribute("userId", userId);           //sending with to thymeleaf for this site
 
         return "sharedWishlists";
     }
 }
+

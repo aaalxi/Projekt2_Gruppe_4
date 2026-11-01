@@ -4,7 +4,6 @@ CREATE USER IF NOT EXISTS 'F26A'@'localhost' IDENTIFIED BY '1234';
 GRANT ALL PRIVILEGES ON projekt2_gruppe_4_db.* TO 'F26A'@'localhost';
 
 FLUSH PRIVILEGES;
-
     SELECT user, host
     FROM mysql.user
     WHERE user = 'F26A';

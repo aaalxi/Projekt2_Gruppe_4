@@ -23,4 +23,7 @@ public class SharedWishlistService {
         return repository.findSharedWishlistsByUserId(userId);
     }
 
+    public boolean userHasAccessToWishlist (int wishlistId, int sharedWithUserId){
+        return repository.userHasAccessToWishlist(wishlistId, sharedWithUserId);
+    }
 }

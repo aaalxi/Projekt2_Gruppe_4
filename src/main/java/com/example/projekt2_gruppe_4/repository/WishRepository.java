@@ -27,7 +27,8 @@ public class WishRepository {
             rs.getString("img_url"),
             rs.getInt("priority"),
             rs.getTimestamp("created_at").toLocalDateTime(),
-            rs.getInt("reserved_by_user_id")));
+            rs.getObject("reserved_by_user_id", Integer.class)));
+            //to differentiate between reserved_by_user_id = 0 and null, getInt returns 0 if db is null
 
     private final DataSource dataSource;
 
@@ -89,7 +90,7 @@ public class WishRepository {
                     wish.setImgUrl(rs.getString("img_url"));
                     wish.setPriority(rs.getInt("priority"));
                     wish.setCreateDate(rs.getTimestamp("created_at").toLocalDateTime());
-                    wish.setReservedByUserId(rs.getInt("reserved_by_user_id"));
+                    wish.setReservedByUserId(rs.getObject("reserved_by_user_id", Integer.class));
                 }
             }
         } catch (SQLException e) {
@@ -130,5 +131,27 @@ public class WishRepository {
         return jdbcTemplate.query(sql, WISH_MAPPER, wishlistId);
     }
 
+
+    //returns 1 if success reserving, returns 0 if wish already reserved or null, the first will reserve
+    public int reserveWish(int wishId, int reservedByUserId){
+        String sql= """
+                UPDATE wish 
+                SET reserved_by_user_id = ? 
+                WHERE wish_id = ?
+                AND reserved_by_user_id IS NULL
+                """;
+        return jdbcTemplate.update(sql,  reservedByUserId, wishId); //ordered args
+    }
+
+    //a user can cancel a reservation from a sharedwishlist SHARED with him
+    public int cancelReservation(int wishId, int reservedByUserId){
+        String sql= """
+                UPDATE wish
+                SET reserved_by_user_id = NULL
+                WHERE wish_id = ?
+                AND reserved_by_user_id = ?
+                """;
+        return jdbcTemplate.update(sql, wishId, reservedByUserId);
+    }
 
 }

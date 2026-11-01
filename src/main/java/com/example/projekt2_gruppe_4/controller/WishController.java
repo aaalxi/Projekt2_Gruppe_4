@@ -2,8 +2,10 @@ package com.example.projekt2_gruppe_4.controller;
 
 import com.example.projekt2_gruppe_4.model.Wish;
 import com.example.projekt2_gruppe_4.model.Wishlist;
+import com.example.projekt2_gruppe_4.service.SharedWishlistService;
 import com.example.projekt2_gruppe_4.service.WishService;
 import com.example.projekt2_gruppe_4.service.WishlistService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.*;
 public class WishController {
 
     private final WishService wishService;
+    private final SharedWishlistService sharedWishlistService;
 
-    public WishController(WishService wishService) {
+    public WishController(WishService wishService, SharedWishlistService sharedWishlistService) {
         this.wishService = wishService;
+        this.sharedWishlistService = sharedWishlistService;
     }
 
     @PostMapping("/wish/createWish")
@@ -55,5 +59,43 @@ public class WishController {
 //        return "deleteWish";
 //    }
 
+    @PostMapping("/sharedWishlists/{wishId}/reserve")
+    public String reserveWish (@PathVariable int wishId,
+                               HttpSession session){
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (userId == null){
+            return "redirect:/";
+        }
+
+        Wish wish = wishService.getById(wishId);
+        if (!sharedWishlistService.userHasAccessToWishlist(wish.getWishlistId(), userId)){
+            return "redirect:/sharedWishlists";
+        }
+
+        wishService.reserveWish(wishId, userId);
+        return "redirect:/sharedWishlists";
+    }
+
+
+    @PostMapping ("sharedWishlists/{wishId}/cancelReservation")
+    public String cancelReservation (@PathVariable int wishId,
+                                     HttpSession session){
+        Integer userId = (Integer) session.getAttribute("userId");
+        if(userId == null){
+            return "redirect:/";
+        }
+        //url protection,
+        Wish wish = wishService.getById(wishId);
+        if (!sharedWishlistService.userHasAccessToWishlist(wish.getWishlistId(), userId)){
+            return "redirect:/sharedWishlists";
+        }
+        boolean cancelled = wishService.cancelReservation(wishId, userId);
+        System.out.println("Wish ID: " + wishId);
+        System.out.println("User ID: " + userId);
+        System.out.println("Reservation cancelled: " + cancelled);
+
+        wishService.cancelReservation(wishId, userId);
+        return "redirect:/sharedWishlists";
+    }
 
 }

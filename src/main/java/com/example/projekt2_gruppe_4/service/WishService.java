@@ -70,4 +70,13 @@ public class WishService {
         wishRepository.deleteById(wishId);
     }
 
+    //returns true if repo returns 1
+    public boolean reserveWish(int wishId, int reservedByUserId){
+        return wishRepository.reserveWish(wishId, reservedByUserId) ==1;
+    }
+
+    public boolean cancelReservation(int wishId, int reservedByUserId){
+        return wishRepository.cancelReservation(wishId, reservedByUserId) ==1;
+    }
+
 }
