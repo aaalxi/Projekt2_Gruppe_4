@@ -98,7 +98,6 @@ public class UserRepository {
         jdbcTemplate.update(sql, user.getName(), user.getEmail(), user.getUserId());
     }
 
-
     public int deleteUser (int userId){
         String sql="DELETE FROM users WHERE user_id =?";
         return jdbcTemplate.update(sql, userId);

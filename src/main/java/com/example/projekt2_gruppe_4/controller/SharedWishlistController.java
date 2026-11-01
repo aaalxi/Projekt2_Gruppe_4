@@ -78,6 +78,7 @@ public class SharedWishlistController {
         return "redirect:/wishlist/"+wishlistId+"/showWishlist";
     }
 
+
     @GetMapping("/sharedWishlists")
     public String showSharedWishlist(@RequestParam(required = false)String sort,
                                      HttpSession session,

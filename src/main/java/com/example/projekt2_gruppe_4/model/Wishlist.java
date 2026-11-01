@@ -59,4 +59,12 @@ public class Wishlist {
     public String getTitle() {
         return title;
     }
+
+    public String getSharedToken() {
+        return sharedToken;
+    }
+
+    public void setSharedToken(String sharedToken) {
+        this.sharedToken = sharedToken;
+    }
 }

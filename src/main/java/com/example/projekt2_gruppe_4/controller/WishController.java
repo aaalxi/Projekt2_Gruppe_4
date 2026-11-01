@@ -76,7 +76,6 @@ public class WishController {
         return "redirect:/sharedWishlists";
     }
 
-
     @PostMapping ("sharedWishlists/{wishId}/cancelReservation")
     public String cancelReservation (@PathVariable int wishId,
                                      HttpSession session){
@@ -92,5 +91,4 @@ public class WishController {
         wishService.cancelReservation(wishId, userId);
         return "redirect:/sharedWishlists";
     }
-
 }

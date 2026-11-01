@@ -70,7 +70,7 @@ public class WishService {
         wishRepository.deleteById(wishId);
     }
 
-    //returns true if repo returns 1
+    //returns true if repo returns 1, method still used just not return value
     public boolean reserveWish(int wishId, int reservedByUserId){
         return wishRepository.reserveWish(wishId, reservedByUserId) ==1;
     }
