@@ -8,7 +8,7 @@ VALUES
     ('Bjørn', 'F26A@stud.ek.dk','$2a$10$Wa7YhIz8a0InzHidWtvQXuXKqOw.tEvH0oOSrfetNEEIA8VUySNxW'),
     ('Ava', 'aval0001@stud.ek.dk', '$2a$10$Wa7YhIz8a0InzHidWtvQXuXKqOw.tEvH0oOSrfetNEEIA8VUySNxW'),
     ('Mads', 'majo1009@stud.ek.dk', '$2a$10$Wa7YhIz8a0InzHidWtvQXuXKqOw.tEvH0oOSrfetNEEIA8VUySNxW'),
-    ('Rasmus', 'ragu1000 @stud.ek.dk', '$2a$10$Wa7YhIz8a0InzHidWtvQXuXKqOw.tEvH0oOSrfetNEEIA8VUySNxW');
+    ('Rasmus', 'ragu1000@stud.ek.dk', '$2a$10$Wa7YhIz8a0InzHidWtvQXuXKqOw.tEvH0oOSrfetNEEIA8VUySNxW');
 
 INSERT INTO wishlist (user_id, title)
 VALUES
