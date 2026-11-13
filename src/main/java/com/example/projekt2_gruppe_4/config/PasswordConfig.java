@@ -13,6 +13,7 @@ public class PasswordConfig {
         return new BCryptPasswordEncoder();
     }
 
+
 //verifying password for testData
      static void main(String []args){
         PasswordEncoder encoder = new BCryptPasswordEncoder();
